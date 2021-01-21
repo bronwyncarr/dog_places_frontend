@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+# T3A2 Dog-places app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+(We need a better name!)
 
-## Available Scripts
+Dog owners tool for finding parks and cafes for their four legged friends.
 
-In the project directory, you can run:
+## Purpose
 
-### `yarn start`
+> “Everyone thinks they have the best dog. And none of them are wrong.” – W.R. Purche
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Over one third of households in Australia have a pet dog, giving Australia one of the highest rates of pet ownship in the world. That's over 3.6 million households with a dog eagerly waiting at the front door for it's owner, snoozing on the couch in the sun, or chasing a ball around the garden. Dogs are traditionally known as "man's best friend" and many people consider them part of their family. This app is designed to help people include their four legged family member in day-to-day activities in addition to planning outing the whole family can enjoy.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The app is designed to help people find locations and plan activities that are "dog-friendly". This might be an off-lead park, a cafe that welcomes dogs or even to Bunnings for a sausage. Users can search the location of places and see what facilities there are for them and their four legged friend.
 
-### `yarn test`
+## Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Dog-places app will feature a fully fledged Rails api and a sleek React front end to allow anyone to access the site at any time on any device.
+- Dog-places app will use a geolocation service to retrieve and update locations that users have vistied or propose new location for the user to check out whilst listing facilities available at said location.
 
-### `yarn build`
+## Target audience
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- THe target audience for this app is anyone looking for places that are dog-friendly in some way. They may be looking a cafe close to home they can regularly go to, or further afield if say, they are planning a car trip and after places they can stop to stretch their dogs legs. They may be after an fenced area they can do training or just somewhere to socialise and make friends (2 and 4 legged variety).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Tech stack
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Front end
 
-### `yarn eject`
+- React
+- CSS
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Back end
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Ruby on Rails API
+- Postgresql database
+- Knock JWT authentication
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Third Party
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- geolocation API
 
 ### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Heroku web server for Rails database
+- Netlify for React frontend
 
-### `yarn build` fails to minify
+# Diagrams
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Data flow diagram
+
+## ERD
+
+![ERD](doggo_ERD.png)
+
+[Link to ERD](https://dbdiagram.io/d/6008bd9c80d742080a3735dd)
+
+## Trello board
+
+![Trello](Trello.png)
+[Link to Trello](https://trello.com/b/113nxQTJ/dog-places-app)
+
+## Application architecture diagram
+
+# User Stories
+
+### User
+
+- #### Initial MVP
+- As a user I want a convenient way to see what facilities are available so I know what is there.
+- As a user I want to see locations of facilities, so I know where it is.
+- As a user I want to see facilities on a map so that I can visualize where they are.
+- As a user I want to be able to add facilities so that I can contribute to the database
+- As a user I want to be able to edit or delete places I added.
+- As a user I want to be able to rate and comment on places so that there is more feedback on the facilities.
+
+- #### Stretch Goals
+- As a user I want to see the distance of a facility from my current location.
+- pull data from a separate API for extra data
+
+## Wireframes
