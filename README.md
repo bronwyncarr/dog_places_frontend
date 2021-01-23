@@ -36,7 +36,7 @@ The app is designed to help people find locations and plan activities that are "
 
 ### Third Party
 
-- geolocation API
+- Geolocation API
 
 ### Deployment
 
@@ -49,14 +49,24 @@ The app is designed to help people find locations and plan activities that are "
 
 ## ERD
 
-![ERD](doggo_ERD.png)
+![ERD](./docs/architecture.png)
 
-[Link to ERD](https://dbdiagram.io/d/6008bd9c80d742080a3735dd)
+[Link to ERD](https://dbdiagram.io/d/600b7dd380d742080a3785d0)
 
 ## Trello board
 
-![Trello](Trello.png)
-[Link to Trello](https://trello.com/b/113nxQTJ/dog-places-app)
+We used Trello as a project management tool. This helped us visualise our progress, keep track of timeframes, and assign priority. 
+
+Trello Board at the start
+![Trello](./docs/trello1.png)
+
+Trello Board part way through
+![Trello](./docs/trello2.png)
+
+Trello Board at the end
+![Trello](./docs/trello3.png)
+
+[Link to Trello](https://trello.com/b/113nxQTJ/off-the-leash)
 
 ## Application architecture diagram
 
