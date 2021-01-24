@@ -85,3 +85,19 @@ Trello Board at the end
 - pull data from a separate API for extra data
 
 ## Wireframes
+
+Considering our app is about family activities and location to visit with your dog, we decided on a playful theme when designing our wireframes. Our inspiration was:
+
+![Theme](./docs/inspo.png)
+
+Source: <https://wearepretendfriends.com/dog-park>
+
+![Landing](./docs/wireframes/landing.png)
+
+![Location](./docs/wireframes/location.png)
+
+![Results](./docs/wireframes/results.png)
+
+![New Location](./docs/wireframes/new.png)
+
+![Write a review](./docs/wireframes/review.png)
