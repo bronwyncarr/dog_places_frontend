@@ -28,18 +28,18 @@ Off the Leash will allow users to:
 ### Front end
 
 - React
-- CSS
+- CSS/SASS
 
 ### Back end
 
 - Ruby on Rails API
 - PostgreSQL database
-- Knock JWT authentication
 
 ### Third Party
 
 - Geolocation API
 - SendGrid/Twillo
+- OAuth/JWT
 
 ### Deployment
 
