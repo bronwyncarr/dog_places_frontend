@@ -49,7 +49,7 @@ Off the Leash will allow users to:
 
 ### Dataflow Diagram (R2)
 
-TO COME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+TO BE REVISED !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 ![Dataflow Diagram](./docs/diagrams/dataflow.png)
 
@@ -60,8 +60,6 @@ TO COME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ### ERD
 
 ![ERD](./docs/diagrams/erd.png)
-
-!!!!!!!!!!!!!!!!!! SHOW relations !!!!!!!!!!!!!!!!!!!!!!!!!!
 
 [Link to ERD](https://dbdiagram.io/d/600b7dd380d742080a3785d0)
 
