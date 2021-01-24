@@ -8,7 +8,7 @@ Over one third of households in Australia have a pet dog, giving Australia one o
 
 The app is designed to help people find locations and plan activities that are "dog-friendly". This might be an off-lead park, a cafe that welcomes dogs or even to Bunnings for a sausage. Users can search the location of places and see what facilities there are for them and their four legged friend.
 
-## Features
+## 🌟 Features
 
 Off the Leash will allow users to:
 
@@ -19,11 +19,11 @@ Off the Leash will allow users to:
 - Add new places to the database
 - Request admin modify or delete a location from the database
 
-## Target audience
+## 🤼 Target audience
 
 - THe target audience for this app is anyone looking for places that are dog-friendly in some way. They may be looking a cafe close to home they can regularly go to, or further afield if say, they are planning a car trip and after places they can stop to stretch their dogs legs. They may be after an fenced area they can do training or just somewhere to socialise and make friends (2 and 4 legged variety).
 
-## Tech stack
+## 💻 Tech stack
 
 ### Front end
 
@@ -45,7 +45,7 @@ Off the Leash will allow users to:
 - Heroku web server for Rails database
 - Netlify for React frontend
 
-## Diagrams
+## 📈 Diagrams
 
 ### Dataflow Diagram (R2)
 
@@ -61,26 +61,27 @@ TO COME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 ![ERD](./docs/diagrams/erd.png)
 
+!!!!!!!!!!!!!!!!!! SHOW relations !!!!!!!!!!!!!!!!!!!!!!!!!!
+
 [Link to ERD](https://dbdiagram.io/d/600b7dd380d742080a3785d0)
 
-## Trello board
+## 📋 Trello board
 
-We used Trello as a project management tool. This helped us visualise our progress, keep track of timeframes, and assign priority.
+We used Trello as a project management tool. This helped us visualise our progress, keep track of timeframes, and assign priority. We could visually see what each other were working on to stay in touch and review our progress collectively.
 
-Trello Board at the start
+Trello Board at the start:
+
 ![Trello 1](./docs/trello/trello1.png)
 
-Trello Board part way through
+Trello Board part way through:
+
 ![Trello 2](./docs/trello/trello2.png)
 ![Trello 3](./docs/trello/trello3.png)
-
-Trello Board at the end
-
-<!-- ![Trello 4](./docs/trello/trello4.png) -->
+![Trello 4](./docs/trello/trello4.png)
 
 [Link to Trello Board](https://trello.com/b/113nxQTJ/off-the-leash)
 
-## User Stories (R4)
+## 🤼 User Stories (R4)
 
 ### Initial MVP
 
@@ -96,7 +97,7 @@ Trello Board at the end
 - As a user I want to see the distance of a facility based on my current location so that I know how far it is.
 - As a user I want a webpage that is visually appealing with animations so that I enjoy using the website.
 
-## Wireframes (R5)
+## 📐 Wireframes (R5)
 
 Considering our app is about family activities and location to visit with your dog, we decided on a playful theme when designing our wireframes. Our inspiration was:
 
