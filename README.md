@@ -1,6 +1,6 @@
 # T3A2 Off The Leash
 
-## Purpose
+## ℹ Purpose (R1)
 
 > “Everyone thinks they have the best dog. And none of them are wrong.” – W.R. Purche
 
@@ -10,8 +10,14 @@ The app is designed to help people find locations and plan activities that are "
 
 ## Features
 
-- Dog-places app will feature a fully fledged Rails api and a sleek React front end to allow anyone to access the site at any time on any device.
-- Dog-places app will use a geolocation service to retrieve and update locations that users have vistied or propose new location for the user to check out whilst listing facilities available at said location.
+Off the Leash will allow users to:
+
+- Search for places that are dog-friendly
+- See locations on a map and in a list
+- See a description of the place, facilities that are available, images and reviews
+- Share reviews and images of places they have visited
+- Add new places to the database
+- Request admin modify or delete a location from the database
 
 ## Target audience
 
@@ -41,7 +47,13 @@ The app is designed to help people find locations and plan activities that are "
 
 ## Diagrams
 
-### Architect Diagram
+### Dataflow Diagram (R2)
+
+TO COME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+![Dataflow Diagram](./docs/diagrams/dataflow.png)
+
+### Architect Diagram (R3)
 
 ![Architecture Diagram](./docs/diagrams/architecture.png)
 
@@ -68,23 +80,23 @@ Trello Board at the end
 
 [Link to Trello Board](https://trello.com/b/113nxQTJ/off-the-leash)
 
-## User Stories
+## User Stories (R4)
 
 ### Initial MVP
 
-- As a user I want a convenient way to see what facilities are available so I know what is there.
+- As a user I want a convenient way to see what facilities are available so that I know what is available.
 - As a user I want to see locations of facilities, so I know where it is.
 - As a user I want to see facilities on a map so that I can visualize where they are.
-- As a user I want to be able to add facilities so that I can contribute to the database
-- As a user I want to be able to edit or delete places I added.
-- As a user I want to be able to rate and comment on places so that there is more feedback on the facilities.
+- As a user I want to be able to add facilities so that I can contribute to the database.
+- As a user I want to be able to request admin edit or delete places so that information is always up-to-date but protected from malicious behavior.
+- As a user I want to be able to rate and comment on places so that there is more feedback on the location.
 
 ### Stretch Goals
 
-- As a user I want to see the distance of a facility from my current location.
-- pull data from a separate API for extra data
+- As a user I want to see the distance of a facility based on my current location so that I know how far it is.
+- As a user I want a webpage that is visually appealing with animations so that I enjoy using the website.
 
-## Wireframes
+## Wireframes (R5)
 
 Considering our app is about family activities and location to visit with your dog, we decided on a playful theme when designing our wireframes. Our inspiration was:
 
@@ -92,12 +104,28 @@ Considering our app is about family activities and location to visit with your d
 
 Source: <https://wearepretendfriends.com/dog-park>
 
+Our wireframes take into account a variety of screen sizes.
+
+Landing Page:
+
 ![Landing](./docs/wireframes/landing.png)
+
+Individual Location:
 
 ![Location](./docs/wireframes/location.png)
 
+Index of Results:
+
 ![Results](./docs/wireframes/results.png)
 
+Add a New Location:
+
 ![New Location](./docs/wireframes/new.png)
+
+Request to Modify or Delete an Existing Location:
+
+![Modify Location](./docs/wireframes/modify.png)
+
+Submit a Review or Upload Pictures:
 
 ![Write a review](./docs/wireframes/review.png)
