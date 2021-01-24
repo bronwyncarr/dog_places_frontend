@@ -63,7 +63,8 @@ Trello Board part way through
 ![Trello 3](./docs/trello/trello3.png)
 
 Trello Board at the end
-![Trello 4](./docs/trello/trello3.png)
+
+<!-- ![Trello 4](./docs/trello/trello4.png) -->
 
 [Link to Trello Board](https://trello.com/b/113nxQTJ/off-the-leash)
 
