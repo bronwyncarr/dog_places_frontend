@@ -56,15 +56,16 @@ The app is designed to help people find locations and plan activities that are "
 We used Trello as a project management tool. This helped us visualise our progress, keep track of timeframes, and assign priority.
 
 Trello Board at the start
-![Trello](./docs/trello/trello1.png)
+![Trello 1](./docs/trello/trello1.png)
 
 Trello Board part way through
-![Trello](./docs/trello/trello2.png)
+![Trello 2](./docs/trello/trello2.png)
+![Trello 3](./docs/trello/trello3.png)
 
 Trello Board at the end
-![Trello](./docs/trello/trello3.png)
+![Trello 4](./docs/trello/trello3.png)
 
-[Link to Trello](https://trello.com/b/113nxQTJ/off-the-leash)
+[Link to Trello Board](https://trello.com/b/113nxQTJ/off-the-leash)
 
 ## User Stories
 
