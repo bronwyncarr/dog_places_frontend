@@ -1,8 +1,4 @@
-# T3A2 Dog-places app
-
-(We need a better name!)
-
-Dog owners tool for finding parks and cafes for their four legged friends.
+# T3A2 Off The Leash
 
 ## Purpose
 
@@ -31,7 +27,7 @@ The app is designed to help people find locations and plan activities that are "
 ### Back end
 
 - Ruby on Rails API
-- Postgresql database
+- PostgreSQL database
 - Knock JWT authentication
 
 ### Third Party
@@ -43,38 +39,37 @@ The app is designed to help people find locations and plan activities that are "
 - Heroku web server for Rails database
 - Netlify for React frontend
 
-# Diagrams
+## Diagrams
 
-## Data flow diagram
+### Architect Diagram
 
-## ERD
+![Architecture Diagram](./docs/diagrams/architecture.png)
 
-![ERD](./docs/architecture.png)
+### ERD
+
+![ERD](./docs/diagrams/erd.png)
 
 [Link to ERD](https://dbdiagram.io/d/600b7dd380d742080a3785d0)
 
 ## Trello board
 
-We used Trello as a project management tool. This helped us visualise our progress, keep track of timeframes, and assign priority. 
+We used Trello as a project management tool. This helped us visualise our progress, keep track of timeframes, and assign priority.
 
 Trello Board at the start
-![Trello](./docs/trello1.png)
+![Trello](./docs/trello/trello1.png)
 
 Trello Board part way through
-![Trello](./docs/trello2.png)
+![Trello](./docs/trello/trello2.png)
 
 Trello Board at the end
-![Trello](./docs/trello3.png)
+![Trello](./docs/trello/trello3.png)
 
 [Link to Trello](https://trello.com/b/113nxQTJ/off-the-leash)
 
-## Application architecture diagram
+## User Stories
 
-# User Stories
+### Initial MVP
 
-### User
-
-- #### Initial MVP
 - As a user I want a convenient way to see what facilities are available so I know what is there.
 - As a user I want to see locations of facilities, so I know where it is.
 - As a user I want to see facilities on a map so that I can visualize where they are.
@@ -82,7 +77,8 @@ Trello Board at the end
 - As a user I want to be able to edit or delete places I added.
 - As a user I want to be able to rate and comment on places so that there is more feedback on the facilities.
 
-- #### Stretch Goals
+### Stretch Goals
+
 - As a user I want to see the distance of a facility from my current location.
 - pull data from a separate API for extra data
 
