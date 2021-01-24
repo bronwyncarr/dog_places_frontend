@@ -39,11 +39,18 @@ Off the Leash will allow users to:
 ### Third Party
 
 - Geolocation API
+- SendGrid/Twillo
 
 ### Deployment
 
 - Heroku web server for Rails database
 - Netlify for React frontend
+
+### Development/Project Management
+
+- GitHub
+- Cypress
+- Trello
 
 ## 📈 Diagrams
 
