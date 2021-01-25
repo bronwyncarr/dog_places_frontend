@@ -4,7 +4,7 @@
 
 > “Everyone thinks they have the best dog. And none of them are wrong.” – W.R. Purche
 
-Over one third of households in Australia have a pet dog, giving Australia one of the highest rates of pet ownship in the world. That's over 3.6 million households with a dog eagerly waiting at the front door for it's owner, snoozing on the couch in the sun, or chasing a ball around the garden. Dogs are traditionally known as "man's best friend" and many people consider them part of their family. This app is designed to help people include their four legged family member in day-to-day activities in addition to planning outing the whole family can enjoy.
+Over one third of households in Australia have a pet dog, giving Australia one of the highest rates of pet ownership in the world. That's over 3.6 million households with a dog eagerly waiting at the front door for it's owner, snoozing on the couch in the sun, or chasing a ball around the garden. Dogs are traditionally known as "man's best friend" and many people consider them part of their family. This app is designed to help people include their four legged family member in day-to-day activities in addition to planning outing the whole family can enjoy.
 
 The app is designed to help people find locations and plan activities that are "dog-friendly". This might be an off-lead park, a cafe that welcomes dogs or even to Bunnings for a sausage. Users can search the location of places and see what facilities there are for them and their four legged friend.
 
@@ -21,7 +21,7 @@ Off the Leash will allow users to:
 
 ## 🤼 Target audience
 
-- THe target audience for this app is anyone looking for places that are dog-friendly in some way. They may be looking a cafe close to home they can regularly go to, or further afield if say, they are planning a car trip and after places they can stop to stretch their dogs legs. They may be after an fenced area they can do training or just somewhere to socialise and make friends (2 and 4 legged variety).
+- THe target audience for this app is anyone looking for places that are dog-friendly in some way. They may be looking a cafe close to home they can regularly go to, or further afield if say, they are planning a car trip and after places they can stop to stretch their dogs legs. They may be after an fenced area they can do training or just somewhere to socialize and make friends (2 and 4 legged variety).
 
 ## 💻 Tech stack
 
@@ -70,7 +70,7 @@ Off the Leash will allow users to:
 
 ## 📋 Trello board
 
-We used Trello as a project management tool. This helped us visualise our progress, keep track of timeframes, and assign priority. We could visually see what each other were working on to stay in touch and review our progress collectively.
+We used Trello as a project management tool. This helped us visualize our progress, keep track of time spent, and assign priority. We could visually see what each other were working on to stay in touch and review our progress collectively.
 
 Trello Board at the start:
 
