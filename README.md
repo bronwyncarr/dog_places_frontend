@@ -21,7 +21,12 @@ Off the Leash will allow users to:
 
 ## 🤼 Target audience
 
-- The target audience for this app is anyone looking for places that are dog-friendly in some way. They may be looking a cafe close to home they can regularly go to, or further afield if say, they are planning a car trip and after places they can stop to stretch their dogs legs. They may be after an fenced area they can do training or just somewhere to socialize and make friends (2 and 4 legged variety).
+The target audience for this app is anyone looking for places that are dog-friendly in some way. They may be looking a cafe close to home they can regularly go to, or further afield if say, they are planning a car trip and after places they can stop to stretch their dogs legs. They may be after an fenced area they can do training, information on off-lead times at a beach or just somewhere to socialise and make friends (2 and 4 legged variety).
+
+Our hypothetical clients could be:
+
+- A city council who wants to provide this service to their residents whilst encouraging responsible dog ownership and generating traffic for small businesses.
+- A company who wants to increase their digital presence to customers of their business, for example, large food manufactures such as _Purima_ who want to promote their brand to their target audience, dog owners.
 
 ## 💻 Tech stack
 
@@ -57,6 +62,8 @@ Off the Leash will allow users to:
 ### Dataflow Diagram (R2)
 
 ![Dataflow Diagram](./docs/diagrams/dataflow.png)
+
+[Link to Dataflow diagram](https://drive.google.com/file/d/155tDVgSXJbP2Nuh2Ol2YSkSaIVHkKXN2/view?usp=sharing)
 
 ### Architect Diagram (R3)
 
