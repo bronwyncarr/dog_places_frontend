@@ -56,8 +56,6 @@ Off the Leash will allow users to:
 
 ### Dataflow Diagram (R2)
 
-TO BE REVISED !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 ![Dataflow Diagram](./docs/diagrams/dataflow.png)
 
 ### Architect Diagram (R3)
