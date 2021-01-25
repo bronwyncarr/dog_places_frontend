@@ -63,7 +63,7 @@ Our hypothetical clients could be:
 
 ![Dataflow Diagram](./docs/diagrams/dataflow.png)
 
-[Link to Dataflow diagram](https://drive.google.com/file/d/155tDVgSXJbP2Nuh2Ol2YSkSaIVHkKXN2/view?usp=sharing)
+[Link to Dataflow diagram](https://app.diagrams.net/#G1ZBsxeL0t5O7q6Gafsg9uKJoZUkoQyp6M)
 
 ### Architect Diagram (R3)
 
