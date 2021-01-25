@@ -21,7 +21,7 @@ Off the Leash will allow users to:
 
 ## 🤼 Target audience
 
-- THe target audience for this app is anyone looking for places that are dog-friendly in some way. They may be looking a cafe close to home they can regularly go to, or further afield if say, they are planning a car trip and after places they can stop to stretch their dogs legs. They may be after an fenced area they can do training or just somewhere to socialize and make friends (2 and 4 legged variety).
+- The target audience for this app is anyone looking for places that are dog-friendly in some way. They may be looking a cafe close to home they can regularly go to, or further afield if say, they are planning a car trip and after places they can stop to stretch their dogs legs. They may be after an fenced area they can do training or just somewhere to socialize and make friends (2 and 4 legged variety).
 
 ## 💻 Tech stack
 
