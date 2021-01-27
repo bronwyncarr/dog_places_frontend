@@ -5,7 +5,7 @@ import Location from "./Location";
 import Locations from "./Locations";
 import NewLocation from "./NewLocation";
 import Favourites from "./Favourites";
-import { Layout, SideBarLink } from "../styles/Layout";
+import { Layout, SideBarLink, Content } from "../styles/Layout";
 
 function App() {
   return (
@@ -16,12 +16,14 @@ function App() {
         <SideBarLink to="/locations/new">Add a location</SideBarLink>
         <SideBarLink to="/signout">Sign Out</SideBarLink>
       </SideBar>
-      <Switch>
-        <Route exact path={["/", "/locations"]} component={Locations} />
-        <Route exact path="/favourites" component={Favourites} />
-        <Route exact path="/locations/new" component={NewLocation} />
-        <Route exact path="/locations/:id" component={Location} />
-      </Switch>
+      <Content>
+        <Switch>
+          <Route exact path={["/", "/locations"]} component={Locations} />
+          <Route exact path="/favourites" component={Favourites} />
+          <Route exact path="/locations/new" component={NewLocation} />
+          <Route exact path="/locations/:id" component={Location} />
+        </Switch>
+      </Content>
     </Layout>
   );
 }

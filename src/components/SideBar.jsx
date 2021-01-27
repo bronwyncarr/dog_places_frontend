@@ -1,11 +1,13 @@
-import { SideBarWrapper } from "../styles/Layout";
+import { SideBarWrapper, SideBarList } from "../styles/Layout";
 
 function SideBar({ children }) {
   return (
     <SideBarWrapper>
-      {children.map((child) => (
-        <li>{child}</li>
-      ))}
+      <SideBarList>
+        {children.map((child) => (
+          <li>{child}</li>
+        ))}
+      </SideBarList>
     </SideBarWrapper>
   );
 }
