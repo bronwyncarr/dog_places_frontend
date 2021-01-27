@@ -1,10 +1,12 @@
+import { SideBarWrapper } from "../styles/Layout";
+
 function SideBar({ children }) {
   return (
-    <ul>
+    <SideBarWrapper>
       {children.map((child) => (
         <li>{child}</li>
       ))}
-    </ul>
+    </SideBarWrapper>
   );
 }
 
