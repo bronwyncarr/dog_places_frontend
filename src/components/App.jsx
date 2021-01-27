@@ -5,17 +5,26 @@ import Location from "./Location";
 import Locations from "./Locations";
 import NewLocation from "./NewLocation";
 import Favourites from "./Favourites";
-import { Layout, SideBarLink, Content } from "../styles/Layout";
+import {
+  SideBarWrapper,
+  Layout,
+  SideBarLink,
+  Content,
+  SideBarHeading,
+} from "../styles/Layout";
 
 function App() {
   return (
     <Layout>
-      <SideBar>
-        <SideBarLink to="/">Search</SideBarLink>
-        <SideBarLink to="/favourites">My Favourites</SideBarLink>
-        <SideBarLink to="/locations/new">Add a location</SideBarLink>
-        <SideBarLink to="/signout">Sign Out</SideBarLink>
-      </SideBar>
+      <SideBarWrapper>
+        <SideBarHeading>🐾 OFF THE LEASH</SideBarHeading>
+        <SideBar>
+          <SideBarLink to="/">Search</SideBarLink>
+          <SideBarLink to="/favourites">My Favourites</SideBarLink>
+          <SideBarLink to="/locations/new">Add a location</SideBarLink>
+          <SideBarLink to="/signout">Sign Out</SideBarLink>
+        </SideBar>
+      </SideBarWrapper>
       <Content>
         <Switch>
           <Route exact path={["/", "/locations"]} component={Locations} />

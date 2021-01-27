@@ -8,22 +8,27 @@ export const Layout = styled.div`
 `;
 
 export const SideBarWrapper = styled.div`
-  width: 15%;
+  width: 20%;
 `;
 
 export const SideBarList = styled.ul`
   list-style-type: none;
   position: relative;
-  top: 20%;
+  top: 15%;
 `;
 
 export const SideBarLink = styled(Link)`
-  background-color: AliceBlue;
   font-size: 2rem;
   text-decoration: none;
 `;
 
+export const SideBarHeading = styled.h1`
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 2rem;
+`;
+
 export const Content = styled.div`
   background-color: DarkSeaGreen;
-  width: 85%;
+  width: 80%;
 `;
