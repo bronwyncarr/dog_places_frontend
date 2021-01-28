@@ -42,6 +42,7 @@ function Locations() {
               <h4>{location.address}</h4>
               <h4>{location.rating}</h4>
               <Link to={`/locations/${location.id}`}>Show details</Link>
+              <Link to={`/locations/${location.id}/edit`}>Edit</Link>
               <Link
                 to={`/locations/${location.id}`}
                 onClick={(e) => handleDeleteClick(e, location)}
