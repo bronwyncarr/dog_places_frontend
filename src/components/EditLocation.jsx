@@ -15,7 +15,7 @@ function NewLocation({ history }) {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/locations/${id}`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/locations/${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -32,7 +32,7 @@ function NewLocation({ history }) {
   async function handleSubmit(e) {
     try {
       e.preventDefault();
-      await fetch(`http://localhost:3000/api/locations/${id}`, {
+      await fetch(`${process.env.REACT_APP_BACKEND_URL}/locations/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -47,7 +47,7 @@ function NewLocation({ history }) {
           },
         }),
       });
-      // redirect_to
+      // redirect
       history.push("/locations");
     } catch (err) {
       console.log(err.message);

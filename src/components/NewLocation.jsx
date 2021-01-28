@@ -24,7 +24,7 @@ function NewLocation({ history }) {
   async function handleSubmit(e) {
     try {
       e.preventDefault();
-      await fetch(`http://localhost:3000/api/locations`, {
+      await fetch(`${process.env.REACT_APP_BACKEND_URL}/locations`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

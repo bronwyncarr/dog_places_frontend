@@ -7,7 +7,8 @@ function Locations() {
   const [locations, setLocations] = useState([]);
 
   async function fetchLocations() {
-    const data = await fetchData("http://localhost:3000/api/locations");
+    const url = `${process.env.REACT_APP_BACKEND_URL}/locations`;
+    const data = await fetchData(url);
     setLocations(data);
   }
 
@@ -19,12 +20,15 @@ function Locations() {
     try {
       e.preventDefault();
       if (window.confirm("Are you sure you would like to delete?")) {
-        await fetch(`http://localhost:3000/api/locations/${location.id}`, {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        await fetch(
+          `${process.env.REACT_APP_BACKEND_URL}/locations/${location.id}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
         fetchLocations();
       }
     } catch (err) {
