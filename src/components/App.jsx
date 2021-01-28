@@ -1,5 +1,7 @@
 import { Switch, Route } from "react-router-dom";
 
+import NewUser from './NewUser'
+import NewSession from './NewSession'
 import SideBar from "./SideBar";
 import Location from "./Location";
 import Locations from "./Locations";
@@ -15,6 +17,11 @@ import {
 } from "../styles/Layout";
 
 function App() {
+  function logout(e) {
+    e.preventDefault();
+    localStorage.removeItem("token");
+    
+  }
   return (
     <Layout>
       <SideBarWrapper>
@@ -23,7 +30,9 @@ function App() {
           <SideBarLink to="/">Search</SideBarLink>
           <SideBarLink to="/favourites">My Favourites</SideBarLink>
           <SideBarLink to="/locations/new">Add a location</SideBarLink>
-          <SideBarLink to="/signout">Sign Out</SideBarLink>
+          <SideBarLink to="/sign_up">Sign Up</SideBarLink>
+          <SideBarLink to="/sign_in">Sign In</SideBarLink>
+          <SideBarLink to="/" onClick={logout}>Sign Out</SideBarLink>
         </SideBar>
       </SideBarWrapper>
       <Content>
@@ -33,6 +42,8 @@ function App() {
           <Route exact path="/locations/new" component={NewLocation} />
           <Route exact path="/locations/:id" component={Location} />
           <Route exact path="/locations/:id/edit" component={EditLocation} />
+          <Route exact path="/sign_up" component={NewUser} />
+          <Route exact path="/sign_in" component={NewSession} />
         </Switch>
       </Content>
     </Layout>
