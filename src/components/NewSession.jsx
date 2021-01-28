@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
- function NewUser({ history }) {
+ function NewSession({ history }) {
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
+  
   const [password, setPassword] = useState("");
   const [errMessage, setErrMessage] = useState("");
 
@@ -63,4 +63,4 @@ import React, { useState } from "react";
     </>
   );
 }
-export default NewUser
+export default NewSession
