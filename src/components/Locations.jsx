@@ -4,27 +4,53 @@ import { Link } from "react-router-dom";
 function Locations() {
   const [locations, setLocations] = useState([]);
 
-  useEffect(() => {
+  function fetchLocations() {
     fetch(`http://localhost:3000/api/locations`)
       .then((res) => res.json())
       .then((data) => setLocations(data));
+  }
+
+  useEffect(() => {
+    fetchLocations();
   }, []);
 
-  console.log(locations);
+  async function handleDeleteClick(e, location) {
+    try {
+      e.preventDefault();
+      if (window.confirm("Are you sure you would like to delete?")) {
+        await fetch(`http://localhost:3000/api/locations/${location.id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        fetchLocations();
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
 
   return (
     <>
       <h1>Locations</h1>
-      {locations.map((location) => {
-        return (
-          <>
-            <h1>{location.name}</h1>
-            <h4>{location.address}</h4>
-            <h4>{location.rating}</h4>
-            <Link to={`/locations/${location.id}`}>Show details</Link>
-          </>
-        );
-      })}
+      {locations &&
+        locations.map((location, index) => {
+          return (
+            <div key={index}>
+              <h1>{location.name}</h1>
+              <h4>{location.address}</h4>
+              <h4>{location.rating}</h4>
+              <Link to={`/locations/${location.id}`}>Show details</Link>
+              <Link
+                to={`/locations/${location.id}`}
+                onClick={(e) => handleDeleteClick(e, location)}
+              >
+                Delete
+              </Link>
+            </div>
+          );
+        })}
     </>
   );
 }
