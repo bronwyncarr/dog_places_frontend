@@ -15,16 +15,17 @@ function Locations() {
   return (
     <>
       <h1>Locations</h1>
-      {locations.map((location) => {
-        return (
-          <>
-            <h1>{location.name}</h1>
-            <h4>{location.address}</h4>
-            <h4>{location.rating}</h4>
-            <Link to={`/locations/${location.id}`}>Show details</Link>
-          </>
-        );
-      })}
+      {locations &&
+        locations.map((location, index) => {
+          return (
+            <div key={index}>
+              <h1>{location.name}</h1>
+              <h4>{location.address}</h4>
+              <h4>{location.rating}</h4>
+              <Link to={`/locations/${location.id}`}>Show details</Link>
+            </div>
+          );
+        })}
     </>
   );
 }
