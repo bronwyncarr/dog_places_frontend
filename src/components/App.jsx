@@ -7,6 +7,7 @@ import Location from "./Location";
 import Locations from "./Locations";
 import NewLocation from "./NewLocation";
 import Favourites from "./Favourites";
+import EditLocation from "./EditLocation";
 import {
   SideBarWrapper,
   Layout,
@@ -40,6 +41,7 @@ function App() {
           <Route exact path="/favourites" component={Favourites} />
           <Route exact path="/locations/new" component={NewLocation} />
           <Route exact path="/locations/:id" component={Location} />
+          <Route exact path="/locations/:id/edit" component={EditLocation} />
           <Route exact path="/sign_up" component={NewUser} />
           <Route exact path="/sign_in" component={NewSession} />
         </Switch>

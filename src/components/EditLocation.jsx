@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Form, Label, Input, Checkboxes } from "../styles/NewLocation";
+import { useParams } from "react-router-dom";
 
 function NewLocation({ history }) {
   const [name, setName] = useState("");
@@ -11,12 +12,28 @@ function NewLocation({ history }) {
   const [toilets, setToilets] = useState(false);
   const [parking, setParking] = useState(false);
   const [offLead, setOffLead] = useState(false);
+  const { id } = useParams();
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/api/locations/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((location) => {
+        setName(location.name);
+        setCategory(location.category);
+        setDescription(location.description);
+        setAddress(location.address);
+      });
+  }, [id]);
 
   async function handleSubmit(e) {
     try {
       e.preventDefault();
-      await fetch(`http://localhost:3000/api/locations`, {
-        method: "POST",
+      await fetch(`http://localhost:3000/api/locations/${id}`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
@@ -30,7 +47,7 @@ function NewLocation({ history }) {
           },
         }),
       });
-      // redirect
+      // redirect_to
       history.push("/locations");
     } catch (err) {
       console.log(err.message);
@@ -39,7 +56,7 @@ function NewLocation({ history }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h1>NewLocation</h1>
+      <h1>Edit Location</h1>
       <label htmlFor="name">Name:</label>
       <input
         type="text"
