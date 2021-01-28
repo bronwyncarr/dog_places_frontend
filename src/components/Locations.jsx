@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+import fetchData from "../helpers/fetchData";
+
 function Locations() {
   const [locations, setLocations] = useState([]);
 
-  function fetchLocations() {
-    fetch(`http://localhost:3000/api/locations`)
-      .then((res) => res.json())
-      .then((data) => setLocations(data));
+  async function fetchLocations() {
+    const data = await fetchData("http://localhost:3000/api/locations");
+    setLocations(data);
   }
 
   useEffect(() => {
