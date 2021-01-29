@@ -1,10 +1,20 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import fetchData from "../helpers/fetchData";
 
 function Locations() {
   const [locations, setLocations] = useState([]);
+
+  const mapStyles = {
+    height: "500px",
+    width: "500px",
+  };
+
+  const defaultCenter = {
+    lat: -37.8136,
+    lng: 144.9631,
+  };
 
   async function fetchLocations() {
     const url = `${process.env.REACT_APP_BACKEND_URL}/locations`;
@@ -39,6 +49,23 @@ function Locations() {
   return (
     <>
       <h1>Locations</h1>
+      <LoadScript googleMapsApiKey={`${process.env.REACT_APP_API_KEY}`}>
+        <GoogleMap
+          mapContainerStyle={mapStyles}
+          zoom={8}
+          center={defaultCenter}
+        >
+          {locations.map((item) => {
+            return (
+              <Marker
+                key={item.name}
+                position={{ lat: item.latitude, lng: item.longitude }}
+              />
+            );
+          })}
+        </GoogleMap>
+      </LoadScript>
+
       {locations &&
         locations.map((location, index) => {
           return (
