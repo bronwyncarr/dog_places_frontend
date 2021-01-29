@@ -8,7 +8,9 @@ function Location(props) {
 
   useEffect(() => {
     (async function () {
-      const data = await fetchData(`http://localhost:3000/api/locations/${id}`);
+      const data = await fetchData(
+        `${process.env.REACT_APP_BACKEND_URL}/locations/${id}`
+      );
       setLocation(data);
     })();
   }, [id]);
