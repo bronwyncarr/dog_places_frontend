@@ -9,11 +9,6 @@ function Location(props) {
     width: "500px",
   };
 
-  const defaultCenter = {
-    lat: -37.8136,
-    lng: 144.9631,
-  };
-
   const [location, setLocation] = useState([]);
   const id = props.match.params.id;
 
@@ -26,8 +21,6 @@ function Location(props) {
     })();
   }, [id]);
 
-  console.log(location);
-
   return (
     <>
       <h1>{location.name}</h1>
@@ -36,7 +29,7 @@ function Location(props) {
         <GoogleMap
           mapContainerStyle={mapStyles}
           zoom={13}
-          center={defaultCenter}
+          center={{ lat: location.latitude, lng: location.longitude }}
         >
           <Marker
             key={location.name}

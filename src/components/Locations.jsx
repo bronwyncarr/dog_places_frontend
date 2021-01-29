@@ -1,20 +1,16 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  LoadScript,
+  Marker,
+  InfoWindow,
+} from "@react-google-maps/api";
 import fetchData from "../helpers/fetchData";
 
 function Locations() {
   const [locations, setLocations] = useState([]);
-
-  const mapStyles = {
-    height: "500px",
-    width: "500px",
-  };
-
-  const defaultCenter = {
-    lat: -37.8136,
-    lng: 144.9631,
-  };
+  const [selected, setSelected] = useState({});
 
   async function fetchLocations() {
     const url = `${process.env.REACT_APP_BACKEND_URL}/locations`;
@@ -46,6 +42,20 @@ function Locations() {
     }
   }
 
+  const mapStyles = {
+    height: "500px",
+    width: "500px",
+  };
+
+  const defaultCenter = {
+    lat: -37.8136,
+    lng: 144.9631,
+  };
+
+  const onSelect = (item) => {
+    setSelected(item);
+  };
+
   return (
     <>
       <h1>Locations</h1>
@@ -60,9 +70,22 @@ function Locations() {
               <Marker
                 key={item.name}
                 position={{ lat: item.latitude, lng: item.longitude }}
+                onClick={() => onSelect(item)}
               />
             );
           })}
+          {selected.latitude && (
+            <InfoWindow
+              position={{ lat: selected.latitude, lng: selected.longitude }}
+              clickable={true}
+              onCloseClick={() => setSelected({})}
+            >
+              <>
+                <p>{selected.name}</p>
+                <Link to={`/locations/${selected.id}`}>Show details</Link>
+              </>
+            </InfoWindow>
+          )}
         </GoogleMap>
       </LoadScript>
 
