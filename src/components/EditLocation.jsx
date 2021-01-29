@@ -3,31 +3,33 @@ import { Form, Label, Input, Checkboxes } from "../styles/NewLocation";
 import { useParams } from "react-router-dom";
 
 function NewLocation({ history }) {
-  const [name, setName] = useState("");
-  const [category, setCategory] = useState("");
-  const [description, setDescription] = useState("");
-  const [address, setAddress] = useState("");
-  const [water, setWater] = useState(false);
-  const [food, setFood] = useState(false);
-  const [toilets, setToilets] = useState(false);
-  const [parking, setParking] = useState(false);
-  const [offLead, setOffLead] = useState(false);
+  const [details, setDetails] = useState({
+    name: "",
+    category: "",
+    description: "",
+    address: "",
+    water: "",
+    food: "",
+    toilets: "",
+    parking: "",
+    offLead: "",
+  });
   const { id } = useParams();
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/locations/${id}`, {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
       },
     })
       .then((res) => res.json())
       .then((location) => {
-        setName(location.name);
-        setCategory(location.category);
-        setDescription(location.description);
-        setAddress(location.address);
+        console.log(location);
+        setDetails({
+          ...location,
+        });
       });
-  }, [id]);
+  }, []);
 
   async function handleSubmit(e) {
     try {
@@ -41,106 +43,77 @@ function NewLocation({ history }) {
           location: {
             user_id: 1,
             location_type_id: 1,
-            name,
-            description,
-            address,
+            name: details.name,
+            description: details.description,
+            address: details.address,
           },
         }),
       });
-      // redirect
       history.push("/locations");
     } catch (err) {
       console.log(err.message);
     }
   }
 
+  const fields = ["name", "address", "description"];
+  const checkboxData = ["water", "food", "toilets", "offlead", "parking"];
+
+  function capitaliseName(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  const handleFormChange = (e) => {
+    setDetails({
+      ...details,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
     <Form onSubmit={handleSubmit}>
-      <h1>Edit Location</h1>
-      <label htmlFor="name">Name:</label>
-      <input
-        type="text"
-        name="name"
-        id="name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <label htmlFor="address">Address:</label>
-      <input
-        type="text"
-        name="address"
-        id="address"
-        value={address}
-        onChange={(e) => setAddress(e.target.value)}
-      />
+      <h1>NewLocation</h1>
+      {fields.map((item) => {
+        return (
+          <>
+            <label htmlFor={item}>{capitaliseName(item)}</label>
+            <input
+              type="text"
+              name={item}
+              id={item}
+              value={details[item]}
+              onChange={handleFormChange}
+            />
+          </>
+        );
+      })}
       <label htmlFor="category">Category:</label>
       <select
         name="category"
         id="category"
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
+        value={details.category}
+        onChange={handleFormChange}
       >
         <option value="park">Park</option>
         <option value="food">Food</option>
         <option value="accomodation">Accomodation</option>
         <option value="beach">Beach</option>
       </select>
-      <label htmlFor="description">Description:</label>
-      <input
-        type="text"
-        name="description"
-        id="description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
+
       <Checkboxes>
-        <input
-          type="checkbox"
-          id="toilets"
-          name="toilets"
-          value={toilets}
-          onChange={(e) => {
-            setToilets(!toilets);
-          }}
-        />
-        <label htmlFor="toilets"> Toilets</label>
-        <br />
-        <input
-          type="checkbox"
-          id="food"
-          name="food"
-          value={food}
-          onChange={(e) => setFood(!food)}
-        />
-        <label htmlFor="food"> Food</label>
-        <br />
-        <input
-          type="checkbox"
-          id="parking"
-          name="parking"
-          value={parking}
-          onChange={(e) => setParking(!parking)}
-        />
-        <label htmlFor="parking">Parking</label>
-        <br />
-        <input
-          type="checkbox"
-          id="water"
-          name="water"
-          value={water}
-          onChange={(e) => setWater(!water)}
-        />
-        <label htmlFor="water">Water</label>
-        <br />
-        <input
-          type="checkbox"
-          id="offLead"
-          name="offLead"
-          value={offLead}
-          onChange={(e) => setOffLead(!offLead)}
-        />
-        <label htmlFor="offLead">Off-Lead</label>
-        <br />
+        {checkboxData.map((item) => {
+          return (
+            <div>
+              <input
+                type="checkbox"
+                id={item}
+                name={item}
+                value={details.item}
+                onChange={handleFormChange}
+              />
+              <label htmlFor={item}> {capitaliseName(item)}</label>
+            </div>
+          );
+        })}
       </Checkboxes>
       <button id="submit" type="submit" value="Submit">
         Submit!
