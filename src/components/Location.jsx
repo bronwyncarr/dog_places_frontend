@@ -25,7 +25,7 @@ function Location(props) {
     <>
       <h1>{location.name}</h1>
       <p>{location.address}</p>
-      <LoadScript googleMapsApiKey={`${process.env.REACT_APP_API_KEY}`}>
+      <LoadScript googleMapsApiKey={`${process.env.REACT_APP_MAPS_API_KEY}`}>
         <GoogleMap
           mapContainerStyle={mapStyles}
           zoom={13}

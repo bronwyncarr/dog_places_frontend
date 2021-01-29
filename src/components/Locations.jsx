@@ -10,7 +10,7 @@ import fetchData from "../helpers/fetchData";
 
 function Locations() {
   const [locations, setLocations] = useState([]);
-  const [selected, setSelected] = useState({});
+  const [selectedLocation, setSelectedLocation] = useState({});
 
   async function fetchLocations() {
     const url = `${process.env.REACT_APP_BACKEND_URL}/locations`;
@@ -44,7 +44,7 @@ function Locations() {
 
   const mapStyles = {
     height: "500px",
-    width: "500px",
+    width: "1000px",
   };
 
   const defaultCenter = {
@@ -53,18 +53,35 @@ function Locations() {
   };
 
   const onSelect = (item) => {
-    setSelected(item);
+    setSelectedLocation(item);
   };
+
+  // Not sure if needs to be stored in state.
+  const [currentPosition, setCurrentPosition] = useState({});
+  const success = (position) => {
+    const currentPosition = {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude,
+    };
+    setCurrentPosition(currentPosition);
+  };
+
+  // On Page load,gwt position
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(success);
+  });
 
   return (
     <>
       <h1>Locations</h1>
-      <LoadScript googleMapsApiKey={`${process.env.REACT_APP_API_KEY}`}>
+      <LoadScript googleMapsApiKey={`${process.env.REACT_APP_MAPS_API_KEY}`}>
         <GoogleMap
           mapContainerStyle={mapStyles}
-          zoom={8}
-          center={defaultCenter}
+          zoom={10}
+          // If location lat (ie coordinates) are available, centers on location, otherwise centers on Melbourne city
+          center={currentPosition.lat ? currentPosition : defaultCenter}
         >
+          {/* Markers on the map for each location */}
           {locations.map((item) => {
             return (
               <Marker
@@ -74,15 +91,22 @@ function Locations() {
               />
             );
           })}
-          {selected.latitude && (
+
+          {/* If user clicks on a location, dialogue box pops up with info and link to show page */}
+          {selectedLocation.latitude && (
             <InfoWindow
-              position={{ lat: selected.latitude, lng: selected.longitude }}
+              position={{
+                lat: selectedLocation.latitude,
+                lng: selectedLocation.longitude,
+              }}
               clickable={true}
-              onCloseClick={() => setSelected({})}
+              onCloseClick={() => setSelectedLocation({})}
             >
               <>
-                <p>{selected.name}</p>
-                <Link to={`/locations/${selected.id}`}>Show details</Link>
+                <p>{selectedLocation.name}</p>
+                <Link to={`/locations/${selectedLocation.id}`}>
+                  Show details
+                </Link>
               </>
             </InfoWindow>
           )}
