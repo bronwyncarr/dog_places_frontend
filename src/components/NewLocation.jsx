@@ -22,18 +22,20 @@ function NewLocation({ history }) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("token")}`
         },
         body: JSON.stringify({
-          location: {
+          
             user_id: 1,
             location_type_id: 1,
             name: details.name,
             description: details.description,
             address: details.address,
-          },
+          
         }),
       });
-      history.push("/locations");
+      history.push("/locations")
+      console.log(details);
     } catch (err) {
       console.log(err.message);
     }
@@ -43,7 +45,7 @@ function NewLocation({ history }) {
     setDetails({
       ...details,
       [e.target.name]: e.target.value,
-    });
+    } );
   };
 
   return (

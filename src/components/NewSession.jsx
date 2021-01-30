@@ -9,7 +9,7 @@ import React, { useState } from "react";
   async function onFormSubmit(event) {
     event.preventDefault();
     const body = {
-      user: { email, username,password },
+      user: { email,password },
     };
     try {
       const response = await fetch(`http://localhost:3000/api/auth/sign_in`, {

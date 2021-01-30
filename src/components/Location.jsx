@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import fetchData from "../helpers/fetchData";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-
+import AuthFetch from "../services/Authservices"
 function Location(props) {
   const mapStyles = {
     height: "500px",
@@ -14,9 +14,10 @@ function Location(props) {
 
   useEffect(() => {
     (async function () {
-      const data = await fetchData(
-        `${process.env.REACT_APP_BACKEND_URL}/locations/${id}`
-      );
+      // const data = await fetchData(
+      //   `${process.env.REACT_APP_BACKEND_URL}/locations/${id}`
+      // );
+      const data = await AuthFetch(`${process.env.REACT_APP_BACKEND_URL}/locations/${id}`,"GET")
       setLocation(data);
     })();
   }, [id]);
