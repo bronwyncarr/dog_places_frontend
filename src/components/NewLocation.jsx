@@ -32,7 +32,6 @@ function NewLocation({ history }) {
         }),
       });
       history.push("/locations");
-      console.log(details);
     } catch (err) {
       console.log(err.message);
     }

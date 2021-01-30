@@ -77,7 +77,7 @@ function Locations() {
       <LoadScript googleMapsApiKey={`${process.env.REACT_APP_MAPS_API_KEY}`}>
         <GoogleMap
           mapContainerStyle={mapStyles}
-          zoom={10}
+          zoom={13}
           // If location lat (ie coordinates) are available, centers on location, otherwise centers on Melbourne city
           center={currentPosition.lat ? currentPosition : defaultCenter}
         >

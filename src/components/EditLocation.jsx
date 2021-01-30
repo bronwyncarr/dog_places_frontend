@@ -24,12 +24,11 @@ function NewLocation({ history }) {
     })
       .then((res) => res.json())
       .then((location) => {
-        console.log(location);
         setDetails({
           ...location,
         });
       });
-  }, []);
+  }, [id]);
 
   async function handleSubmit(e) {
     try {
