@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Form, Label, Input, Checkboxes } from "../styles/NewLocation";
 import { useParams } from "react-router-dom";
 import GeneratedForm from "./Form";
 

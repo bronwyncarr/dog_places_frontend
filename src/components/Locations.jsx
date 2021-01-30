@@ -6,8 +6,7 @@ import {
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
-import fetchData from "../helpers/fetchData";
-import AuthFetch from "../services/Authservices"
+import AuthFetch from "../services/Authservices";
 
 function Locations() {
   const [locations, setLocations] = useState([]);
@@ -15,8 +14,7 @@ function Locations() {
 
   async function fetchLocations() {
     const url = `${process.env.REACT_APP_BACKEND_URL}/locations`;
-    // const data = await fetchData(url);
-    const data = await AuthFetch(url,"GET")
+    const data = await AuthFetch(url, "GET");
     setLocations(data);
   }
 

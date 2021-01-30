@@ -1,4 +1,4 @@
-import { Form, Label, Input, Checkboxes } from "../styles/NewLocation";
+import { Form, Checkboxes } from "../styles/NewLocation";
 
 function GeneratedForm({ details, handleFormChange, handleSubmit }) {
   const fields = ["name", "address", "description"];
