@@ -42,11 +42,13 @@ function Locations() {
     }
   }
 
+  // To be refactored into styled components/css
   const mapStyles = {
     height: "500px",
     width: "1000px",
   };
 
+  // If current position is not available, default is MEL CBD.
   const defaultCenter = {
     lat: -37.8136,
     lng: 144.9631,
@@ -75,6 +77,7 @@ function Locations() {
     <>
       <h1>Locations</h1>
       <LoadScript googleMapsApiKey={`${process.env.REACT_APP_MAPS_API_KEY}`}>
+        {/* Map itself */}
         <GoogleMap
           mapContainerStyle={mapStyles}
           zoom={13}
@@ -113,6 +116,7 @@ function Locations() {
         </GoogleMap>
       </LoadScript>
 
+      {/* Once lications available, list all locations with shoe, edit, delete links. */}
       {locations &&
         locations.map((location, index) => {
           return (

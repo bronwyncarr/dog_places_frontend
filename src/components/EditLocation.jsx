@@ -17,6 +17,7 @@ function NewLocation({ history }) {
   const { id } = useParams();
 
   useEffect(() => {
+    // On load will prefill data with fetch GET request info
     fetch(`${process.env.REACT_APP_BACKEND_URL}/locations/${id}`, {
       headers: {
         "Content-Type": "application/json",
@@ -31,6 +32,7 @@ function NewLocation({ history }) {
   }, [id]);
 
   async function handleSubmit(e) {
+    // POST request on submit, then redirect to locations pg.
     try {
       e.preventDefault();
       await fetch(`${process.env.REACT_APP_BACKEND_URL}/locations/${id}`, {

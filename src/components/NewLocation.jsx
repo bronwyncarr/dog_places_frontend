@@ -2,6 +2,7 @@ import { useState } from "react";
 import GeneratedForm from "./Form";
 
 function NewLocation({ history }) {
+  // Initiates state as empty object (with keys so inputs are always controlled)
   const [details, setDetails] = useState({
     name: "",
     category: "",
@@ -17,6 +18,7 @@ function NewLocation({ history }) {
   async function handleSubmit(e) {
     try {
       e.preventDefault();
+      // POST request on submit, then redirect to locations pg.
       await fetch(`${process.env.REACT_APP_BACKEND_URL}/locations`, {
         method: "POST",
         headers: {
