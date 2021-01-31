@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-import { useGlobalState } from "../utils/context";
 import { getLocation } from "../services/locationServices";
 
 function Location(props) {
   const [location, setLocation] = useState(null);
   const { id } = useParams();
-  const { store, dispatch } = useGlobalState();
-  const { loggedInUser } = store;
 
   // On page load or a change to id, calls getLocation with the id from useParams,
   // This sends a fetch request for the location with that id and returns a promise.

@@ -1,10 +1,7 @@
 import SideBarItems from "./SideBarItems";
-import { useGlobalState } from "../utils/context";
 import { SideBarLink, SideBarHeading } from "../styles/Layout";
 
 function SideBar() {
-  const { store, dispatch } = useGlobalState();
-
   return (
     <>
       <SideBarHeading>🐾 OFF THE LEASH</SideBarHeading>

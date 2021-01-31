@@ -22,6 +22,7 @@ function NewUser({ history }) {
       },
     };
     try {
+      // Some of this should be refactored into authServices
       const response = await fetch(`http://localhost:3000/api/auth/sign_up`, {
         method: "POST",
         headers: {

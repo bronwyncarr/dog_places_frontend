@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { signIn } from "../services/authServices";
 import { useGlobalState } from "../utils/context";
 
 function NewSession({ history }) {
