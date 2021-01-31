@@ -10,6 +10,9 @@ function Location(props) {
   const { store, dispatch } = useGlobalState();
   const { loggedInUser } = store;
 
+  // On page load or a change to id, calls getLocation with the id from useParams,
+  // This sends a fetch request for the location with that id and returns a promise.
+  // Promise is .then to call setLocation action with the returned location with that id.
   useEffect(() => {
     getLocation(id)
       .then((location) => setLocation(location))
@@ -21,6 +24,8 @@ function Location(props) {
     height: "500px",
     width: "500px",
   };
+
+  // What about if location doesn't exist????
 
   return (
     location && (

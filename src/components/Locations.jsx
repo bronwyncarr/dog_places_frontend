@@ -14,6 +14,8 @@ function Locations() {
   const { locations } = store;
   const [selectedLocation, setSelectedLocation] = useState({});
 
+  // On page load or change to dispatch, calls getLocations which sends a fetch request and returns a promise.
+  // Promise is .then to call setLocations action with the returned locations.
   useEffect(() => {
     getLocations()
       .then((locations) => {

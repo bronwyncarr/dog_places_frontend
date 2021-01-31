@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 
- function NewSession({ history }) {
+function NewSession({ history }) {
   const [email, setEmail] = useState("");
-  
+
   const [password, setPassword] = useState("");
   const [errMessage, setErrMessage] = useState("");
 
   async function onFormSubmit(event) {
     event.preventDefault();
     const body = {
-      user: { email,password },
+      user: { email, password },
     };
     try {
       const response = await fetch(`http://localhost:3000/api/auth/sign_in`, {
@@ -33,11 +33,10 @@ import React, { useState } from "react";
 
   return (
     <>
-      
-      <h1>Sign Up!</h1>
+      <h1>Sign In!</h1>
       {errMessage && <span>{errMessage}</span>}
       <form onSubmit={onFormSubmit}>
-      <div className="form-group">
+        <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
             type="email"
@@ -47,7 +46,7 @@ import React, { useState } from "react";
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        
+
         <div className="form-group">
           <label htmlFor="password">Password</label>
           <input
@@ -63,4 +62,4 @@ import React, { useState } from "react";
     </>
   );
 }
-export default NewSession
+export default NewSession;

@@ -26,6 +26,8 @@ function App() {
     loggedInUser: null,
     auth: { token: null },
   };
+
+  // Sets initial state (default values) to global state
   const [store, dispatch] = useReducer(reducer, initialState);
 
   function logout(e) {
