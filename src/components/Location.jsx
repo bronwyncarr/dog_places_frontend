@@ -1,21 +1,19 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-import AuthFetch from "../services/Authservices";
-function Location(props) {
-  const [location, setLocation] = useState([]);
+import { useGlobalState } from "../utils/context";
+import { getLocation } from "../services/locationServices";
 
-  //implement useParams instead?
-  const id = props.match.params.id;
+function Location(props) {
+  const [location, setLocation] = useState(null);
+  const { id } = useParams();
+  const { store, dispatch } = useGlobalState();
+  const { loggedInUser } = store;
 
   useEffect(() => {
-    (async function () {
-      const data = await AuthFetch(
-        `${process.env.REACT_APP_BACKEND_URL}/locations/${id}`,
-        "GET"
-      );
-      setLocation(data);
-    })();
+    getLocation(id)
+      .then((location) => setLocation(location))
+      .catch((error) => console.log(error));
   }, [id]);
 
   // To be refactored into styled components/css
@@ -25,33 +23,35 @@ function Location(props) {
   };
 
   return (
-    <>
-      <h1>{location.name}</h1>
-      <p>{location.address}</p>
-      <LoadScript googleMapsApiKey={`${process.env.REACT_APP_MAPS_API_KEY}`}>
-        {/* Map itself. Centers on the marker */}
-        <GoogleMap
-          mapContainerStyle={mapStyles}
-          zoom={13}
-          center={{ lat: location.latitude, lng: location.longitude }}
+    location && (
+      <>
+        <h1>{location.name}</h1>
+        <p>{location.address}</p>
+        <LoadScript googleMapsApiKey={`${process.env.REACT_APP_MAPS_API_KEY}`}>
+          {/* Map itself. Centers on the marker */}
+          <GoogleMap
+            mapContainerStyle={mapStyles}
+            zoom={13}
+            center={{ lat: location.latitude, lng: location.longitude }}
+          >
+            {/* Markers on the map for each location */}
+            <Marker
+              key={location.name}
+              position={{ lat: location.latitude, lng: location.longitude }}
+            />
+          </GoogleMap>
+        </LoadScript>
+        {/* Back link to goBack to index */}
+        <Link
+          to="/"
+          onClick={(e) => {
+            props.history.goBack();
+          }}
         >
-          {/* Markers on the map for each location */}
-          <Marker
-            key={location.name}
-            position={{ lat: location.latitude, lng: location.longitude }}
-          />
-        </GoogleMap>
-      </LoadScript>
-      {/* Back link to goBack to index */}
-      <Link
-        to="/"
-        onClick={(e) => {
-          props.history.goBack();
-        }}
-      >
-        Back
-      </Link>
-    </>
+          Back
+        </Link>
+      </>
+    )
   );
 }
 
