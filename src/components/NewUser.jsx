@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useGlobalState } from "../utils/context";
 
 function NewUser({ history }) {
   // single state object that contains user info
@@ -8,6 +9,7 @@ function NewUser({ history }) {
     password: "",
   });
   const [errMessage, setErrMessage] = useState("");
+  const { dispatch } = useGlobalState();
 
   async function onFormSubmit(e) {
     e.preventDefault();
@@ -32,6 +34,7 @@ function NewUser({ history }) {
       } else {
         const { jwt } = await response.json();
         localStorage.setItem("token", jwt);
+        dispatch({ type: "setLoggedInUser", data: user.username });
         history.push("/");
       }
     } catch (err) {
