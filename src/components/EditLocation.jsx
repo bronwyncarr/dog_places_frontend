@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Form, Label, Input, Checkboxes } from "../styles/NewLocation";
 import { useParams } from "react-router-dom";
 import GeneratedForm from "./Form";
+import AuthFetch from "../services/Authservices";
 
 function NewLocation({ history }) {
   const [details, setDetails] = useState({
@@ -18,11 +19,7 @@ function NewLocation({ history }) {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/locations/${id}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    AuthFetch(`process.env.REACT_APP_BACKEND_URL}/locations/${id}`, "GET")
       .then((res) => res.json())
       .then((location) => {
         console.log(location);
@@ -39,6 +36,7 @@ function NewLocation({ history }) {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify({
           location: {

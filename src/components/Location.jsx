@@ -19,6 +19,7 @@ function Location(props) {
       // );
       const data = await AuthFetch(`${process.env.REACT_APP_BACKEND_URL}/locations/${id}`,"GET")
       setLocation(data);
+      console.log(data)
     })();
   }, [id]);
 
@@ -26,6 +27,8 @@ function Location(props) {
     <>
       <h1>{location.name}</h1>
       <p>{location.address}</p>
+    <p>{location.reviews.map((review) => {return review.body})}</p>
+
       <LoadScript googleMapsApiKey={`${process.env.REACT_APP_MAPS_API_KEY}`}>
         <GoogleMap
           mapContainerStyle={mapStyles}
