@@ -3,7 +3,6 @@ import { Switch, Route } from "react-router-dom";
 import { useReducer, useEffect } from "react";
 import NewUser from "./NewUser";
 import NewSession from "./NewSession";
-import SideBar from "./SideBar";
 import Location from "./Location";
 import Locations from "./Locations";
 import NewLocation from "./NewLocation";
@@ -19,6 +18,7 @@ import {
 import reducer from "../utils/reducer";
 import { StateContext } from "../utils/context";
 import { getLocations } from "../services/locationServices";
+import SideBar from "./SideBar";
 
 function App() {
   const initialState = {
@@ -29,7 +29,7 @@ function App() {
 
   // Sets initial state (default values) to global state
   const [store, dispatch] = useReducer(reducer, initialState);
-
+  const { loggedInUser } = store;
   function logout(e) {
     e.preventDefault();
     localStorage.removeItem("token");
@@ -39,17 +39,7 @@ function App() {
     <Layout>
       <StateContext.Provider value={{ store, dispatch }}>
         <SideBarWrapper>
-          <SideBarHeading>🐾 OFF THE LEASH</SideBarHeading>
-          <SideBar>
-            <SideBarLink to="/">Search</SideBarLink>
-            <SideBarLink to="/favourites">My Favourites</SideBarLink>
-            <SideBarLink to="/locations/new">Add a location</SideBarLink>
-            <SideBarLink to="/sign_up">Sign Up</SideBarLink>
-            <SideBarLink to="/sign_in">Sign In</SideBarLink>
-            <SideBarLink to="/" onClick={logout}>
-              Sign Out
-            </SideBarLink>
-          </SideBar>
+          <SideBar />
         </SideBarWrapper>
         <Content>
           <Switch>
