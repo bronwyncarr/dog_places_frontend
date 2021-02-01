@@ -29,6 +29,8 @@ function Location(props) {
       <>
         <h1>{location.name}</h1>
         <p>{location.address}</p>
+        <p>{location.reviews.map((review) => {return review.body})}</p>
+        <i>{location.facilities.map((fac)=>{return fac})}</i>
         <LoadScript googleMapsApiKey={`${process.env.REACT_APP_MAPS_API_KEY}`}>
           {/* Map itself. Centers on the marker */}
           <GoogleMap
