@@ -13,7 +13,28 @@ export default function reducer(state, action) {
         locations: [action.data, ...state.locations],
       };
     }
-
+    // case "deleteLocation": {
+    //   const updatedLocations = state.locations.filter((location) => {
+    //     return location.id !== parseInt(action.data);
+    //   });
+    //   return {
+    //     ...state,
+    //     locations: updatedLocations,
+    //   };
+    // }
+    // case "updateLocation": {
+    //   const location = state.locations.find(
+    //     (location) => location.id === action.data.id
+    //   );
+    //   const theRest = state.locations.filter(
+    //     (location) => location.id !== action.data.id
+    //   );
+    //   const updatedLocation = Object.assign(location, action.data);
+    //   return {
+    //     ...state,
+    //     locations: [updatedLocation, ...theRest],
+    //   };
+    // }
     case "setLoggedInUser": {
       return {
         ...state,

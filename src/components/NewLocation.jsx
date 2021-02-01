@@ -1,7 +1,9 @@
 import { useState } from "react";
 import GeneratedForm from "./Form";
+import { useGlobalState } from "../utils/context";
+import { createLocation } from "../services/locationServices";
 
-function NewLocation({ history }) {
+function NewLocation() {
   // Initiates state as empty object (with keys so inputs are always controlled)
   const [details, setDetails] = useState({
     name: "",
@@ -15,9 +17,20 @@ function NewLocation({ history }) {
     offLead: "",
   });
 
+  const { dispatch, store } = useGlobalState();
+  const { locations } = store;
+
   async function handleSubmit(e) {
+    e.preventDefault();
+    const body = JSON.stringify({
+      user_id: 1,
+      location_type_id: 1,
+      name: details.name,
+      description: details.description,
+      address: details.address,
+    });
+    // createLocation(body);
     try {
-      e.preventDefault();
       // POST request on submit, then redirect to locations pg.
       await fetch(`${process.env.REACT_APP_BACKEND_URL}/locations`, {
         method: "POST",
@@ -25,15 +38,12 @@ function NewLocation({ history }) {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
-        body: JSON.stringify({
-          user_id: 1,
-          location_type_id: 1,
-          name: details.name,
-          description: details.description,
-          address: details.address,
-        }),
+        body: body,
       });
-      history.push("/locations");
+      console.log(body);
+      console.log(localStorage.getItem("token"));
+      // redirect when added
+      // history.push("/locations");
     } catch (err) {
       console.log(err.message);
     }
