@@ -18,7 +18,7 @@ function App() {
   const initialState = {
     locations: [],
     loggedInUser: null,
-    auth: { token: null },
+    // auth: { token: null },
   };
 
   // Sets initial state (default values) to global state
@@ -31,11 +31,7 @@ function App() {
           <Switch>
             <Route exact path={["/", "/locations"]} component={Locations} />
             <ProtectedRoute exact path="/favourites" component={Favourites} />
-            <ProtectedRoute
-              exact
-              path="/locations/new"
-              component={NewLocation}
-            />
+            <Route exact path="/locations/new" component={NewLocation} />
             <Route exact path="/locations/:id" component={Location} />
             <Route exact path="/locations/:id/edit" component={EditLocation} />
             <Route exact path="/sign_up" component={NewUser} />

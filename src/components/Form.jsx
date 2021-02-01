@@ -1,6 +1,13 @@
 // Form is used for new and edit location
 // Needs styling
 
+// Object to go back looks like:
+// name: "",
+// location_type_name: "",
+// description: "",
+// address: "",
+// location_facilities_attributes: [],
+
 import { Form, Checkboxes } from "../styles/NewLocation";
 
 function GeneratedForm({
@@ -35,15 +42,16 @@ function GeneratedForm({
       })}
       <label htmlFor="category">Category:</label>
       <select
-        name="category"
-        id="category"
-        value={details.category}
+        name="location_type_name"
+        id="location_type_name"
+        value={details.location_type_name}
         onChange={handleFormChange}
       >
         {locationTypes &&
           locationTypes.map((item) => <option value={item}>{item}</option>)}
       </select>
 
+      {/* Need to sort out default option */}
       <Checkboxes>
         {facilityTypes.map((item) => {
           return (
