@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useGlobalState } from "../utils/context";
 
 function NewUser({ history }) {
   // single state object that contains user info
@@ -8,6 +9,7 @@ function NewUser({ history }) {
     password: "",
   });
   const [errMessage, setErrMessage] = useState("");
+  const { dispatch } = useGlobalState();
 
   async function onFormSubmit(e) {
     e.preventDefault();
@@ -20,6 +22,7 @@ function NewUser({ history }) {
       },
     };
     try {
+      // Some of this should be refactored into authServices
       const response = await fetch(`http://localhost:3000/api/auth/sign_up`, {
         method: "POST",
         headers: {
@@ -27,11 +30,19 @@ function NewUser({ history }) {
         },
         body: JSON.stringify(body),
       });
-      if (response.status >= 400) {
-        throw new Error("incorrect credentials");
+      console.log(body);
+      if (response.status >= 404) {
+        throw new Error(
+          "Incorrect credential. Please check your username, password and try again."
+        );
+      } else if (response.status >= 422) {
+        throw new Error(
+          "That username or password already exists in our system. Please choose another"
+        );
       } else {
         const { jwt } = await response.json();
         localStorage.setItem("token", jwt);
+        dispatch({ type: "setLoggedInUser", data: user.username });
         history.push("/");
       }
     } catch (err) {

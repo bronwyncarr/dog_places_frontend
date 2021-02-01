@@ -20,7 +20,6 @@ function Locations() {
     getLocations()
       .then((locations) => {
         dispatch({ type: "setLocations", data: locations });
-        console.log(locations);
       })
       .catch((error) => console.log(error));
   }, [dispatch]);
