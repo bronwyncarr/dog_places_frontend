@@ -2,6 +2,7 @@ import { useState } from "react";
 import GeneratedForm from "./Form";
 import { useGlobalState } from "../utils/context";
 import { createLocation } from "../services/locationServices";
+import { Redirect } from "react-router-dom";
 
 function NewLocation() {
   // Initiates state as empty object (with keys so inputs are always controlled)
@@ -44,6 +45,7 @@ function NewLocation() {
       console.log(localStorage.getItem("token"));
       // redirect when added
       // history.push("/locations");
+      <Redirect to="/locations" />;
     } catch (err) {
       console.log(err.message);
     }

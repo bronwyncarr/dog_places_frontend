@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { AuthFetch } from "../services/authServices";
 import GeneratedForm from "./Form";
-import AuthFetch from "../services/Authservices";
+import { useGlobalState } from "../utils/context";
+import { createLocation } from "../services/locationServices";
+import { Redirect } from "react-router-dom";
+import { getLocation } from "../services/locationServices";
 
-function NewLocation({ history }) {
+function EditLocation({ history }) {
   const [details, setDetails] = useState({
     name: "",
     category: "",
@@ -18,36 +22,30 @@ function NewLocation({ history }) {
   const { id } = useParams();
 
   useEffect(() => {
-    AuthFetch(`process.env.REACT_APP_BACKEND_URL}/locations/${id}`, "GET")
-      .then((res) => res.json())
-      .then((location) => {
-        setDetails({
-          ...location,
-        });
-      });
+    getLocation(id)
+      .then((details) => setDetails(details))
+      .catch((error) => console.log(error));
   }, [id]);
 
   async function handleSubmit(e) {
     // POST request on submit, then redirect to locations pg.
+    e.preventDefault();
+    const body = JSON.stringify({
+      location_type_id: 1,
+      name: details.name,
+      description: details.description,
+      address: details.address,
+    });
     try {
-      e.preventDefault();
       await fetch(`${process.env.REACT_APP_BACKEND_URL}/locations/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
-        body: JSON.stringify({
-          location: {
-            
-            location_type_id: 1,
-            name: details.name,
-            description: details.description,
-            address: details.address,
-          },
-        }),
+        body: body,
       });
-      history.push("/locations");
+      <Redirect to="/locations" />;
     } catch (err) {
       console.log(err.message);
     }
@@ -72,4 +70,4 @@ function NewLocation({ history }) {
   );
 }
 
-export default NewLocation;
+export default EditLocation;
