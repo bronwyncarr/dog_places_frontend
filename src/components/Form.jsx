@@ -3,7 +3,13 @@
 
 import { Form, Checkboxes } from "../styles/NewLocation";
 
-function GeneratedForm({ details, handleFormChange, handleSubmit }) {
+function GeneratedForm({
+  details,
+  facilities,
+  handleFormChange,
+  handleCheckChange,
+  handleSubmit,
+}) {
   const fields = ["name", "address", "description"];
   const checkboxData = ["water", "food", "toilets", "offlead", "parking"];
 
@@ -48,8 +54,8 @@ function GeneratedForm({ details, handleFormChange, handleSubmit }) {
                 type="checkbox"
                 id={item}
                 name={item}
-                value={details.item}
-                onChange={handleFormChange}
+                value={facilities.item}
+                onChange={handleCheckChange}
               />
               <label htmlFor={item}> {capitaliseName(item)}</label>
             </div>
