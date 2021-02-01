@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import GeneratedForm from "./Form";
-import { createLocation } from "../services/locationServices";
+import { getStaticAssets } from "../services/locationServices";
 import { Redirect } from "react-router-dom";
 
 function NewLocation() {
@@ -12,13 +12,18 @@ function NewLocation() {
     address: "",
   });
 
-  const [facilities, setFacilities] = useState({
-    water: "",
-    food: "",
-    toilets: "",
-    parking: "",
-    offLead: "",
-  });
+  const [locationTypes, setLocationTypes] = useState([]);
+  const [facilityTypes, setFacilityTypes] = useState([]);
+
+  useEffect(() => {
+    getStaticAssets()
+      .then((staticAssets) => {
+        const { location_facilities, location_types } = staticAssets;
+        setLocationTypes(location_types);
+        setFacilityTypes(location_facilities);
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -28,7 +33,6 @@ function NewLocation() {
       name: details.name,
       description: details.description,
       address: details.address,
-      facilities: facilities,
     });
     // createLocation(body);
     try {
@@ -55,20 +59,21 @@ function NewLocation() {
     });
   };
 
-  const handleCheckChange = (e) => {
-    setFacilities({
-      ...facilities,
-      [e.target.name]: e.target.value,
-    });
-  };
+  // const handleCheckChange = (e) => {
+  //   setFacilities({
+  //     ...facilities,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
 
   return (
     <>
       <h1>New Location</h1>
       <GeneratedForm
-        facilities={facilities}
         details={details}
-        handleCheckChange={handleCheckChange}
+        locationTypes={locationTypes}
+        facilityTypes={facilityTypes}
+        // handleCheckChange={handleCheckChange}
         handleFormChange={handleFormChange}
         handleSubmit={handleSubmit}
       />

@@ -5,13 +5,13 @@ import { Form, Checkboxes } from "../styles/NewLocation";
 
 function GeneratedForm({
   details,
-  facilities,
+  locationTypes,
+  facilityTypes,
   handleFormChange,
   handleCheckChange,
   handleSubmit,
 }) {
   const fields = ["name", "address", "description"];
-  const checkboxData = ["water", "food", "toilets", "offlead", "parking"];
 
   function capitaliseName(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -40,21 +40,19 @@ function GeneratedForm({
         value={details.category}
         onChange={handleFormChange}
       >
-        <option value="park">Park</option>
-        <option value="food">Food</option>
-        <option value="accomodation">Accomodation</option>
-        <option value="beach">Beach</option>
+        {locationTypes &&
+          locationTypes.map((item) => <option value={item}>{item}</option>)}
       </select>
 
       <Checkboxes>
-        {checkboxData.map((item) => {
+        {facilityTypes.map((item) => {
           return (
             <div>
               <input
                 type="checkbox"
                 id={item}
                 name={item}
-                value={facilities.item}
+                value={item}
                 onChange={handleCheckChange}
               />
               <label htmlFor={item}> {capitaliseName(item)}</label>
