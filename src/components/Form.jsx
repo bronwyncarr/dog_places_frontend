@@ -1,17 +1,24 @@
 // Form is used for new and edit location
 // Needs styling
 
+// Object to go back looks like:
+// name: "",
+// location_type_name: "",
+// description: "",
+// address: "",
+// location_facilities_attributes: [],
+
 import { Form, Checkboxes } from "../styles/NewLocation";
 
 function GeneratedForm({
   details,
-  facilities,
+  locationTypes,
+  facilityTypes,
   handleFormChange,
   handleCheckChange,
   handleSubmit,
 }) {
   const fields = ["name", "address", "description"];
-  const checkboxData = ["water", "food", "toilets", "offlead", "parking"];
 
   function capitaliseName(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -35,26 +42,25 @@ function GeneratedForm({
       })}
       <label htmlFor="category">Category:</label>
       <select
-        name="category"
-        id="category"
-        value={details.category}
+        name="location_type_name"
+        id="location_type_name"
+        value={details.location_type_name}
         onChange={handleFormChange}
       >
-        <option value="park">Park</option>
-        <option value="food">Food</option>
-        <option value="accomodation">Accomodation</option>
-        <option value="beach">Beach</option>
+        {locationTypes &&
+          locationTypes.map((item) => <option value={item}>{item}</option>)}
       </select>
 
+      {/* Need to sort out default option */}
       <Checkboxes>
-        {checkboxData.map((item) => {
+        {facilityTypes.map((item) => {
           return (
             <div>
               <input
                 type="checkbox"
                 id={item}
                 name={item}
-                value={facilities.item}
+                value={item}
                 onChange={handleCheckChange}
               />
               <label htmlFor={item}> {capitaliseName(item)}</label>
