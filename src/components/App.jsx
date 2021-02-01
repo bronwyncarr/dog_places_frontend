@@ -31,7 +31,7 @@ function App() {
         <Content>
           <Switch>
             <Route exact path={["/", "/locations"]} component={Locations} />
-            <Route exact path="/favourites" component={Favourites} />
+            <ProtectedRoute exact path="/favourites" component={Favourites} />
             <ProtectedRoute
               exact
               path="/locations/new"

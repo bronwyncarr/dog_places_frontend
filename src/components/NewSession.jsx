@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useGlobalState } from "../utils/context";
+import { Link } from "react-router-dom";
 
 function NewSession({ history }) {
   // single state object that contains user info
@@ -76,6 +77,9 @@ function NewSession({ history }) {
         </div>
         <input id="submit" type="submit" value="Submit" />
       </form>
+      <p>
+        Not yet a member?<Link to={`/sign_up`}>Join today!</Link>
+      </p>
     </>
   );
 }
