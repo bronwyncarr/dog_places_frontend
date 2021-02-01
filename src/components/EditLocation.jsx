@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Form, Label, Input, Checkboxes } from "../styles/NewLocation";
 import { useParams } from "react-router-dom";
 import GeneratedForm from "./Form";
 import AuthFetch from "../services/Authservices";
@@ -22,14 +21,14 @@ function NewLocation({ history }) {
     AuthFetch(`process.env.REACT_APP_BACKEND_URL}/locations/${id}`, "GET")
       .then((res) => res.json())
       .then((location) => {
-        console.log(location);
         setDetails({
           ...location,
         });
       });
-  }, []);
+  }, [id]);
 
   async function handleSubmit(e) {
+    // POST request on submit, then redirect to locations pg.
     try {
       e.preventDefault();
       await fetch(`${process.env.REACT_APP_BACKEND_URL}/locations/${id}`, {

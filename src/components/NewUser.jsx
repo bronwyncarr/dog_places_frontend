@@ -1,15 +1,23 @@
 import React, { useState } from "react";
 
- function NewUser({ history }) {
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+function NewUser({ history }) {
+  // single state object that contains user info
+  const [user, setUser] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
   const [errMessage, setErrMessage] = useState("");
 
-  async function onFormSubmit(event) {
-    event.preventDefault();
+  async function onFormSubmit(e) {
+    e.preventDefault();
+    // Could this be refactored????????????
     const body = {
-      user: { email, username,password },
+      user: {
+        email: user.email,
+        username: user.username,
+        password: user.password,
+      },
     };
     try {
       const response = await fetch(`http://localhost:3000/api/auth/sign_up`, {
@@ -31,30 +39,34 @@ import React, { useState } from "react";
     }
   }
 
+  // Updates state object as info is typed into the form
+  function handleChange(e) {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  }
+
   return (
     <>
-      
       <h1>Sign Up!</h1>
       {errMessage && <span>{errMessage}</span>}
       <form onSubmit={onFormSubmit}>
-      <div className="form-group">
+        <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
             type="email"
             name="email"
             id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={user.email}
+            onChange={handleChange}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="userName">userName</label>
+          <label htmlFor="username">userName</label>
           <input
             type="text"
-            name="userName"
-            id="userName"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            name="username"
+            id="username"
+            value={user.username}
+            onChange={handleChange}
           />
         </div>
         <div className="form-group">
@@ -63,8 +75,8 @@ import React, { useState } from "react";
             type="password"
             name="password"
             id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={user.password}
+            onChange={handleChange}
           />
         </div>
         <input id="submit" type="submit" value="Submit" />
@@ -72,4 +84,4 @@ import React, { useState } from "react";
     </>
   );
 }
-export default NewUser
+export default NewUser;

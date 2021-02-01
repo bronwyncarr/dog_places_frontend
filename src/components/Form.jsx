@@ -1,4 +1,7 @@
-import { Form, Label, Input, Checkboxes } from "../styles/NewLocation";
+// Form is used for new and edit location
+// Needs styling
+
+import { Form, Checkboxes } from "../styles/NewLocation";
 
 function GeneratedForm({ details, handleFormChange, handleSubmit }) {
   const fields = ["name", "address", "description"];

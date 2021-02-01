@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Form, Label, Input, Checkboxes } from "../styles/NewLocation";
 import GeneratedForm from "./Form";
 
 function NewLocation({ history }) {
+  // Initiates state as empty object (with keys so inputs are always controlled)
   const [details, setDetails] = useState({
     name: "",
     category: "",
@@ -18,24 +18,21 @@ function NewLocation({ history }) {
   async function handleSubmit(e) {
     try {
       e.preventDefault();
+      // POST request on submit, then redirect to locations pg.
       await fetch(`${process.env.REACT_APP_BACKEND_URL}/locations`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${localStorage.getItem("token")}`
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify({
-          
-           
             location_type_id: 1,
             name: details.name,
             description: details.description,
             address: details.address,
-          
         }),
       });
-      history.push("/locations")
-      console.log(details);
+      history.push("/locations");
     } catch (err) {
       console.log(err.message);
     }
@@ -45,7 +42,7 @@ function NewLocation({ history }) {
     setDetails({
       ...details,
       [e.target.name]: e.target.value,
-    } );
+    });
   };
 
   return (
