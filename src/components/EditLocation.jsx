@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import GeneratedForm from "./Form";
+import AuthFetch from "../services/Authservices";
 
 function NewLocation({ history }) {
   const [details, setDetails] = useState({
@@ -17,12 +18,7 @@ function NewLocation({ history }) {
   const { id } = useParams();
 
   useEffect(() => {
-    // On load will prefill data with fetch GET request info
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/locations/${id}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    AuthFetch(`process.env.REACT_APP_BACKEND_URL}/locations/${id}`, "GET")
       .then((res) => res.json())
       .then((location) => {
         setDetails({
@@ -39,10 +35,11 @@ function NewLocation({ history }) {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify({
           location: {
-            user_id: 1,
+            
             location_type_id: 1,
             name: details.name,
             description: details.description,

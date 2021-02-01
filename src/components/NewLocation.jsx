@@ -26,11 +26,10 @@ function NewLocation({ history }) {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify({
-          user_id: 1,
-          location_type_id: 1,
-          name: details.name,
-          description: details.description,
-          address: details.address,
+            location_type_id: 1,
+            name: details.name,
+            description: details.description,
+            address: details.address,
         }),
       });
       history.push("/locations");
