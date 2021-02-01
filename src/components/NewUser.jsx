@@ -31,14 +31,16 @@ function NewUser({ history }) {
         body: JSON.stringify(body),
       });
       console.log(body);
-      if (response.status >= 404) {
+      if (response.status == 404) {
         throw new Error(
           "Incorrect credential. Please check your username, password and try again."
         );
-      } else if (response.status >= 422) {
+      } else if (response.status == 422) {
         throw new Error(
-          "That username or password already exists in our system. Please choose another"
+          "That username or password already exists in our system. Please choose another."
         );
+      } else if (response.status >= 400) {
+        throw new Error("Unknown error occured, please try again later.");
       } else {
         const { jwt } = await response.json();
         localStorage.setItem("token", jwt);
