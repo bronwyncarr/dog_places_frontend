@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import GeneratedForm from "./Form";
-import AuthFetch from "../services/Authservices";
+import {AuthFetch} from "../services/authServices";
 
 function NewLocation({ history }) {
   const [details, setDetails] = useState({
