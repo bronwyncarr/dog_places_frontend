@@ -1,6 +1,5 @@
 import { useState } from "react";
 import GeneratedForm from "./Form";
-import { useGlobalState } from "../utils/context";
 import { createLocation } from "../services/locationServices";
 import { Redirect } from "react-router-dom";
 
@@ -11,15 +10,15 @@ function NewLocation() {
     category: "",
     description: "",
     address: "",
+  });
+
+  const [facilities, setFacilities] = useState({
     water: "",
     food: "",
     toilets: "",
     parking: "",
     offLead: "",
   });
-
-  const { dispatch, store } = useGlobalState();
-  const { locations } = store;
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -29,6 +28,7 @@ function NewLocation() {
       name: details.name,
       description: details.description,
       address: details.address,
+      facilities: facilities,
     });
     // createLocation(body);
     try {
@@ -42,9 +42,6 @@ function NewLocation() {
         body: body,
       });
       console.log(body);
-      console.log(localStorage.getItem("token"));
-      // redirect when added
-      // history.push("/locations");
       <Redirect to="/locations" />;
     } catch (err) {
       console.log(err.message);
@@ -58,11 +55,20 @@ function NewLocation() {
     });
   };
 
+  const handleCheckChange = (e) => {
+    setFacilities({
+      ...facilities,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
     <>
       <h1>New Location</h1>
       <GeneratedForm
+        facilities={facilities}
         details={details}
+        handleCheckChange={handleCheckChange}
         handleFormChange={handleFormChange}
         handleSubmit={handleSubmit}
       />
