@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useGlobalState } from "../utils/context";
 import { getLocations } from "../services/locationServices";
+import SearchBar from "./SearchBar";
 import Map from "./Map";
 
 function Locations() {
@@ -21,8 +22,9 @@ function Locations() {
   return (
     <>
       <h1>Locations</h1>
+      <SearchBar />
       <Map />
-      {/* Once lications available, list all locations with shoe, edit, delete links. */}
+      {/* Once locations available, list all locations with show, edit, delete links. */}
       {locations &&
         locations.map((location, index) => {
           return (
