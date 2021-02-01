@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { AuthFetch } from "../services/authServices";
 import GeneratedForm from "./Form";
-import { useGlobalState } from "../utils/context";
 import { createLocation } from "../services/locationServices";
 import { Redirect } from "react-router-dom";
 import { getLocation } from "../services/locationServices";
