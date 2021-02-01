@@ -12,6 +12,7 @@ import { Layout, Content } from "../styles/Layout";
 import reducer from "../utils/reducer";
 import { StateContext } from "../utils/context";
 import SideBar from "./SideBar";
+import { ProtectedRoute } from "./ProtectedRoute";
 
 function App() {
   const initialState = {
@@ -22,7 +23,7 @@ function App() {
 
   // Sets initial state (default values) to global state
   const [store, dispatch] = useReducer(reducer, initialState);
-  const { loggedInUser } = store;
+  // const { loggedInUser } = store;
   return (
     <Layout>
       <StateContext.Provider value={{ store, dispatch }}>
@@ -31,7 +32,11 @@ function App() {
           <Switch>
             <Route exact path={["/", "/locations"]} component={Locations} />
             <Route exact path="/favourites" component={Favourites} />
-            <Route exact path="/locations/new" component={NewLocation} />
+            <ProtectedRoute
+              exact
+              path="/locations/new"
+              component={NewLocation}
+            />
             <Route exact path="/locations/:id" component={Location} />
             <Route exact path="/locations/:id/edit" component={EditLocation} />
             <Route exact path="/sign_up" component={NewUser} />
