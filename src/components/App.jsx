@@ -23,7 +23,6 @@ function App() {
 
   // Sets initial state (default values) to global state
   const [store, dispatch] = useReducer(reducer, initialState);
-  // const { loggedInUser } = store;
   return (
     <Layout>
       <StateContext.Provider value={{ store, dispatch }}>
