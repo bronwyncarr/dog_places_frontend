@@ -27,8 +27,14 @@ function NewSession({ history }) {
         },
         body: JSON.stringify(body),
       });
-      if (response.status >= 400) {
-        throw new Error("incorrect credentials");
+      if (response.status >= 404) {
+        throw new Error(
+          "Incorrect credential. Please check your username, password and try again."
+        );
+      } else if (response.status >= 422) {
+        throw new Error(
+          "That username or password already exists in our system. Please choose another"
+        );
       } else {
         const { jwt } = await response.json();
         localStorage.setItem("token", jwt);
@@ -50,7 +56,7 @@ function NewSession({ history }) {
       {errMessage && <span>{errMessage}</span>}
       <form onSubmit={onFormSubmit}>
         <div className="form-group">
-          <label htmlFor="username">Email</label>
+          <label htmlFor="username">Username</label>
           <input
             type="test"
             name="username"
