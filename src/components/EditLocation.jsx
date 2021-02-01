@@ -40,7 +40,7 @@ function NewLocation({ history }) {
         },
         body: JSON.stringify({
           location: {
-            user_id: 1,
+            
             location_type_id: 1,
             name: details.name,
             description: details.description,
