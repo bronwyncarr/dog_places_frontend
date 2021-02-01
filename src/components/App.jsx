@@ -1,5 +1,4 @@
 import { Switch, Route } from "react-router-dom";
-
 import { useReducer } from "react";
 import NewUser from "./NewUser";
 import NewSession from "./NewSession";
@@ -9,7 +8,7 @@ import NewLocation from "./NewLocation";
 import Favourites from "./Favourites";
 import EditLocation from "./EditLocation";
 import SignOut from "./Signout";
-import { SideBarWrapper, Layout, Content } from "../styles/Layout";
+import { Layout, Content } from "../styles/Layout";
 import reducer from "../utils/reducer";
 import { StateContext } from "../utils/context";
 import SideBar from "./SideBar";
@@ -23,13 +22,11 @@ function App() {
 
   // Sets initial state (default values) to global state
   const [store, dispatch] = useReducer(reducer, initialState);
-
+  const { loggedInUser } = store;
   return (
     <Layout>
       <StateContext.Provider value={{ store, dispatch }}>
-        <SideBarWrapper>
-          <SideBar />
-        </SideBarWrapper>
+        <SideBar />
         <Content>
           <Switch>
             <Route exact path={["/", "/locations"]} component={Locations} />

@@ -1,9 +1,9 @@
 import SideBarItems from "./SideBarItems";
-import { SideBarLink, SideBarHeading } from "../styles/Layout";
+import { SideBarWrapper, SideBarLink, SideBarHeading } from "../styles/Layout";
 
 function SideBar() {
   return (
-    <>
+    <SideBarWrapper>
       <SideBarHeading>🐾 OFF THE LEASH</SideBarHeading>
       <SideBarItems>
         <SideBarLink to="/">Search</SideBarLink>
@@ -13,7 +13,7 @@ function SideBar() {
         <SideBarLink to="/sign_in">Sign In</SideBarLink>
         <SideBarLink to="/sign_out">Sign Out</SideBarLink>
       </SideBarItems>
-    </>
+    </SideBarWrapper>
   );
 }
 
