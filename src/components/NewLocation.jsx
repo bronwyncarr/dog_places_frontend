@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import GeneratedForm from "./Form";
 import { getStaticAssets } from "../services/locationServices";
-import { Redirect } from "react-router-dom";
 
-function NewLocation() {
+function NewLocation({ history }) {
+  // Inbound info from static assets
+  const [locationTypes, setLocationTypes] = useState([]);
+  const [facilityTypes, setFacilityTypes] = useState([]);
+
   // Initiates state as empty object (with keys so inputs are always controlled)
   const [details, setDetails] = useState({
     name: "",
@@ -12,10 +15,6 @@ function NewLocation() {
     address: "",
     location_facilities_attributes: [],
   });
-
-  // Inbound info from static assets
-  const [locationTypes, setLocationTypes] = useState([]);
-  const [facilityTypes, setFacilityTypes] = useState([]);
 
   // On l;oad get static assets to display types and facilities.
   useEffect(() => {
@@ -50,8 +49,7 @@ function NewLocation() {
         },
         body: body,
       });
-      console.log(body);
-      <Redirect to="/locations" />;
+      history.goBack();
     } catch (err) {
       console.log(err.message);
     }
