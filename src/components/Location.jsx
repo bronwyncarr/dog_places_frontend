@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-import { getLocation } from "../services/locationServices";
+import { getLocation, removeLocation } from "../services/locationServices";
 import Locations from "./Locations";
 
 function Location(props) {
   const [location, setLocation] = useState(null);
   const { id } = useParams();
+  let history = useHistory();
 
   // On page load or a change to id, calls getLocation with the id from useParams,
   // This sends a fetch request for the location with that id and returns a promise.
@@ -24,6 +25,11 @@ function Location(props) {
   };
 
   // What about if location doesn't exist????
+
+  function handleDelete() {
+    removeLocation(id);
+    history.push("/locations");
+  }
 
   return (
     location && (
@@ -46,6 +52,9 @@ function Location(props) {
         </LoadScript>
         <br />
         <p>{location.descrription}</p>
+        <Link to={`/locations/${location.id}/edit`}>Edit</Link>
+        <button onClick={handleDelete}>Delete</button>
+        <br />
         {/* Back link to goBack to index */}
         <Link
           to="/"

@@ -14,7 +14,6 @@ export async function getLocation(id) {
     `${process.env.REACT_APP_BACKEND_URL}/locations/${id}`,
     "GET"
   );
-  console.log(location);
   return location;
 }
 
@@ -23,8 +22,18 @@ export async function getStaticAssets() {
     `${process.env.REACT_APP_BACKEND_URL}/locations/static_assests`,
     "GET"
   );
-
   return staticAssets;
+}
+
+// Fetch requestion to get one location of the id that was passed in.
+export async function removeLocation(id) {
+  console.log(id);
+  const location = await AuthFetch(
+    `${process.env.REACT_APP_BACKEND_URL}/locations/${id}`,
+    "DELETE"
+  );
+  console.log(location, "deleted");
+  return location;
 }
 
 // export async function createLocation(body) {

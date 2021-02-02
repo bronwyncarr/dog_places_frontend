@@ -43,8 +43,8 @@ function NewLocation({ history }) {
       address: details.address,
       location_facilities_attributes: details.location_facilities_attributes,
     });
-    // createLocation(body);
     try {
+      // To be refatored into auth services
       // POST request on submit, then redirect to locations pg.
       await fetch(`${process.env.REACT_APP_BACKEND_URL}/locations`, {
         method: "POST",

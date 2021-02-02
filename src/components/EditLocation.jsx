@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import GeneratedForm from "./Form";
 import { useGlobalState } from "../utils/context";
-import { getStaticAssets } from "../services/locationServices";
-import { getLocation } from "../services/locationServices";
+import { getLocation, getStaticAssets } from "../services/locationServices";
 
 function EditLocation({ history }) {
   // Inbound info from static assets
