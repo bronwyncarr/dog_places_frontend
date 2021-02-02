@@ -14,19 +14,17 @@ export async function getLocation(id) {
     `${process.env.REACT_APP_BACKEND_URL}/locations/${id}`,
     "GET"
   );
+  console.log(location);
   return location;
 }
 
 export async function getStaticAssets() {
   const staticAssets = await AuthFetch(
-    `${process.env.REACT_APP_BACKEND_URL}//locations/static_assests`,
+    `${process.env.REACT_APP_BACKEND_URL}/locations/static_assests`,
     "GET"
   );
+
   return staticAssets;
-  // return {
-  //   location_types: ["Dog park", "Park", "Beach", "Dog Cafe"],
-  //   location_facilities: ["Toilets", "Food", "Parking", "Water", "Off Lead"],
-  // };
 }
 
 // export async function createLocation(body) {

@@ -18,6 +18,7 @@ function App() {
   const initialState = {
     locations: [],
     loggedInUser: null,
+    staticAssets: {},
     // auth: { token: null },
   };
 
