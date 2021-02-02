@@ -57,20 +57,21 @@ function GeneratedForm({
       </select>
 
       <Checkboxes>
-        {facilityTypes.map((item) => {
-          return (
-            <div>
-              <input
-                type="checkbox"
-                id={item}
-                name={item}
-                value={item}
-                onChange={handleCheckChange}
-              />
-              <label htmlFor={item}> {capitaliseName(item)}</label>
-            </div>
-          );
-        })}
+        {facilityTypes &&
+          facilityTypes.map((item) => {
+            return (
+              <div>
+                <input
+                  type="checkbox"
+                  id={item}
+                  name={item}
+                  value={item}
+                  onChange={handleCheckChange}
+                />
+                <label htmlFor={item}> {capitaliseName(item)}</label>
+              </div>
+            );
+          })}
       </Checkboxes>
       <button id="submit" type="submit" value="Submit">
         Submit!

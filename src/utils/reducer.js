@@ -7,12 +7,20 @@ export default function reducer(state, action) {
       };
     }
 
-    case "addLocation": {
+    // case "addLocation": {
+    //   return {
+    //     ...state,
+    //     locations: [action.data, ...state.locations],
+    //   };
+    // }
+
+    case "setStaticAssets": {
       return {
         ...state,
-        locations: [action.data, ...state.locations],
+        staticAssets: action.data,
       };
     }
+
     // case "deleteLocation": {
     //   const updatedLocations = state.locations.filter((location) => {
     //     return location.id !== parseInt(action.data);

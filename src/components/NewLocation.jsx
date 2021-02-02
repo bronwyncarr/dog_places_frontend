@@ -1,11 +1,16 @@
 import { useState, useEffect } from "react";
 import GeneratedForm from "./Form";
 import { getStaticAssets } from "../services/locationServices";
+import { useGlobalState } from "../utils/context";
 
 function NewLocation({ history }) {
   // Inbound info from static assets
-  const [locationTypes, setLocationTypes] = useState([]);
-  const [facilityTypes, setFacilityTypes] = useState([]);
+  const { store, dispatch } = useGlobalState();
+  const { staticAssets } = store;
+  const {
+    location_types: locationTypes,
+    location_facilities: facilityTypes,
+  } = staticAssets;
 
   // Initiates state as empty object (with keys so inputs are always controlled)
   const [details, setDetails] = useState({
@@ -16,16 +21,16 @@ function NewLocation({ history }) {
     location_facilities_attributes: [],
   });
 
-  // On l;oad get static assets to display types and facilities.
+  // If statis assets don't exist, fetch call to get them and saves in global state.
+  // Assets to display types and facilities.
   useEffect(() => {
-    getStaticAssets()
-      .then((staticAssets) => {
-        const { location_facilities, location_types } = staticAssets;
-        setLocationTypes(location_types);
-        setFacilityTypes(location_facilities);
-      })
-      .catch((error) => console.log(error));
-  }, []);
+    !staticAssets.location_types &&
+      getStaticAssets()
+        .then((assets) => {
+          dispatch({ type: "setStaticAssets", data: assets });
+        })
+        .catch((error) => console.log(error));
+  }, [dispatch]);
 
   // On submit create body, and send post request. Then redirect to locations.
   async function handleSubmit(e) {

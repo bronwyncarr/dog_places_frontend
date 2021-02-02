@@ -34,7 +34,7 @@ function Location(props) {
           {/* Map itself. Centers on the marker */}
           <GoogleMap
             mapContainerStyle={mapStyles}
-            zoom={13}
+            zoom={10}
             center={{ lat: location.latitude, lng: location.longitude }}
           >
             {/* Markers on the map for each location */}
