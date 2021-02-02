@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { getLocation } from "../services/locationServices";
+import Locations from "./Locations";
 
 function Location(props) {
   const [location, setLocation] = useState(null);
@@ -43,6 +44,8 @@ function Location(props) {
             />
           </GoogleMap>
         </LoadScript>
+        <br />
+        <p>{location.descrription}</p>
         {/* Back link to goBack to index */}
         <Link
           to="/"

@@ -47,11 +47,15 @@ function GeneratedForm({
         value={details.location_type_name}
         onChange={handleFormChange}
       >
+        {/* Need to sort out default option */}
+        <option value selected>
+          -- Please select --
+        </option>
+
         {locationTypes &&
           locationTypes.map((item) => <option value={item}>{item}</option>)}
       </select>
 
-      {/* Need to sort out default option */}
       <Checkboxes>
         {facilityTypes.map((item) => {
           return (
