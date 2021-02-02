@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { getLocation, removeLocation } from "../services/locationServices";
-import Locations from "./Locations";
 
 function Location(props) {
   const [location, setLocation] = useState(null);

@@ -1,15 +1,8 @@
 // Form is used for new and edit location
 // Needs styling
 
-// Object to go back looks like:
-// name: "",
-// location_type_name: "",
-// description: "",
-// address: "",
-// location_facilities_attributes: [],
-
 import { Form, Checkboxes } from "../styles/NewLocation";
-
+import Autocomplete from "./AddressAuto";
 function GeneratedForm({
   details,
   locationTypes,
@@ -18,7 +11,7 @@ function GeneratedForm({
   handleCheckChange,
   handleSubmit,
 }) {
-  const fields = ["name", "address", "description"];
+  const fields = ["name", "description"];
 
   function capitaliseName(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -40,6 +33,9 @@ function GeneratedForm({
           </>
         );
       })}
+
+      <Autocomplete onAutoChange={/*some handler*/} />
+
       <label htmlFor="category">Category:</label>
       <select
         name="location_type_name"
