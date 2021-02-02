@@ -36,28 +36,6 @@ export async function removeLocation(id) {
   return location;
 }
 
-// export async function createLocation(body) {
-//   // let history = useHistory()
-//   try {
-//     // POST request on submit, then redirect to locations pg.
-//     await fetch(`${process.env.REACT_APP_BACKEND_URL}/locations`, {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: `Bearer ${localStorage.getItem("token")}`,
-//       },
-//       body: body,
-//     });
-//     // history.push("/locations");
-//   } catch (err) {
-//     console.log(err.message);
-//   }
-// }
-
-// export async function deleteLocation(id) {
-//   return id;
-// }
-
 // export async function updateLocation(location) {
 //   return location;
 // }

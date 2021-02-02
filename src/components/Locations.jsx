@@ -22,7 +22,7 @@ function Locations() {
     <>
       <h1>Locations</h1>
       <SearchBar />
-      <Map />
+      <Map locations={locations} />
       {/* Once locations available, list all locations with show, edit, delete links. */}
       {locations.length > 0 &&
         locations.map((location, index) => {
