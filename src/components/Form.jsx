@@ -2,7 +2,6 @@
 // Needs styling
 
 import { Form, Checkboxes } from "../styles/NewLocation";
-import Autocomplete from "./AddressAuto";
 function GeneratedForm({
   details,
   locationTypes,
@@ -11,7 +10,7 @@ function GeneratedForm({
   handleCheckChange,
   handleSubmit,
 }) {
-  const fields = ["name", "description"];
+  const fields = ["name", "address", "description"];
 
   function capitaliseName(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -33,8 +32,6 @@ function GeneratedForm({
           </>
         );
       })}
-
-      <Autocomplete onAutoChange={/*some handler*/} />
 
       <label htmlFor="category">Category:</label>
       <select

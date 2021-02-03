@@ -1,16 +1,16 @@
-import { AuthFetch } from "./authServices";
+import { authFetch } from "./authServices";
 // import { useHistory } from "react-router-dom";
 
 // Fetch requestion to get all locations
 export async function getLocations() {
   const url = `${process.env.REACT_APP_BACKEND_URL}/locations`;
-  const locations = await AuthFetch(url, "GET");
+  const locations = await authFetch(url, "GET");
   return locations;
 }
 
 // Fetch requestion to get one location of the id that was passed in.
 export async function getLocation(id) {
-  const location = await AuthFetch(
+  const location = await authFetch(
     `${process.env.REACT_APP_BACKEND_URL}/locations/${id}`,
     "GET"
   );
@@ -18,7 +18,7 @@ export async function getLocation(id) {
 }
 
 export async function getStaticAssets() {
-  const staticAssets = await AuthFetch(
+  const staticAssets = await authFetch(
     `${process.env.REACT_APP_BACKEND_URL}/locations/static_assests`,
     "GET"
   );
@@ -27,13 +27,11 @@ export async function getStaticAssets() {
 
 // Fetch requestion to get one location of the id that was passed in.
 export async function removeLocation(id) {
-  console.log(id);
-  const location = await AuthFetch(
+  const response = await authFetch(
     `${process.env.REACT_APP_BACKEND_URL}/locations/${id}`,
     "DELETE"
   );
-  console.log(location, "deleted");
-  return location;
+  return response;
 }
 
 // export async function updateLocation(location) {
