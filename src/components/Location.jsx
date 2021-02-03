@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { getLocation, removeLocation } from "../services/locationServices";
+import { useGlobalState } from "../utils/context";
 
 function Location(props) {
   const [location, setLocation] = useState(null);
   const { id } = useParams();
   let history = useHistory();
+  const { store } = useGlobalState();
+  const { loggedInAdmin } = store;
 
   // On page load or a change to id, calls getLocation with the id from useParams,
   // This sends a fetch request for the location with that id and returns a promise.
@@ -26,8 +29,12 @@ function Location(props) {
   // What about if location doesn't exist????
 
   function handleDelete() {
-    removeLocation(id);
-    history.push("/locations");
+    // If admin delete
+    loggedInAdmin && removeLocation(id);
+    history.push("/");
+    // If not admin will get a prompt that mailer sent to admin
+    !loggedInAdmin &&
+      alert("Your request has been sent to our admin team for delete approval");
   }
 
   return (

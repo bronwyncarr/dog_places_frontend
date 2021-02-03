@@ -13,6 +13,9 @@ function EditLocation({ history }) {
     location_facilities: facilityTypes,
   } = staticAssets;
 
+  const { id } = useParams();
+  const { loggedInAdmin } = store;
+
   // Initiates state as empty object (with keys so inputs are always controlled)
   const [details, setDetails] = useState({
     name: "",
@@ -31,9 +34,7 @@ function EditLocation({ history }) {
           dispatch({ type: "setStaticAssets", data: assets });
         })
         .catch((error) => console.log(error));
-  }, [dispatch]);
-
-  const { id } = useParams();
+  }, []);
 
   // Gets existing data and prefills it
   useEffect(() => {
@@ -60,7 +61,10 @@ function EditLocation({ history }) {
         },
         body: body,
       });
-      history.goBack();
+      history.push("/");
+      // If not admin will get a prompt that mailer sent to admin
+      !loggedInAdmin &&
+        alert("Your request has been sent to our admin team for edit approval");
     } catch (err) {
       console.log(err.message);
     }

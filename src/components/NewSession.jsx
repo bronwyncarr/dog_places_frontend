@@ -9,7 +9,7 @@ function NewSession({ history }) {
     password: "",
   });
   const [errMessage, setErrMessage] = useState("");
-  const { dispatch } = useGlobalState();
+  const { store, dispatch } = useGlobalState();
 
   async function onFormSubmit(event) {
     event.preventDefault();
@@ -35,9 +35,10 @@ function NewSession({ history }) {
       } else if (response.status >= 400) {
         throw new Error("Unknown error occured, please try again later.");
       } else {
-        const { jwt } = await response.json();
-        localStorage.setItem("token", jwt);
-        dispatch({ type: "setLoggedInUser", data: user.username });
+        const data = await response.json();
+        localStorage.setItem("token", data.jwt);
+        dispatch({ type: "setLoggedInUser", data: data.username });
+        dispatch({ type: "setLoggedInAdmin", data: data.is_admin });
         history.push("/");
       }
     } catch (err) {

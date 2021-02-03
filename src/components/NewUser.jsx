@@ -31,7 +31,6 @@ function NewUser({ history }) {
         },
         body: JSON.stringify(body),
       });
-      console.log(body);
       if (response.status == 404) {
         throw new Error(
           "Incorrect credential. Please check your username, password and try again."

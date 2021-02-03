@@ -18,6 +18,7 @@ function App() {
   const initialState = {
     loggedInUser: null,
     staticAssets: {},
+    loggedInAdmin: false,
     // auth: { token: null },
   };
 
@@ -31,9 +32,17 @@ function App() {
           <Switch>
             <Route exact path={["/", "/locations"]} component={Locations} />
             <ProtectedRoute exact path="/favourites" component={Favourites} />
-            <Route exact path="/locations/new" component={NewLocation} />
-            <Route exact path="/locations/:id" component={Location} />
-            <Route exact path="/locations/:id/edit" component={EditLocation} />
+            <ProtectedRoute
+              exact
+              path="/locations/new"
+              component={NewLocation}
+            />
+            <ProtectedRoute exact path="/locations/:id" component={Location} />
+            <ProtectedRoute
+              exact
+              path="/locations/:id/edit"
+              component={EditLocation}
+            />
             <Route exact path="/sign_up" component={NewUser} />
             <Route exact path="/sign_in" component={NewSession} />
             <Route exact path="/sign_out" component={SignOut} />
