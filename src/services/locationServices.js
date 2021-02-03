@@ -1,4 +1,4 @@
-import { authFetch } from "./authServices";
+import { authFetch, authFetchNoResponse } from "./authServices";
 // import { useHistory } from "react-router-dom";
 
 // Fetch requestion to get all locations
@@ -26,12 +26,23 @@ export async function getStaticAssets() {
 }
 
 // Fetch requestion to get one location of the id that was passed in.
-export async function removeLocation(id, reason) {
-  const response = await authFetch(
+export async function removeLocation(id, body) {
+  const response = await authFetchNoResponse(
     `${process.env.REACT_APP_BACKEND_URL}/locations/${id}`,
     "DELETE",
-    reason
+    body
   );
+  return response;
+}
+
+export async function createReview(body) {
+  const response = await authFetchNoResponse(
+    `${process.env.REACT_APP_BACKEND_URL}/locations/review/new`,
+    "POST",
+    body
+  );
+  console.log(body);
+  console.log(response);
   return response;
 }
 
