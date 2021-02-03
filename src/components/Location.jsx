@@ -28,12 +28,18 @@ function Location(props) {
 
   // Async delays it until delete is complete before going back to locations
   async function handleDelete() {
-    // If admin delete
-    await removeLocation(id);
+    if (!loggedInAdmin) {
+      let reason = prompt("Please give your reason");
+      const body = JSON.stringify({
+        description: reason,
+      });
+      await removeLocation(id, body);
+    } else {
+      // If admin delete
+      await removeLocation(id);
+    }
     history.push("/");
     // If not admin will get a prompt that mailer sent to admin
-    !loggedInAdmin &&
-      alert("Your request has been sent to our admin team for delete approval");
   }
 
   return (

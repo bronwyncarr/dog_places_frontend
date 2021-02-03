@@ -26,10 +26,11 @@ export async function getStaticAssets() {
 }
 
 // Fetch requestion to get one location of the id that was passed in.
-export async function removeLocation(id) {
+export async function removeLocation(id, reason) {
   const response = await authFetch(
     `${process.env.REACT_APP_BACKEND_URL}/locations/${id}`,
-    "DELETE"
+    "DELETE",
+    reason
   );
   return response;
 }
