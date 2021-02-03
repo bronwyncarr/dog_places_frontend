@@ -41,11 +41,22 @@ export async function createReview(body) {
     "POST",
     body
   );
-  console.log(body);
-  console.log(response);
   return response;
 }
 
-// export async function updateLocation(location) {
-//   return location;
-// }
+export async function createFavourite(body) {
+  const response = await authFetchNoResponse(
+    `${process.env.REACT_APP_BACKEND_URL}/locations/favorites/new`,
+    "POST",
+    body
+  );
+  console.log(body);
+  return response;
+}
+
+// Fetch requestion to get all favourites
+export async function getFavourites() {
+  const url = `${process.env.REACT_APP_BACKEND_URL}/locations/favorites/index`;
+  const favourites = await authFetch(url, "GET");
+  return favourites;
+}

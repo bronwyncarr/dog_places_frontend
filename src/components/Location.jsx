@@ -6,6 +6,7 @@ import { useGlobalState } from "../utils/context";
 import Reviews from "./Reviews";
 import ReviewItem from "./ReviewItem";
 import average from "../utils/reviewsAverage";
+import FavouritesButton from "./FavouritesButton";
 
 function Location(props) {
   const [location, setLocation] = useState(null);
@@ -42,7 +43,6 @@ function Location(props) {
       await removeLocation(id);
     }
     history.push("/");
-    // If not admin will get a prompt that mailer sent to admin
   }
 
   return (
@@ -51,6 +51,7 @@ function Location(props) {
       <>
         <h1>{location.name}</h1>
         <p>{location.address}</p>
+        <FavouritesButton />
         <p>Average review: {average(location.reviews)}</p>
         <LoadScript googleMapsApiKey={`${process.env.REACT_APP_MAPS_API_KEY}`}>
           {/* Map itself. Centers on the marker */}
