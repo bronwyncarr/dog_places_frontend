@@ -3,7 +3,7 @@ import { Link, useParams, useHistory } from "react-router-dom";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { getLocation, removeLocation } from "../services/locationServices";
 import { useGlobalState } from "../utils/context";
-import Reviews from "./Review";
+import Reviews from "./Reviews";
 import ReviewItem from "./ReviewItem";
 import average from "../utils/reviewsAverage";
 
@@ -28,8 +28,6 @@ function Location(props) {
     height: "500px",
     width: "500px",
   };
-
-  console.log(location);
 
   // Async delays it until delete is complete before going back to locations
   async function handleDelete() {
@@ -74,7 +72,6 @@ function Location(props) {
         <button onClick={handleDelete}>Delete</button>
         <br />
         {/* Back link to goBack to index */}
-
         <Reviews reviews={location.reviews}>
           {location.reviews.map((review) => (
             <ReviewItem key={review.id} {...review} />
