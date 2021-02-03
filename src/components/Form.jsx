@@ -18,9 +18,9 @@ function GeneratedForm({
 
   return (
     <Form onSubmit={handleSubmit}>
-      {fields.map((item) => {
+      {fields.map((item, index) => {
         return (
-          <>
+          <div key={index}>
             <label htmlFor={item}>{capitaliseName(item)}</label>
             <input
               type="text"
@@ -29,7 +29,7 @@ function GeneratedForm({
               value={details[item]}
               onChange={handleFormChange}
             />
-          </>
+          </div>
         );
       })}
 
@@ -46,14 +46,18 @@ function GeneratedForm({
         </option>
 
         {locationTypes &&
-          locationTypes.map((item) => <option value={item}>{item}</option>)}
+          locationTypes.map((item, index) => (
+            <option key={index} value={item}>
+              {item}
+            </option>
+          ))}
       </select>
 
       <Checkboxes>
         {facilityTypes &&
-          facilityTypes.map((item) => {
+          facilityTypes.map((item, index) => {
             return (
-              <div>
+              <div key={index}>
                 <input
                   type="checkbox"
                   id={item}

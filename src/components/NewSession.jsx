@@ -28,7 +28,7 @@ function NewSession({ history }) {
         },
         body: JSON.stringify(body),
       });
-      if (response.status == 404) {
+      if (response.status === 404) {
         throw new Error(
           "Incorrect credential. Please check your username, password and try again."
         );
