@@ -9,7 +9,7 @@ function NewSession({ history }) {
     password: "",
   });
   const [errMessage, setErrMessage] = useState("");
-  const { store, dispatch } = useGlobalState();
+  const { dispatch } = useGlobalState();
 
   async function onFormSubmit(event) {
     event.preventDefault();

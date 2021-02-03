@@ -16,7 +16,7 @@ import { ProtectedRoute } from "./ProtectedRoute";
 
 function App() {
   const initialState = {
-    loggedInUser: null,
+    loggedInUser: true,
     staticAssets: {},
     loggedInAdmin: false,
     // auth: { token: null },
