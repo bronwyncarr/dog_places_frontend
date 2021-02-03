@@ -3,6 +3,9 @@ import { Link, useParams, useHistory } from "react-router-dom";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { getLocation, removeLocation } from "../services/locationServices";
 import { useGlobalState } from "../utils/context";
+import Reviews from "./Review";
+import ReviewItem from "./ReviewItem";
+import average from "../utils/reviewsAverage";
 
 function Location(props) {
   const [location, setLocation] = useState(null);
@@ -26,6 +29,8 @@ function Location(props) {
     width: "500px",
   };
 
+  console.log(location);
+
   // Async delays it until delete is complete before going back to locations
   async function handleDelete() {
     if (!loggedInAdmin) {
@@ -43,10 +48,12 @@ function Location(props) {
   }
 
   return (
-    location && (
+    location &&
+    location.name && (
       <>
         <h1>{location.name}</h1>
         <p>{location.address}</p>
+        <p>Average review: {average(location.reviews)}</p>
         <LoadScript googleMapsApiKey={`${process.env.REACT_APP_MAPS_API_KEY}`}>
           {/* Map itself. Centers on the marker */}
           <GoogleMap
@@ -67,9 +74,16 @@ function Location(props) {
         <button onClick={handleDelete}>Delete</button>
         <br />
         {/* Back link to goBack to index */}
+
+        <Reviews reviews={location.reviews}>
+          {location.reviews.map((review) => (
+            <ReviewItem key={review.id} {...review} />
+          ))}
+        </Reviews>
+
         <Link
           to="/"
-          onClick={(e) => {
+          onClick={() => {
             props.history.goBack();
           }}
         >
