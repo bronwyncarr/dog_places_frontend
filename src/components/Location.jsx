@@ -26,11 +26,10 @@ function Location(props) {
     width: "500px",
   };
 
-  // What about if location doesn't exist????
-
-  function handleDelete() {
+  // Async delays it until delete is complete before going back to locations
+  async function handleDelete() {
     // If admin delete
-    loggedInAdmin && removeLocation(id);
+    await removeLocation(id);
     history.push("/");
     // If not admin will get a prompt that mailer sent to admin
     !loggedInAdmin &&
