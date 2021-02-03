@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { getLocations } from "../services/locationServices";
 import SearchBar from "./SearchBar";
 import Map from "./Map";
-import { removeLocation } from "../services/locationServices";
 
 function Locations() {
   const [locations, setLocations] = useState([]);
@@ -24,7 +23,7 @@ function Locations() {
       <SearchBar />
       <Map locations={locations} />
       {/* Once locations available, list all locations with show, edit, delete links. */}
-      {locations.length > 0 &&
+      {locations &&
         locations.map((location, index) => {
           return (
             <div key={index}>
