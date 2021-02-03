@@ -54,6 +54,7 @@ function NewLocation({ history }) {
         },
         body: body,
       });
+      // change this history
       history.goBack();
     } catch (err) {
       console.log(err.message);

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useGlobalState } from "../utils/context";
 import {
   GoogleMap,
   LoadScript,
@@ -8,9 +7,7 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 
-function Map() {
-  const { store } = useGlobalState();
-  const { locations } = store;
+function Map({ locations }) {
   // Selected location is once a user clicks on a ion, a info box will appear.
   const [selectedLocation, setSelectedLocation] = useState({});
 
