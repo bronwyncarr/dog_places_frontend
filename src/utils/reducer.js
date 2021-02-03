@@ -56,6 +56,13 @@ export default function reducer(state, action) {
         loggedInUser: action.data,
       };
     }
+
+    case "setLoggedInAdmin": {
+      return {
+        ...state,
+        loggedInAdmin: action.data,
+      };
+    }
     // case "setToken": {
     //   return {
     //     ...state,
