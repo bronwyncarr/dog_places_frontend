@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { getLocations } from "../services/locationServices";
 import SearchBar from "./SearchBar";
 import Map from "./Map";
+import average from "../utils/reviewsAverage";
 
 function Locations() {
   const [locations, setLocations] = useState([]);
@@ -30,6 +31,7 @@ function Locations() {
               <h1>{location.name}</h1>
               <h4>{location.address}</h4>
               <h4>{location.rating}</h4>
+              <h4>{average(location.reviews)}</h4>
               <Link to={`/locations/${location.id}`}>Show details</Link>
             </div>
           );
