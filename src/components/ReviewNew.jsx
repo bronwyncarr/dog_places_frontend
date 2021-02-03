@@ -19,11 +19,13 @@ function NewReview() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const body = JSON.stringify({
-      body: reviewInfo.text,
-      rating: reviewInfo.rating,
-      location_id: id,
-    });
+    const body = {
+      review: {
+        body: reviewInfo.body,
+        rating: reviewInfo.rating,
+        location_id: id,
+      },
+    };
     try {
       await fetch(`${process.env.REACT_APP_BACKEND_URL}/locations/review/new`, {
         method: "POST",
@@ -31,7 +33,7 @@ function NewReview() {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
-        body: body,
+        body: JSON.stringify(body),
       });
       history.push("/");
       alert("Thanks for your review!");
@@ -49,7 +51,7 @@ function NewReview() {
         id={reviewInfo.body}
         onChange={handleFormChange}
       />
-      <label for={reviewInfo.rating}>Rating (between 1 and 5):</label>
+      <label htmlFor={reviewInfo.rating}>Rating (between 1 and 5):</label>
       <input
         type="number"
         min="1"
