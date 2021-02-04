@@ -6,12 +6,12 @@ function Favourites() {
   useEffect(() => {
     getFavourites()
       .then((favourites) => {
-        console.log(favourites);
+        setFavourites(favourites);
       })
       .catch((error) => console.log(error));
   }, []);
 
-  return <h1> Favourites</h1>;
+  return <h1> {favourites}</h1>;
 }
 
 export default Favourites;

@@ -34,7 +34,7 @@ function EditLocation({ history }) {
           dispatch({ type: "setStaticAssets", data: assets });
         })
         .catch((error) => console.log(error));
-  }, []);
+  }, [dispatch, staticAssets.location_types]);
 
   // Gets existing data and prefills it
   useEffect(() => {
