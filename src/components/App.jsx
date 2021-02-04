@@ -13,6 +13,7 @@ import reducer from "../utils/reducer";
 import { StateContext } from "../utils/context";
 import SideBar from "./SideBar";
 import { ProtectedRoute } from "./ProtectedRoute";
+import NotFound from "./NotFound";
 
 function App() {
   const initialState = {
@@ -46,6 +47,7 @@ function App() {
             <Route exact path="/sign_up" component={NewUser} />
             <Route exact path="/sign_in" component={NewSession} />
             <Route exact path="/sign_out" component={SignOut} />
+            <Route path="*" component={NotFound} />
           </Switch>
         </Content>
       </StateContext.Provider>
