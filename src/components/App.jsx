@@ -2,21 +2,22 @@ import { Switch, Route } from "react-router-dom";
 import { useReducer } from "react";
 import NewUser from "./NewUser";
 import NewSession from "./NewSession";
-import Location from "./Location";
+import Location from "./Location/Location";
 import Locations from "./Locations";
-import NewLocation from "./NewLocation";
-import Favourites from "./Favourites";
-import EditLocation from "./EditLocation";
+import NewLocation from "./Location/NewLocation";
+import Favourites from "./Favourites/Favourites";
+import EditLocation from "./Location/EditLocation";
 import SignOut from "./Signout";
 import { Layout, Content } from "../styles/Layout";
 import reducer from "../utils/reducer";
 import { StateContext } from "../utils/context";
 import SideBar from "./SideBar";
 import { ProtectedRoute } from "./ProtectedRoute";
+import NotFound from "./NotFound";
 
 function App() {
   const initialState = {
-    loggedInUser: true,
+    loggedInUser: false,
     staticAssets: {},
     loggedInAdmin: false,
     // auth: { token: null },
@@ -46,6 +47,7 @@ function App() {
             <Route exact path="/sign_up" component={NewUser} />
             <Route exact path="/sign_in" component={NewSession} />
             <Route exact path="/sign_out" component={SignOut} />
+            <Route path="*" component={NotFound} />
           </Switch>
         </Content>
       </StateContext.Provider>

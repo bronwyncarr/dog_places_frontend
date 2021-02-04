@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import { createReview } from "../services/locationServices";
 
 function NewReview() {
   let history = useHistory();
@@ -19,27 +20,17 @@ function NewReview() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const body = {
+    const body = JSON.stringify({
       review: {
         body: reviewInfo.body,
         rating: reviewInfo.rating,
         location_id: id,
       },
-    };
-    try {
-      await fetch(`${process.env.REACT_APP_BACKEND_URL}/locations/review/new`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: JSON.stringify(body),
-      });
-      history.push("/");
-      alert("Thanks for your review!");
-    } catch (err) {
-      console.log(err.message);
-    }
+    });
+    console.log(body);
+    await createReview(body);
+    history.push("/");
+    alert("Thanks for your review!");
   }
 
   return (
