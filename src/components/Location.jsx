@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-import { getLocation, removeLocation } from "../services/locationServices";
+import {
+  getFavourites,
+  getLocation,
+  removeLocation,
+} from "../services/locationServices";
 import { useGlobalState } from "../utils/context";
 import Reviews from "./Reviews";
 import ReviewItem from "./ReviewItem";

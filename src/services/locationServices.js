@@ -56,7 +56,7 @@ export async function createFavourite(body) {
 
 // Fetch requestion to get all favourites
 export async function getFavourites() {
-  const url = `${process.env.REACT_APP_BACKEND_URL}/locations/favorites/index`;
+  const url = `${process.env.REACT_APP_BACKEND_URL}/locations/favorites/favourites`;
   const favourites = await authFetch(url, "GET");
   return favourites;
 }
