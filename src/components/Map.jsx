@@ -51,6 +51,8 @@ function Map({ locations }) {
     navigator.geolocation.getCurrentPosition(success);
   });
 
+  console.log(locations);
+
   return (
     locations && (
       <LoadScript googleMapsApiKey={`${process.env.REACT_APP_MAPS_API_KEY}`}>
@@ -62,7 +64,7 @@ function Map({ locations }) {
           center={mapCenter}
         >
           {/* Markers on the map for each location */}
-          {locations &&
+          {locations?.length > 0 &&
             locations.map((item) => {
               return (
                 <Marker
