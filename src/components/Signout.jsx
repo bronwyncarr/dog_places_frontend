@@ -6,7 +6,7 @@ function Signout() {
   useEffect(() => {
     dispatch({ type: "removeLoggedInUser", data: null });
     localStorage.removeItem("token");
-  }, []);
+  }, [dispatch]);
   return <h1>Thanks for visiting. </h1>;
 }
 

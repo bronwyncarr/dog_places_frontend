@@ -30,7 +30,7 @@ function NewLocation({ history }) {
           dispatch({ type: "setStaticAssets", data: assets });
         })
         .catch((error) => console.log(error));
-  }, [dispatch]);
+  }, [dispatch, staticAssets.location_types]);
 
   // On submit create body, and send post request. Then redirect to locations.
   async function handleSubmit(e) {

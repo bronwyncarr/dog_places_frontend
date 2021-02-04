@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import {
-  getFavourites,
+  // getFavourites,
   getLocation,
   removeLocation,
 } from "../services/locationServices";
