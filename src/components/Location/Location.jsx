@@ -3,7 +3,7 @@ import { useGlobalState } from "../../utils/context";
 import Reviews from "../Reviews";
 import ReviewItem from "../ReviewItem";
 import average from "../../utils/reviewsAverage";
-import FavouritesButton from "../FavouritesButton";
+import LocationsFavouriteButton from "./LocationFavouriteButton";
 import Map from "../Map";
 import useLocation from "../../hooks/useLocation";
 
@@ -37,9 +37,10 @@ function Location(props) {
     location &&
     location.name && (
       <>
+        {console.log(location.reviews)}
         <h1>{location.name}</h1>
         <p>{location.address}</p>
-        <FavouritesButton />
+        <LocationsFavouriteButton />
         <p>Average review: {average(location.reviews)}</p>
         <Map locations={[location]} />
         <br />
@@ -53,7 +54,6 @@ function Location(props) {
             <ReviewItem key={review.id} {...review} />
           ))}
         </Reviews>
-
         <Link
           to="/"
           onClick={() => {
