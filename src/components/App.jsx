@@ -14,13 +14,20 @@ import { StateContext } from "../utils/context";
 import SideBar from "./SideBar";
 import { ProtectedRoute } from "./ProtectedRoute";
 import NotFound from "./NotFound";
+import jwt_decode from "jwt-decode";
 
 function App() {
+  // Check expirey date of token
+  const token = localStorage.getItem("token");
+  const decodedToken = token ? jwt_decode(token) : null;
+  const timeNow = new Date().getTime();
+  const tokenValid = token && decodedToken.exp * 1000 > timeNow;
+
+  // Real logic check for expiry of token.
   const initialState = {
-    loggedInUser: false,
+    loggedInUser: tokenValid,
     staticAssets: {},
     loggedInAdmin: false,
-    // auth: { token: null },
   };
 
   // Sets initial state (default values) to global state
