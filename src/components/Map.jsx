@@ -17,21 +17,34 @@ function Map({ locations }) {
     width: "1000px",
   };
 
-  // If current position is not available, default is MEL CBD.
-  const defaultCenter = {
-    lat: -37.8136,
-    lng: 144.9631,
-  };
+  // // If current position is not available, default is MEL CBD.
+  // const defaultCenter = {
+  //   lat: -37.8136,
+  //   lng: 144.9631,
+  // };
 
   // Not sure if needs to be stored in state.
   const [currentPosition, setCurrentPosition] = useState({});
-  const success = (position) => {
+  function success(position) {
     const currentPosition = {
       lat: position.coords.latitude,
       lng: position.coords.longitude,
     };
     setCurrentPosition(currentPosition);
-  };
+  }
+
+  let mapCenter = { lat: 0, lng: 0 };
+
+  function calculateCenter() {
+    if (locations.length === 1) {
+      mapCenter = { lat: locations[0].latitude, lng: locations[0].longitude };
+    } else if (currentPosition.lat) {
+      mapCenter = currentPosition;
+    } else {
+      mapCenter = { lat: -37.8136, lng: 144.9631 };
+    }
+  }
+  calculateCenter();
 
   // On Page load,gwt position
   useEffect(() => {
@@ -39,44 +52,48 @@ function Map({ locations }) {
   });
 
   return (
-    <LoadScript googleMapsApiKey={`${process.env.REACT_APP_MAPS_API_KEY}`}>
-      {/* Map itself */}
-      <GoogleMap
-        mapContainerStyle={mapStyles}
-        zoom={13}
-        // If location lat (ie coordinates) are available, centers on location, otherwise centers on Melbourne city
-        center={currentPosition.lat ? currentPosition : defaultCenter}
-      >
-        {/* Markers on the map for each location */}
-        {locations &&
-          locations.map((item) => {
-            return (
-              <Marker
-                key={item.name}
-                position={{ lat: item.latitude, lng: item.longitude }}
-                onClick={() => setSelectedLocation(item)}
-              />
-            );
-          })}
+    locations && (
+      <LoadScript googleMapsApiKey={`${process.env.REACT_APP_MAPS_API_KEY}`}>
+        {/* Map itself */}
+        <GoogleMap
+          mapContainerStyle={mapStyles}
+          zoom={13}
+          // If location lat (ie coordinates) are available, centers on location, otherwise centers on Melbourne city
+          center={mapCenter}
+        >
+          {/* Markers on the map for each location */}
+          {locations &&
+            locations.map((item) => {
+              return (
+                <Marker
+                  key={item.name}
+                  position={{ lat: item.latitude, lng: item.longitude }}
+                  onClick={() => setSelectedLocation(item)}
+                />
+              );
+            })}
 
-        {/* If user clicks on a location, dialogue box pops up with info and link to show page */}
-        {selectedLocation.latitude && (
-          <InfoWindow
-            position={{
-              lat: selectedLocation.latitude,
-              lng: selectedLocation.longitude,
-            }}
-            clickable={true}
-            onCloseClick={() => setSelectedLocation({})}
-          >
-            <>
-              <p>{selectedLocation.name}</p>
-              <Link to={`/locations/${selectedLocation.id}`}>Show details</Link>
-            </>
-          </InfoWindow>
-        )}
-      </GoogleMap>
-    </LoadScript>
+          {/* If user clicks on a location, dialogue box pops up with info and link to show page */}
+          {selectedLocation.latitude && (
+            <InfoWindow
+              position={{
+                lat: selectedLocation.latitude,
+                lng: selectedLocation.longitude,
+              }}
+              clickable={true}
+              onCloseClick={() => setSelectedLocation({})}
+            >
+              <>
+                <p>{selectedLocation.name}</p>
+                <Link to={`/locations/${selectedLocation.id}`}>
+                  Show details
+                </Link>
+              </>
+            </InfoWindow>
+          )}
+        </GoogleMap>
+      </LoadScript>
+    )
   );
 }
 
