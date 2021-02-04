@@ -1,25 +1,42 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { AuthFetch } from "../services/authServices";
 import GeneratedForm from "./Form";
-import { createLocation } from "../services/locationServices";
-import { Redirect } from "react-router-dom";
-import { getLocation } from "../services/locationServices";
+import { useGlobalState } from "../utils/context";
+import { getLocation, getStaticAssets } from "../services/locationServices";
 
 function EditLocation({ history }) {
+  // Inbound info from static assets
+  const { store, dispatch } = useGlobalState();
+  const { staticAssets } = store;
+  const {
+    location_types: locationTypes,
+    location_facilities: facilityTypes,
+  } = staticAssets;
+
+  const { id } = useParams();
+  const { loggedInAdmin } = store;
+
+  // Initiates state as empty object (with keys so inputs are always controlled)
   const [details, setDetails] = useState({
     name: "",
-    category: "",
+    location_type: "",
     description: "",
     address: "",
-    water: "",
-    food: "",
-    toilets: "",
-    parking: "",
-    offLead: "",
+    location_facilities_attributes: [],
   });
-  const { id } = useParams();
 
+  // If statis assets don't exist, fetch call to get them and saves in global state.
+  // Assets to display types and facilities.
+  useEffect(() => {
+    !staticAssets.location_types &&
+      getStaticAssets()
+        .then((assets) => {
+          dispatch({ type: "setStaticAssets", data: assets });
+        })
+        .catch((error) => console.log(error));
+  }, []);
+
+  // Gets existing data and prefills it
   useEffect(() => {
     getLocation(id)
       .then((details) => setDetails(details))
@@ -44,16 +61,31 @@ function EditLocation({ history }) {
         },
         body: body,
       });
-      <Redirect to="/locations" />;
+      history.push("/");
+      // If not admin will get a prompt that mailer sent to admin
+      !loggedInAdmin &&
+        alert("Your request has been sent to our admin team for edit approval");
     } catch (err) {
       console.log(err.message);
     }
   }
 
+  // Form change of details
   const handleFormChange = (e) => {
     setDetails({
       ...details,
       [e.target.name]: e.target.value,
+    });
+  };
+
+  // Form change for checkboxes
+  const handleCheckChange = (e) => {
+    setDetails({
+      ...details,
+      location_facilities_attributes: [
+        ...details.location_facilities_attributes,
+        e.target.value,
+      ],
     });
   };
 
@@ -62,6 +94,9 @@ function EditLocation({ history }) {
       <h1>Edit Location</h1>
       <GeneratedForm
         details={details}
+        locationTypes={locationTypes}
+        facilityTypes={facilityTypes}
+        handleCheckChange={handleCheckChange}
         handleFormChange={handleFormChange}
         handleSubmit={handleSubmit}
       />

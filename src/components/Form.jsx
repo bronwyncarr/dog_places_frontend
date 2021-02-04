@@ -2,16 +2,15 @@
 // Needs styling
 
 import { Form, Checkboxes } from "../styles/NewLocation";
-
 function GeneratedForm({
   details,
-  facilities,
+  locationTypes,
+  facilityTypes,
   handleFormChange,
   handleCheckChange,
   handleSubmit,
 }) {
   const fields = ["name", "address", "description"];
-  const checkboxData = ["water", "food", "toilets", "offlead", "parking"];
 
   function capitaliseName(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -19,9 +18,9 @@ function GeneratedForm({
 
   return (
     <Form onSubmit={handleSubmit}>
-      {fields.map((item) => {
+      {fields.map((item, index) => {
         return (
-          <>
+          <div key={index}>
             <label htmlFor={item}>{capitaliseName(item)}</label>
             <input
               type="text"
@@ -30,37 +29,46 @@ function GeneratedForm({
               value={details[item]}
               onChange={handleFormChange}
             />
-          </>
+          </div>
         );
       })}
+
       <label htmlFor="category">Category:</label>
       <select
-        name="category"
-        id="category"
-        value={details.category}
+        name="location_type_name"
+        id="location_type_name"
+        value={details.location_type_name}
         onChange={handleFormChange}
       >
-        <option value="park">Park</option>
-        <option value="food">Food</option>
-        <option value="accomodation">Accomodation</option>
-        <option value="beach">Beach</option>
+        {/* Need to sort out default option */}
+        <option value selected>
+          -- Please select --
+        </option>
+
+        {locationTypes &&
+          locationTypes.map((item, index) => (
+            <option key={index} value={item}>
+              {item}
+            </option>
+          ))}
       </select>
 
       <Checkboxes>
-        {checkboxData.map((item) => {
-          return (
-            <div>
-              <input
-                type="checkbox"
-                id={item}
-                name={item}
-                value={facilities.item}
-                onChange={handleCheckChange}
-              />
-              <label htmlFor={item}> {capitaliseName(item)}</label>
-            </div>
-          );
-        })}
+        {facilityTypes &&
+          facilityTypes.map((item, index) => {
+            return (
+              <div key={index}>
+                <input
+                  type="checkbox"
+                  id={item}
+                  name={item}
+                  value={item}
+                  onChange={handleCheckChange}
+                />
+                <label htmlFor={item}> {capitaliseName(item)}</label>
+              </div>
+            );
+          })}
       </Checkboxes>
       <button id="submit" type="submit" value="Submit">
         Submit!

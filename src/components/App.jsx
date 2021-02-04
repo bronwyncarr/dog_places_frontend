@@ -16,9 +16,10 @@ import { ProtectedRoute } from "./ProtectedRoute";
 
 function App() {
   const initialState = {
-    locations: [],
-    loggedInUser: null,
-    auth: { token: null },
+    loggedInUser: true,
+    staticAssets: {},
+    loggedInAdmin: false,
+    // auth: { token: null },
   };
 
   // Sets initial state (default values) to global state
@@ -36,8 +37,12 @@ function App() {
               path="/locations/new"
               component={NewLocation}
             />
-            <Route exact path="/locations/:id" component={Location} />
-            <Route exact path="/locations/:id/edit" component={EditLocation} />
+            <ProtectedRoute exact path="/locations/:id" component={Location} />
+            <ProtectedRoute
+              exact
+              path="/locations/:id/edit"
+              component={EditLocation}
+            />
             <Route exact path="/sign_up" component={NewUser} />
             <Route exact path="/sign_in" component={NewSession} />
             <Route exact path="/sign_out" component={SignOut} />
