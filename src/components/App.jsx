@@ -5,7 +5,7 @@ import NewSession from "./NewSession";
 import Location from "./Location/Location";
 import Locations from "./Locations";
 import NewLocation from "./Location/NewLocation";
-import Favourites from "./Favourites";
+import Favourites from "./Favourites/Favourites";
 import EditLocation from "./Location/EditLocation";
 import SignOut from "./Signout";
 import { Layout, Content } from "../styles/Layout";
@@ -17,7 +17,7 @@ import NotFound from "./NotFound";
 
 function App() {
   const initialState = {
-    loggedInUser: true,
+    loggedInUser: false,
     staticAssets: {},
     loggedInAdmin: false,
     // auth: { token: null },
