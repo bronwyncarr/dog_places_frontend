@@ -1,32 +1,20 @@
-import { useEffect, useState } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-import {
-  // getFavourites,
-  getLocation,
-  removeLocation,
-} from "../services/locationServices";
 import { useGlobalState } from "../utils/context";
 import Reviews from "./Reviews";
 import ReviewItem from "./ReviewItem";
 import average from "../utils/reviewsAverage";
 import FavouritesButton from "./FavouritesButton";
 
+import useLocation from "../hooks/useLocation";
+
 function Location(props) {
-  const [location, setLocation] = useState(null);
   const { id } = useParams();
   let history = useHistory();
   const { store } = useGlobalState();
   const { loggedInAdmin } = store;
 
-  // On page load or a change to id, calls getLocation with the id from useParams,
-  // This sends a fetch request for the location with that id and returns a promise.
-  // Promise is .then to call setLocation action with the returned location with that id.
-  useEffect(() => {
-    getLocation(id)
-      .then((location) => setLocation(location))
-      .catch((error) => console.log(error));
-  }, [id]);
+  const { location, removeLocation } = useLocation(id);
 
   // To be refactored into styled components/css
   const mapStyles = {
@@ -38,13 +26,10 @@ function Location(props) {
   async function handleDelete() {
     if (!loggedInAdmin) {
       let reason = prompt("Please give your reason");
-      const body = JSON.stringify({
-        description: reason,
-      });
-      await removeLocation(id, body);
+      await removeLocation(reason);
     } else {
       // If admin delete
-      await removeLocation(id);
+      await removeLocation();
     }
     history.push("/");
   }
