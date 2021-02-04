@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import GeneratedForm from "./Form";
-import { getStaticAssets } from "../services/locationServices";
-import { useGlobalState } from "../utils/context";
-import useLocation from "../hooks/useLocation";
+import GeneratedForm from "../Form";
+import { getStaticAssets } from "../../services/locationServices";
+import { useGlobalState } from "../../utils/context";
+import useLocation from "../../hooks/useLocation";
 
 function NewLocation({ history }) {
   // Inbound info from static assets

@@ -31,7 +31,8 @@ function Locations() {
               <h1>{location.name}</h1>
               <h4>{location.address}</h4>
               <h4>{location.rating}</h4>
-              <p>{average(location.reviews)}</p>
+              <p></p>
+              {/* <p>{average(location.reviews)}</p> */}
               <Link to={`/locations/${location.id}`}>Show details</Link>
             </div>
           );

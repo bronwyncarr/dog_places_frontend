@@ -38,7 +38,7 @@ function useLocation(id) {
         `${process.env.REACT_APP_BACKEND_URL}/locations/${id}`,
         {
           ...config,
-          data: { description: reason, location_id: id, location: location },
+          data: { description: reason, location_id: id },
         }
       );
       setLocation(null);

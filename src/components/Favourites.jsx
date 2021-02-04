@@ -6,7 +6,7 @@ function Favourites() {
   useEffect(() => {
     getFavourites()
       .then((favourites) => {
-        setFavourites(favourites);
+        console.log(favourites);
       })
       .catch((error) => console.log(error));
   }, []);
