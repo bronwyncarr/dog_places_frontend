@@ -14,8 +14,6 @@ function LocationSummaryTile({
 
   function handleClick() {
     favourite ? removeFavourite(location.id) : addFavourite(location.id);
-    console.log(`Clicked with id of ${location.id}!!!`);
-    console.log(`I am ${favourite ? "" : "not"} a favourite!!!`);
   }
 
   return (
