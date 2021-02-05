@@ -27,7 +27,6 @@ function NewReview() {
         location_id: id,
       },
     });
-    console.log(body);
     await createReview(body);
     history.push("/");
     alert("Thanks for your review!");

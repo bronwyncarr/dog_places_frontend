@@ -37,7 +37,6 @@ function Location(props) {
     location &&
     location.name && (
       <>
-        {console.log(location.reviews)}
         <h1>{location.name}</h1>
         <p>{location.address}</p>
         <LocationsFavouriteButton />

@@ -31,7 +31,6 @@ export async function createFavourite(body) {
     "POST",
     body
   );
-  console.log(body);
   return response;
 }
 
