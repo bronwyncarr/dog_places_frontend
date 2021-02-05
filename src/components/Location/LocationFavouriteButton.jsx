@@ -1,6 +1,13 @@
 function LocationFavouriteButton({ favourite, handleClick }) {
   return (
-    <button onClick={handleClick}>{favourite ? "Un-Heart!" : "Heart!"}</button>
+    // If location is a favourite, a coloured in heart is displayed, if not an outline heart is displayed.
+    <>
+      {favourite ? (
+        <i class="fas fa-heart" onClick={handleClick}></i>
+      ) : (
+        <i class="far fa-heart" onClick={handleClick}></i>
+      )}
+    </>
   );
 }
 
