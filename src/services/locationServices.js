@@ -16,15 +16,6 @@ export async function getStaticAssets() {
   return staticAssets;
 }
 
-export async function createReview(body) {
-  const response = await authFetchNoResponse(
-    `${process.env.REACT_APP_BACKEND_URL}/locations/review/new`,
-    "POST",
-    body
-  );
-  return response;
-}
-
 export async function createFavourite(body) {
   const response = await authFetchNoResponse(
     `${process.env.REACT_APP_BACKEND_URL}/locations/favorites/new`,
