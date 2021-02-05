@@ -10,6 +10,7 @@ const config = {
 };
 
 function useUser() {
+  // Sets the state of user object, error and success boolean.
   const [user, setUser] = useState({
     username: "",
     email: "",
@@ -20,10 +21,7 @@ function useUser() {
   const [success, setSuccess] = useState(false);
   const { dispatch } = useGlobalState();
 
-  /**
-   *
-   * @param {"sign_in"|"sign_up"} endpoint
-   */
+  // Determines url based on whether sign in/up
   function createAuthContext(endpoint) {
     let url;
     switch (endpoint) {
@@ -49,14 +47,17 @@ function useUser() {
         dispatch({ type: "setLoggedInUser", data: username });
         dispatch({ type: "setLoggedInAdmin", data: is_admin });
         setSuccess(true);
+        // Catch handles 404, 422 and any other error
       } catch (error) {
         if (error.response) {
           switch (error.response.status) {
+            // Not Found
             case 404:
               setError(
                 "Incorrect credential. Please check your username, password and try again."
               );
               break;
+            // Unable to process (may already exist)
             case 422:
               setError(
                 "That username or email already exists in our system. Please choose another."
@@ -68,10 +69,7 @@ function useUser() {
           }
         } else if (error.request) {
           // The request was made but no response was received
-          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-          // http.ClientRequest in node.js
           console.log("No response from the server...");
-          console.log(error.request);
         } else {
           // Something happened in setting up the request that triggered an Error
           console.log("Error", error.message);
@@ -80,6 +78,7 @@ function useUser() {
     };
   }
 
+  // This calls the createAuthContext function and passes in the type or request (sign in/up)
   const createUser = createAuthContext("sign_up");
   const signIn = createAuthContext("sign_in");
 

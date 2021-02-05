@@ -3,19 +3,25 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
 function NewSession({ history }) {
+  // From useUser Hook, we get:
+  // -  a copy of the user state
+  // - boolean for successful/unsuccessful
+  // - error if occured || null
+  // createUser and setUser function
   const { user, setUser, signIn, error, success } = useUser();
 
+  // When the form is submitted, the signIn function in the hook runs.
   async function onFormSubmit(event) {
     event.preventDefault();
     await signIn();
   }
 
+  // Anytime the success boolean or hist changes (ie user signed up), we're redirected to the home pg.
   useEffect(() => {
-    if (success) {
-      history.push("/");
-    }
+    success && history.push("/");
   }, [success, history]);
 
+  // Updates state as info is typed into the form.
   function handleChange(e) {
     setUser({ ...user, [e.target.name]: e.target.value });
   }
@@ -23,6 +29,7 @@ function NewSession({ history }) {
   return (
     <>
       <h1>Sign In!</h1>
+      {/* If an error is recieved it will be displayed to the user */}
       {error && <span>{error}</span>}
       <form onSubmit={onFormSubmit}>
         <div className="form-group">
