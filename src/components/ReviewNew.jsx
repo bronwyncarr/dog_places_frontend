@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { createReview } from "../services/locationServices";
+import createReview from "../hooks/useReviews";
 
 function NewReview() {
   let history = useHistory();
   const { id } = useParams();
   const [reviewInfo, setReviewInfo] = useState({
-    text: "",
+    body: "",
     rating: "",
     location_id: id,
     file: "",
@@ -28,11 +28,7 @@ function NewReview() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const formData = new FormData();
-    for (const key in reviewInfo) {
-      formData.append(`${key}`, `${reviewInfo[key]}`);
-    }
-    await createReview(formData);
+    createReview(reviewInfo);
     // history.push("/");
     alert("Thanks for your review!");
   }
