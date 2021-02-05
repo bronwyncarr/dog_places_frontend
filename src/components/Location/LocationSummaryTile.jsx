@@ -30,7 +30,6 @@ function LocationSummaryTile({
           favourite={favourite}
         />
       )}
-      <Link to={`/locations/${location.id}`}>Show details</Link>
     </div>
   );
 }
