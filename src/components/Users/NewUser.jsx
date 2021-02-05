@@ -1,55 +1,14 @@
-import React, { useState } from "react";
-import { useGlobalState } from "../../utils/context";
 import { Link } from "react-router-dom";
+import useUser from "../../hooks/useUser";
 
 function NewUser({ history }) {
   // single state object that contains user info
-  const [user, setUser] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
-  const [errMessage, setErrMessage] = useState("");
-  const { dispatch } = useGlobalState();
+  const { user, error, setUser, createUser } = useUser();
 
   async function onFormSubmit(e) {
     e.preventDefault();
+    await createUser();
     // Could this be refactored????????????
-    const body = {
-      user: {
-        email: user.email,
-        username: user.username,
-        password: user.password,
-      },
-    };
-    try {
-      // Some of this should be refactored into authServices
-      const response = await fetch(`http://localhost:3000/api/auth/sign_up`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-      });
-      if (response.status === 404) {
-        throw new Error(
-          "Incorrect credential. Please check your username, password and try again."
-        );
-      } else if (response.status === 422) {
-        throw new Error(
-          "That username or password already exists in our system. Please choose another."
-        );
-      } else if (response.status >= 400) {
-        throw new Error("Unknown error occured, please try again later.");
-      } else {
-        const { jwt } = await response.json();
-        localStorage.setItem("token", jwt);
-        dispatch({ type: "setLoggedInUser", data: user.username });
-        history.push("/");
-      }
-    } catch (err) {
-      setErrMessage(err.message);
-    }
   }
 
   // Updates state object as info is typed into the form
@@ -60,7 +19,7 @@ function NewUser({ history }) {
   return (
     <>
       <h1>Sign Up!</h1>
-      {errMessage && <span>{errMessage}</span>}
+      {error && <span>{error}</span>}
       <form onSubmit={onFormSubmit}>
         <div className="form-group">
           <label htmlFor="email">Email</label>
