@@ -29,7 +29,7 @@ function NewReview() {
   async function handleSubmit(e) {
     e.preventDefault();
     createReview(reviewInfo);
-    // history.push("/");
+    history.push("/");
     alert("Thanks for your review!");
   }
 

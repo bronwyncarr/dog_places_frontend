@@ -16,7 +16,7 @@ async function createReview(review) {
   try {
     await axios.post(
       `${process.env.REACT_APP_BACKEND_URL}/locations/review/new`,
-      { review: formData },
+      formData,
       config
     );
   } catch (error) {
