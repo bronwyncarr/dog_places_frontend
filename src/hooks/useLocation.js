@@ -15,6 +15,7 @@ function useLocation(id) {
     description: "",
     address: "",
     location_facilities_attributes: [],
+    file: "",
   });
 
   useEffect(() => {
@@ -49,6 +50,7 @@ function useLocation(id) {
   }
 
   async function createLocation() {
+    console.log(location);
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}/locations`,
