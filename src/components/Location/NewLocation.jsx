@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
-import GeneratedForm from "./Form";
-import { getStaticAssets } from "../services/locationServices";
-import { useGlobalState } from "../utils/context";
+import { useEffect } from "react";
+import GeneratedForm from "../Form";
+import { getStaticAssets } from "../../services/locationServices";
+import { useGlobalState } from "../../utils/context";
+import useLocation from "../../hooks/useLocation";
 
 function NewLocation({ history }) {
   // Inbound info from static assets
@@ -13,13 +14,7 @@ function NewLocation({ history }) {
   } = staticAssets;
 
   // Initiates state as empty object (with keys so inputs are always controlled)
-  const [details, setDetails] = useState({
-    name: "",
-    location_type_name: "",
-    description: "",
-    address: "",
-    location_facilities_attributes: [],
-  });
+  const { location, setLocation, createLocation } = useLocation();
 
   // If statis assets don't exist, fetch call to get them and saves in global state.
   // Assets to display types and facilities.
@@ -35,46 +30,31 @@ function NewLocation({ history }) {
   // On submit create body, and send post request. Then redirect to locations.
   async function handleSubmit(e) {
     e.preventDefault();
-    const body = JSON.stringify({
-      // Can this be refactored?????????????????????
-      name: details.name,
-      location_type_name: details.location_type_name,
-      description: details.description,
-      address: details.address,
-      location_facilities_attributes: details.location_facilities_attributes,
-    });
-    try {
-      // To be refatored into auth services
-      // POST request on submit, then redirect to locations pg.
-      await fetch(`${process.env.REACT_APP_BACKEND_URL}/locations`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: body,
-      });
-      // change this history
-      history.goBack();
-    } catch (err) {
-      console.log(err.message);
-    }
+    await createLocation();
+    history.goBack();
   }
 
   // Form change of details
   const handleFormChange = (e) => {
-    setDetails({
-      ...details,
+    setLocation({
+      ...location,
       [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleImageChange = (e) => {
+    setLocation({
+      ...location,
+      [e.target.name]: e.target.files[0],
     });
   };
 
   // Form change for checkboxes
   const handleCheckChange = (e) => {
-    setDetails({
-      ...details,
+    setLocation({
+      ...location,
       location_facilities_attributes: [
-        ...details.location_facilities_attributes,
+        ...location.location_facilities_attributes,
         e.target.value,
       ],
     });
@@ -84,11 +64,12 @@ function NewLocation({ history }) {
     <>
       <h1>New Location</h1>
       <GeneratedForm
-        details={details}
+        details={location}
         locationTypes={locationTypes}
         facilityTypes={facilityTypes}
         handleCheckChange={handleCheckChange}
         handleFormChange={handleFormChange}
+        handleImageChange={handleImageChange}
         handleSubmit={handleSubmit}
       />
     </>
