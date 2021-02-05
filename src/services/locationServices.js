@@ -17,6 +17,7 @@ export async function getStaticAssets() {
 }
 
 export async function createReview(body) {
+  console.log(body);
   const response = await authFetchNoResponse(
     `${process.env.REACT_APP_BACKEND_URL}/locations/review/new`,
     "POST",
