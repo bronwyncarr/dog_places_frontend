@@ -28,14 +28,6 @@ function NewReview() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const body = JSON.stringify({
-      review: {
-        body: reviewInfo.body,
-        rating: reviewInfo.rating,
-        location_id: id,
-        file: reviewInfo.file,
-      },
-    });
     const formData = new FormData();
     for (const key in reviewInfo) {
       formData.append(`${key}`, `${reviewInfo[key]}`);
