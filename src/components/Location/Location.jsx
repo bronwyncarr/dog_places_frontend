@@ -35,6 +35,7 @@ function Location(props) {
         <p>{location.address}</p>
         <LocationsFavouriteButton />
         <p>Average review: {average(location.reviews)}</p>
+        {/* Location is put in an array for consistency so they map can be reused for one (here) or many locations (index pg)*/}
         <Map locations={[location]} />
         <br />
         <p>{location.description}</p>
