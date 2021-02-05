@@ -1,13 +1,13 @@
 import { Switch, Route } from "react-router-dom";
 import { useReducer } from "react";
-import NewUser from "./NewUser";
-import NewSession from "./NewSession";
+import NewUser from "./Users//NewUser";
+import NewSession from "./Users/NewSession";
 import Location from "./Location/Location";
 import Locations from "./Locations";
 import NewLocation from "./Location/NewLocation";
 import Favourites from "./Favourites/Favourites";
 import EditLocation from "./Location/EditLocation";
-import SignOut from "./Signout";
+import SignOut from "./Users/Signout";
 import { Layout, Content } from "../styles/Layout";
 import reducer from "../utils/reducer";
 import { StateContext } from "../utils/context";

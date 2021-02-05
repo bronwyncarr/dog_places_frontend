@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import createReview from "../hooks/useReviews";
+import createReview from "../../hooks/useReviews";
 
 function NewReview() {
   let history = useHistory();

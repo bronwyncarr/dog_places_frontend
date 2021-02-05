@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useGlobalState } from "../utils/context";
+import { useGlobalState } from "../../utils/context";
 import { Link } from "react-router-dom";
 
 function NewUser({ history }) {

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useGlobalState } from "../utils/context";
+import { useGlobalState } from "../../utils/context";
 
 function Signout() {
   const { dispatch } = useGlobalState();
@@ -7,7 +7,7 @@ function Signout() {
     dispatch({ type: "removeLoggedInUser", data: null });
     localStorage.removeItem("token");
   }, [dispatch]);
-  return <h1>Thanks for visiting. </h1>;
+  return <h1>Thanks for visiting! </h1>;
 }
 
 export default Signout;
