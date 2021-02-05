@@ -1,4 +1,4 @@
-import { authFetch, authFetchNoResponse } from "./authServices";
+import { authFetch } from "./authServices";
 // import { useHistory } from "react-router-dom";
 
 // Fetch requestion to get all locations
@@ -14,20 +14,4 @@ export async function getStaticAssets() {
     "GET"
   );
   return staticAssets;
-}
-
-export async function createFavourite(body) {
-  const response = await authFetchNoResponse(
-    `${process.env.REACT_APP_BACKEND_URL}/locations/favorites/new`,
-    "POST",
-    body
-  );
-  return response;
-}
-
-// Fetch requestion to get all favourites
-export async function getFavourites() {
-  const url = `${process.env.REACT_APP_BACKEND_URL}/locations/favorites/favourites`;
-  const favourites = await authFetch(url, "GET");
-  return favourites;
 }

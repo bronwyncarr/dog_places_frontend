@@ -50,7 +50,6 @@ function useLocation(id) {
   }
 
   async function createLocation() {
-    console.log(location.location_facilities_attributes);
     const formData = new FormData();
     for (const key in location) {
       formData.append(`${key}`, location[key]);
