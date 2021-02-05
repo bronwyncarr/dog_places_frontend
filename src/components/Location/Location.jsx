@@ -1,7 +1,7 @@
 import { Link, useParams, useHistory } from "react-router-dom";
 import { useGlobalState } from "../../utils/context";
-import Reviews from "../Reviews";
-import ReviewItem from "../ReviewItem";
+import Reviews from "../Reviews/Reviews";
+import ReviewItem from "../Reviews/ReviewItem";
 import average from "../../utils/reviewsAverage";
 import LocationsFavouriteButton from "./LocationFavouriteButton";
 import Map from "../Map";
@@ -14,12 +14,6 @@ function Location(props) {
   const { loggedInAdmin } = store;
 
   const { location, removeLocation } = useLocation(id);
-
-  // To be refactored into styled components/css
-  const mapStyles = {
-    height: "500px",
-    width: "500px",
-  };
 
   // Async delays it until delete is complete before going back to locations
   async function handleDelete() {
