@@ -7,11 +7,3 @@ export async function getLocations() {
   const locations = await authFetch(url, "GET");
   return locations;
 }
-
-export async function getStaticAssets() {
-  const staticAssets = await authFetch(
-    `${process.env.REACT_APP_BACKEND_URL}/locations/static_assests`,
-    "GET"
-  );
-  return staticAssets;
-}

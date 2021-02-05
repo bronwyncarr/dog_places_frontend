@@ -23,8 +23,8 @@ function useStaticAssets() {
         console.error("Create Error");
       }
     }
-    !staticAssets.location_types && getStaticAssets();
-  }, [staticAssets.location_types]);
+    getStaticAssets();
+  }, []);
   return staticAssets;
 }
 export default useStaticAssets;
