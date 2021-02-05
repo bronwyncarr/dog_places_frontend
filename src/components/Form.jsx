@@ -8,6 +8,7 @@ function GeneratedForm({
   facilityTypes,
   handleFormChange,
   handleCheckChange,
+  handleImageChange,
   handleSubmit,
 }) {
   const fields = ["name", "address", "description"];
@@ -17,7 +18,7 @@ function GeneratedForm({
   }
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form encType="multipart/form-data" onSubmit={handleSubmit}>
       {fields.map((item, index) => {
         return (
           <div key={index}>
@@ -70,6 +71,10 @@ function GeneratedForm({
             );
           })}
       </Checkboxes>
+
+      <label htmlFor="file">Share an image of this location:</label>
+      <input type="file" name="file" id="file" onChange={handleImageChange} />
+
       <button id="submit" type="submit" value="Submit">
         Submit!
       </button>
