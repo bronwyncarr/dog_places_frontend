@@ -52,13 +52,18 @@ function useLocation(id) {
   async function createLocation() {
     const formData = new FormData();
     for (const key in location) {
-      formData.append(`${key}`, `${location[key]}`);
+      formData.append(`${key}`, location[key]);
     }
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}/locations`,
         formData,
-        config
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
       );
       setLocation(response.data);
     } catch (error) {

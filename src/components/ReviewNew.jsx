@@ -41,7 +41,7 @@ function NewReview() {
       formData.append(`${key}`, `${reviewInfo[key]}`);
     }
     await createReview(formData);
-    history.push("/");
+    // history.push("/");
     alert("Thanks for your review!");
   }
 
