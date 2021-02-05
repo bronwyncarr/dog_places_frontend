@@ -9,12 +9,20 @@ function NewReview() {
     text: "",
     rating: "",
     location_id: id,
+    file: "",
   });
 
   const handleFormChange = (e) => {
     setReviewInfo({
       ...reviewInfo,
       [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleImageChange = (e) => {
+    setReviewInfo({
+      ...reviewInfo,
+      [e.target.name]: e.target.files[0],
     });
   };
 
@@ -25,15 +33,20 @@ function NewReview() {
         body: reviewInfo.body,
         rating: reviewInfo.rating,
         location_id: id,
+        file: reviewInfo.file,
       },
     });
-    await createReview(body);
+    const formData = new FormData();
+    for (const key in reviewInfo) {
+      formData.append(`${key}`, `${reviewInfo[key]}`);
+    }
+    await createReview(formData);
     history.push("/");
     alert("Thanks for your review!");
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form encType="multipart/form-data" onSubmit={handleSubmit}>
       <input
         type="text"
         name="body"
@@ -52,8 +65,9 @@ function NewReview() {
         id={reviewInfo.rating}
       />
 
-      {/* <label for="quantity">Rating (between 1 and 10):</label>
-  <input type="number" value={reviewInfo.rating} onChange={handleFormChange} id="quantity" name="quantity" min="1" max="5"> */}
+      <label htmlFor="file">Add an image to your review:</label>
+      <input type="file" name="file" id="file" onChange={handleImageChange} />
+
       <button id="submit" type="submit" value="Submit">
         Submit!
       </button>

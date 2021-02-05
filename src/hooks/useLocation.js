@@ -50,11 +50,14 @@ function useLocation(id) {
   }
 
   async function createLocation() {
-    console.log(location);
+    const formData = new FormData();
+    for (const key in location) {
+      formData.append(`${key}`, `${location[key]}`);
+    }
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}/locations`,
-        location,
+        formData,
         config
       );
       setLocation(response.data);
