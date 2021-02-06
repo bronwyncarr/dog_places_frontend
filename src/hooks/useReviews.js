@@ -8,7 +8,6 @@ const config = {
 };
 
 async function createReview(review) {
-  console.log(review);
   const formData = new FormData();
   for (const key in review) {
     formData.append(`${key}`, review[key]);
