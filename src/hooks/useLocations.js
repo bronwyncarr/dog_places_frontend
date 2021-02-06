@@ -35,7 +35,7 @@ function useLocations() {
         `${process.env.REACT_APP_BACKEND_URL}/locations/nearme`,
         {
           ...config,
-          location: { address: [lat, lng], description: distance },
+          location: { coords: [lat, lng], description: distance },
         }
       );
       setLocations(response.data);
