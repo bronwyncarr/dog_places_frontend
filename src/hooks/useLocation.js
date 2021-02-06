@@ -49,7 +49,6 @@ function useLocation(id) {
   }
 
   async function createLocation() {
-    console.log({ location: location });
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}/locations`,
@@ -68,7 +67,7 @@ function useLocation(id) {
     try {
       await axios.put(
         `${process.env.REACT_APP_BACKEND_URL}/locations/${id}`,
-        location,
+        { location: location },
         config
       );
     } catch (error) {
