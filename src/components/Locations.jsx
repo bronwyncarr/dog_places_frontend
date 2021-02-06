@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { getLocations } from "../services/locationServices";
 import SearchBar from "./SearchBar";
 import Map from "./Map";

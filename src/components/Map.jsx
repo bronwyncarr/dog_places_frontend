@@ -52,9 +52,9 @@ function Map({ locations }) {
   });
 
   return (
-    locations && (
-      <LoadScript googleMapsApiKey={`${process.env.REACT_APP_MAPS_API_KEY}`}>
-        {/* Map itself */}
+    locations?.length > 0 && (
+      // Stores google API key on server for security. Key is passed in with location/s.
+      <LoadScript googleMapsApiKey={`${locations[0]["google"]}`}>
         <GoogleMap
           mapContainerStyle={mapStyles}
           zoom={13}
@@ -62,16 +62,15 @@ function Map({ locations }) {
           center={mapCenter}
         >
           {/* Markers on the map for each location */}
-          {locations?.length > 0 &&
-            locations.map((item) => {
-              return (
-                <Marker
-                  key={item.name}
-                  position={{ lat: item.latitude, lng: item.longitude }}
-                  onClick={() => setSelectedLocation(item)}
-                />
-              );
-            })}
+          {locations.map((item) => {
+            return (
+              <Marker
+                key={item.name}
+                position={{ lat: item.latitude, lng: item.longitude }}
+                onClick={() => setSelectedLocation(item)}
+              />
+            );
+          })}
 
           {/* If user clicks on a location, dialogue box pops up with info and link to show page */}
           {selectedLocation.latitude && (
