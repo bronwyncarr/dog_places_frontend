@@ -10,6 +10,7 @@ const config = {
 
 function useLocations() {
   const [locations, setLocations] = useState([]);
+  const [distance, setDistance] = useState(null);
 
   useEffect(() => {
     async function getLocations() {
@@ -29,7 +30,6 @@ function useLocations() {
   async function locationsNearMe(currentPosition, distance) {
     const lat = currentPosition.lat;
     const lng = currentPosition.lng;
-    console.log(lat, lng, distance);
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}/locations/nearme`,
@@ -39,7 +39,6 @@ function useLocations() {
         }
       );
       setLocations(response.data);
-      console.log(response);
     } catch (error) {
       // Work out what we need to do later...
       console.error("Remove Error");
