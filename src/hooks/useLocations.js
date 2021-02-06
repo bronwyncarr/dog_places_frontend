@@ -31,11 +31,11 @@ function useLocations() {
     const lng = currentPosition.lng;
     console.log(lat, lng, distance);
     try {
-      const response = await axios(
+      const response = await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}/locations/nearme`,
         {
           ...config,
-          location: { address: [lat, lng], description: distance },
+          location: { coords: [lat, lng], description: distance },
         }
       );
       setLocations(response.data);
