@@ -2,34 +2,22 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import GeneratedForm from "../Form";
 import { useGlobalState } from "../../utils/context";
-import { getStaticAssets } from "../../services/locationServices";
+import useStaticAssets from "../../hooks/useStaticAssets";
 import useLocation from "../../hooks/useLocation";
 
 function EditLocation({ history }) {
-  // Inbound info from static assets
-  const { store, dispatch } = useGlobalState();
-  const { staticAssets } = store;
+  const { store } = useGlobalState();
+  const { id } = useParams();
+  const { loggedInAdmin } = store;
+  const { location, setLocation, updateLocation } = useLocation(id);
+  const staticAssets = useStaticAssets();
   const {
     location_types: locationTypes,
     location_facilities: facilityTypes,
   } = staticAssets;
 
-  const { id } = useParams();
-  const { loggedInAdmin } = store;
-
-  const { location, setLocation, updateLocation } = useLocation(id);
-
   // If statis assets don't exist, fetch call to get them and saves in global state.
   // Assets to display types and facilities.
-  useEffect(() => {
-    !staticAssets.location_types &&
-      getStaticAssets()
-        .then((assets) => {
-          dispatch({ type: "setStaticAssets", data: assets });
-        })
-        .catch((error) => console.log(error));
-  }, [dispatch, staticAssets.location_types]);
-
   async function handleSubmit(e) {
     // POST request on submit, then redirect to locations pg.
     e.preventDefault();
@@ -45,13 +33,6 @@ function EditLocation({ history }) {
     setLocation({
       ...location,
       [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleImageChange = (e) => {
-    setLocation({
-      ...location,
-      [e.target.name]: e.target.files[0],
     });
   };
 
@@ -75,7 +56,6 @@ function EditLocation({ history }) {
         facilityTypes={facilityTypes}
         handleCheckChange={handleCheckChange}
         handleFormChange={handleFormChange}
-        handleImageChange={handleImageChange}
         handleSubmit={handleSubmit}
       />
     </>

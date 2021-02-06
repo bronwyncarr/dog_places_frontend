@@ -15,7 +15,6 @@ function useLocation(id) {
     description: "",
     address: "",
     location_facilities_attributes: [],
-    file: "",
   });
 
   useEffect(() => {
@@ -50,21 +49,14 @@ function useLocation(id) {
   }
 
   async function createLocation() {
-    const formData = new FormData();
-    for (const key in location) {
-      formData.append(`${key}`, location[key]);
-    }
+    console.log({ location: location });
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}/locations`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
+        { location: location },
+        config
       );
+
       setLocation(response.data);
     } catch (error) {
       // Work out what we need to do later...
