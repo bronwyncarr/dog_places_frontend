@@ -25,12 +25,11 @@ function Map({ locations }) {
 
   // Not sure if needs to be stored in state.
   const [currentPosition, setCurrentPosition] = useState({});
-  function success(position) {
-    const currentPosition = {
-      lat: position.coords.latitude,
-      lng: position.coords.longitude,
-    };
-    setCurrentPosition(currentPosition);
+  function success(pos) {
+    setCurrentPosition({
+      lat: pos.coords.latitude,
+      lng: pos.coords.longitude,
+    });
   }
 
   let mapCenter = { lat: 0, lng: 0 };
@@ -46,15 +45,15 @@ function Map({ locations }) {
   }
   calculateCenter();
 
-  // On Page load,gwt position
+  // On Page load,get position
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(success);
   });
 
   return (
-    locations && (
-      <LoadScript googleMapsApiKey={`${process.env.REACT_APP_MAPS_API_KEY}`}>
-        {/* Map itself */}
+    locations?.length > 0 && (
+      // Stores google API key on server for security. Key is passed in with location/s.
+      <LoadScript googleMapsApiKey={`${locations[0]["google"]}`}>
         <GoogleMap
           mapContainerStyle={mapStyles}
           zoom={13}
@@ -62,16 +61,15 @@ function Map({ locations }) {
           center={mapCenter}
         >
           {/* Markers on the map for each location */}
-          {locations?.length > 0 &&
-            locations.map((item) => {
-              return (
-                <Marker
-                  key={item.name}
-                  position={{ lat: item.latitude, lng: item.longitude }}
-                  onClick={() => setSelectedLocation(item)}
-                />
-              );
-            })}
+          {locations.map((item) => {
+            return (
+              <Marker
+                key={item.name}
+                position={{ lat: item.latitude, lng: item.longitude }}
+                onClick={() => setSelectedLocation(item)}
+              />
+            );
+          })}
 
           {/* If user clicks on a location, dialogue box pops up with info and link to show page */}
           {selectedLocation.latitude && (

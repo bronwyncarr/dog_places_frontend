@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import createReview from "../hooks/useReviews";
+import createReview from "../../hooks/useReviews";
 
 function NewReview() {
   let history = useHistory();
@@ -46,7 +46,7 @@ function NewReview() {
       <input
         type="number"
         min="1"
-        max="10"
+        max="5"
         name="rating"
         value={reviewInfo.rating}
         onChange={handleFormChange}
