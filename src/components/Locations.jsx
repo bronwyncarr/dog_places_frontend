@@ -1,27 +1,39 @@
 import { useEffect, useState } from "react";
-import { getLocations } from "../services/locationServices";
+import axios from "axios";
 import SearchBar from "./SearchBar";
 import Map from "./Map";
 import LocationsContainer from "./Location/LocationsContainer";
 import NearMe from "./NearMe";
 
+const config = {
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+  },
+};
+
 function Locations() {
   const [locations, setLocations] = useState([]);
 
-  // On page load or change to dispatch, calls getLocations which sends a fetch request and returns a promise.
-  // Promise is .then to call setLocations action with the returned locations.
   useEffect(() => {
-    getLocations()
-      .then((locations) => {
-        setLocations(locations);
-      })
-      .catch((error) => console.log(error));
+    async function getLocations() {
+      try {
+        const response = await axios(
+          `${process.env.REACT_APP_BACKEND_URL}/locations/`,
+          config
+        );
+        setLocations(response.data);
+      } catch (error) {
+        console.error("Get Error");
+      }
+    }
+    getLocations();
   }, []);
 
   return (
     <>
       <h1>Locations</h1>
-      <NearMe />
+      {/* <NearMe setLocations={setLocations} /> */}
       <SearchBar />
       <Map locations={locations} />
       {/* Once locations available, list all locations with show, edit, delete links. */}
