@@ -3,6 +3,7 @@ import { getLocations } from "../services/locationServices";
 import SearchBar from "./SearchBar";
 import Map from "./Map";
 import LocationsContainer from "./Location/LocationsContainer";
+import NearMe from "./NearMe";
 
 function Locations() {
   const [locations, setLocations] = useState([]);
@@ -20,6 +21,7 @@ function Locations() {
   return (
     <>
       <h1>Locations</h1>
+      <NearMe />
       <SearchBar />
       <Map locations={locations} />
       {/* Once locations available, list all locations with show, edit, delete links. */}

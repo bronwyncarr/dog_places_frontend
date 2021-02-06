@@ -15,7 +15,6 @@ function useLocation(id) {
     description: "",
     address: "",
     location_facilities_attributes: [],
-    file: "",
   });
 
   useEffect(() => {
@@ -50,14 +49,11 @@ function useLocation(id) {
   }
 
   async function createLocation() {
-    const formData = new FormData();
-    for (const key in location) {
-      formData.append(`${key}`, location[key]);
-    }
+    console.log({ location: location });
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/locations/`,
-        formData,
+        `${process.env.REACT_APP_BACKEND_URL}/locations`,
+        { location: location },
         config
       );
 
