@@ -18,7 +18,6 @@ function Locations() {
       .catch((error) => console.log(error));
   }, []);
 
-  console.log(locations);
   return (
     <>
       <h1>Locations</h1>

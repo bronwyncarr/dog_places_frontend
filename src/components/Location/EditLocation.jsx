@@ -36,13 +36,6 @@ function EditLocation({ history }) {
     });
   };
 
-  const handleImageChange = (e) => {
-    setLocation({
-      ...location,
-      [e.target.name]: e.target.files[0],
-    });
-  };
-
   // Form change for checkboxes
   const handleCheckChange = (e) => {
     setLocation({
@@ -63,7 +56,6 @@ function EditLocation({ history }) {
         facilityTypes={facilityTypes}
         handleCheckChange={handleCheckChange}
         handleFormChange={handleFormChange}
-        handleImageChange={handleImageChange}
         handleSubmit={handleSubmit}
       />
     </>
