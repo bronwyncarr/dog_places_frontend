@@ -64,7 +64,7 @@ function Map({ locations }) {
           {locations.map((item) => {
             return (
               <Marker
-                key={item.name}
+                key={item.id}
                 position={{ lat: item.latitude, lng: item.longitude }}
                 onClick={() => setSelectedLocation(item)}
               />

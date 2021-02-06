@@ -6,24 +6,24 @@ function LocationFavouriteButton({ favourite, handleClick }) {
       {favourite ? (
         <>
           <i
-            class="fas fa-heart"
+            className="fas fa-heart"
             onClick={handleClick}
             aria-hidden="true"
             title="Unlick"
           ></i>
-          <button class="sr-only" onClick={handleClick}>
+          <button className="sr-only" onClick={handleClick}>
             Like
           </button>
         </>
       ) : (
         <>
           <i
-            class="far fa-heart"
+            className="far fa-heart"
             onClick={handleClick}
             aria-hidden="true"
             title="Like"
           ></i>
-          <button class="sr-only" onClick={handleClick}>
+          <button className="sr-only" onClick={handleClick}>
             Unlick
           </button>
         </>
