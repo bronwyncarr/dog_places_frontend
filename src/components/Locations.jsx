@@ -5,13 +5,6 @@ import Map from "./Map";
 import LocationsContainer from "./Location/LocationsContainer";
 import NearMe from "./NearMe";
 
-const config = {
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${localStorage.getItem("token")}`,
-  },
-};
-
 function Locations() {
   const [locations, setLocations] = useState([]);
 
@@ -19,8 +12,13 @@ function Locations() {
     async function getLocations() {
       try {
         const response = await axios(
-          `${process.env.REACT_APP_BACKEND_URL}/locations/`,
-          config
+          `${process.env.REACT_APP_BACKEND_URL}/locations`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
         );
         setLocations(response.data);
       } catch (error) {

@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import GeneratedForm from "../Form";
 import { useGlobalState } from "../../utils/context";
