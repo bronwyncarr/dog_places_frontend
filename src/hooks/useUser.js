@@ -1,14 +1,11 @@
 import { useState } from "react";
 import { useGlobalState } from "../utils/context";
 import axios from "axios";
+import useAuthHeaders from "./useAuthHeaders";
 
 function useUser() {
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-    },
-  };
+  const config = useAuthHeaders();
+
   // Sets the state of user object, error and success boolean.
   const [user, setUser] = useState({
     username: "",
