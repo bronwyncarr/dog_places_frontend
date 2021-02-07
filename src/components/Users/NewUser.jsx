@@ -47,7 +47,7 @@ function NewUser({ history }) {
           value={user.email}
           onChange={handleChange}
         />
-        <label htmlFor="username">userName</label>
+        <label htmlFor="username">UserName</label>
         <input
           type="text"
           name="username"
