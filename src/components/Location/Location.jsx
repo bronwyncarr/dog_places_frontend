@@ -51,20 +51,13 @@ function Location(props) {
         <Link to={`/locations/${location.id}/edit`}>Edit</Link>
         <button onClick={handleDelete}>Delete</button>
         <br />
-        {/* Back link to goBack to index */}
+
         <Reviews reviews={location.reviews}>
           {location.reviews.map((review) => (
             <ReviewItem key={review.id} {...review} />
           ))}
         </Reviews>
-        <Link
-          to="/"
-          onClick={() => {
-            props.history.goBack();
-          }}
-        >
-          Back
-        </Link>
+        <Link to="/">Back</Link>
       </>
     )
   );

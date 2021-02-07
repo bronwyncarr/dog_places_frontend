@@ -18,7 +18,10 @@ function LocationSummaryTile({
 
   return (
     <div>
-      <h1>{location.name}</h1>
+      <h1>
+        <i className="fas fa-map-marker-alt"></i> {location.name}
+      </h1>
+      <h4>{location.location_type_name}</h4>
       <h4>{location.address}</h4>
       <h4>{location.rating}</h4>
       <p>{average(location.reviews)}</p>

@@ -9,7 +9,9 @@ import useAuthHeaders from "../hooks/useAuthHeaders";
 function Locations() {
   const [locations, setLocations] = useState([]);
   const config = useAuthHeaders();
+  const [searchData, setSearchData] = useState("");
 
+  // Use effect runs on to get all locations information to display
   useEffect(() => {
     async function getLocations() {
       try {
@@ -25,6 +27,7 @@ function Locations() {
     getLocations();
   }, [config]);
 
+  // If the form is submitted, a GET request with query params is sent to search by name
   async function searchLocations() {
     try {
       const response = await axios(
@@ -37,10 +40,12 @@ function Locations() {
     }
   }
 
-  const [searchData, setSearchData] = useState("");
+  // Handle change on form
   function handleChange(e) {
     setSearchData(e.target.value);
   }
+
+  // When form submitted,
   function handleSubmit(e) {
     e.preventDefault();
     searchLocations();
