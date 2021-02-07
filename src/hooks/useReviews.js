@@ -6,16 +6,12 @@ async function createReview(review) {
     formData.append(`${key}`, review[key]);
   }
   try {
-    await axios.post(
-      `${process.env.REACT_APP_BACKEND_URL}/locations/reviews`,
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      }
-    );
+    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/reviews`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
   } catch (error) {
     // Work out what we need to do later...
     console.error("Create Error");

@@ -73,7 +73,16 @@ function useLocation(id) {
     try {
       await axios.put(
         `${process.env.REACT_APP_BACKEND_URL}/locations/${id}`,
-        { location: location },
+        {
+          location: {
+            name: location.name,
+            location_type_name: location.location_type_name,
+            description: location.description,
+            address: location.address,
+            location_facilities_attributes:
+              location.location_facilities_attributes,
+          },
+        },
         {
           headers: {
             "Content-Type": "application/json",

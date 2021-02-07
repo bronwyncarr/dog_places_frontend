@@ -15,7 +15,7 @@ function useStaticAssets() {
     async function getStaticAssets() {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/locations/static_assests`,
+          `${process.env.REACT_APP_BACKEND_URL}/static_assests`,
           config
         );
         setStaticAssets(response.data);

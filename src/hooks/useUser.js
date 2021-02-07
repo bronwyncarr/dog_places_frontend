@@ -35,7 +35,6 @@ function useUser() {
     }
 
     return async function authFunction() {
-      console.log(user);
       try {
         const response = await axios.post(url, {
           config,
