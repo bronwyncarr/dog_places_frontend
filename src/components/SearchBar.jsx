@@ -1,14 +1,4 @@
-import { useState } from "react";
-
-function SearchBar() {
-  const [searchData, setSearchData] = useState("");
-  function handleChange(e) {
-    setSearchData(e.target.value);
-  }
-  function handleSubmit(e) {
-    e.preventDefault();
-  }
-
+function SearchBar({ handleSubmit, handleChange, searchData }) {
   return (
     <form onSubmit={handleSubmit}>
       <input
@@ -17,6 +7,7 @@ function SearchBar() {
         name="searchBar"
         value={searchData}
         onChange={handleChange}
+        placeholder="Search by name..."
       ></input>
       <button id="submit" type="submit" value="Submit">
         Submit
