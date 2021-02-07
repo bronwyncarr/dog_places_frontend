@@ -23,7 +23,7 @@ function App() {
   const timeNow = new Date().getTime();
   const tokenValid = token && decodedToken.exp * 1000 > timeNow;
 
-  // Real logic check for expiry of token.
+  // Initial state including boolean for loggedInUser logic of token expiry date.
   const initialState = {
     loggedInUser: tokenValid,
     staticAssets: {},
@@ -32,8 +32,11 @@ function App() {
 
   // Sets initial state (default values) to global state
   const [store, dispatch] = useReducer(reducer, initialState);
+
+  // Protected routes including, show location, new location and favourites are not available unless loggedIn
   return (
     <Layout>
+      {/* Entire app uses context for logged in user/admin */}
       <StateContext.Provider value={{ store, dispatch }}>
         <SideBar />
         <Content>
