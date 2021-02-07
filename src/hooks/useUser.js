@@ -40,8 +40,10 @@ function useUser() {
         const { is_admin, username, jwt } = response.data;
         localStorage.setItem("token", jwt);
 
-        dispatch({ type: "setLoggedInUser", data: username });
-        dispatch({ type: "setLoggedInAdmin", data: is_admin });
+        dispatch({
+          type: "setLoggedInUser",
+          data: { user: username, admin: is_admin },
+        });
         setSuccess(true);
         // Catch handles 404, 422 and any other error
       } catch (error) {
