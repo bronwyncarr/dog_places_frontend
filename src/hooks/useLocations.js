@@ -1,16 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-
-const config = {
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${localStorage.getItem("token")}`,
-  },
-};
+import useAuthHeaders from "./useAuthHeaders";
 
 function useLocations() {
   const [locations, setLocations] = useState([]);
-  const [distance, setDistance] = useState(null);
+  // const [distance, setDistance] = useState(null);
+  const config = useAuthHeaders();
 
   useEffect(() => {
     async function getLocations() {
@@ -25,7 +20,7 @@ function useLocations() {
       }
     }
     getLocations();
-  }, []);
+  }, [config]);
 
   async function locationsNearMe(currentPosition, distance) {
     const lat = currentPosition.lat;

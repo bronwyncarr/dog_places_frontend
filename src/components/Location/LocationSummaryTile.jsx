@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import average from "../../utils/reviewsAverage";
 import LocationFavouriteButton from "./LocationFavouriteButton";
 import { useGlobalState } from "../../utils/context";

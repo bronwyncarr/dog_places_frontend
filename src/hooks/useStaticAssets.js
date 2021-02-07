@@ -1,15 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-
-const config = {
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${localStorage.getItem("token")}`,
-  },
-};
+import useAuthHeaders from "./useAuthHeaders";
 
 function useStaticAssets() {
   const [staticAssets, setStaticAssets] = useState({});
+  const config = useAuthHeaders();
 
   useEffect(() => {
     async function getStaticAssets() {
@@ -24,7 +19,7 @@ function useStaticAssets() {
       }
     }
     getStaticAssets();
-  }, []);
+  }, [config]);
   return staticAssets;
 }
 export default useStaticAssets;

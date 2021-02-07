@@ -3,22 +3,19 @@ import axios from "axios";
 import SearchBar from "./SearchBar";
 import Map from "./Map";
 import LocationsContainer from "./Location/LocationsContainer";
-import NearMe from "./NearMe";
+// import NearMe from "./NearMe";
+import useAuthHeaders from "../hooks/useAuthHeaders";
 
 function Locations() {
   const [locations, setLocations] = useState([]);
+  const config = useAuthHeaders();
 
   useEffect(() => {
     async function getLocations() {
       try {
         const response = await axios(
           `${process.env.REACT_APP_BACKEND_URL}/locations`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
+          config
         );
         setLocations(response.data);
       } catch (error) {
@@ -26,7 +23,7 @@ function Locations() {
       }
     }
     getLocations();
-  }, []);
+  }, [config]);
 
   return (
     <>

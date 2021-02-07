@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import useAuthHeaders from "./useAuthHeaders";
 
 function useLocation(id) {
+  const config = useAuthHeaders();
   const [location, setLocation] = useState({
     name: "",
     location_type_name: "",
@@ -15,12 +17,7 @@ function useLocation(id) {
       try {
         const response = await axios(
           `${process.env.REACT_APP_BACKEND_URL}/locations/${id}`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
+          config
         );
         setLocation(response.data);
       } catch (error) {
@@ -28,17 +25,14 @@ function useLocation(id) {
       }
     }
     id && getLocation();
-  }, [id]);
+  }, [config, id]);
 
   async function removeLocation(reason) {
     try {
       await axios.delete(
         `${process.env.REACT_APP_BACKEND_URL}/locations/${id}`,
         {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
+          ...config,
           data: { description: reason, location_id: id, location: location },
         }
       );
@@ -54,12 +48,7 @@ function useLocation(id) {
       const response = await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}/locations`,
         { location: location },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
+        config
       );
 
       setLocation(response.data);
@@ -83,12 +72,7 @@ function useLocation(id) {
               location.location_facilities_attributes,
           },
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
+        config
       );
     } catch (error) {
       console.error("Update Error");
