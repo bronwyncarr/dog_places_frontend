@@ -1,13 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const config = {
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${localStorage.getItem("token")}`,
-  },
-};
-
 function useFavourites() {
   const [favourites, setFavourites] = useState([]);
 
@@ -15,8 +8,13 @@ function useFavourites() {
     async function getFavourite() {
       try {
         const response = await axios(
-          `${process.env.REACT_APP_BACKEND_URL}/locations/favorites/favourites`,
-          config
+          `${process.env.REACT_APP_BACKEND_URL}/locations/favourites`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
         );
 
         setFavourites(response.data);
@@ -30,16 +28,24 @@ function useFavourites() {
   async function removeFavourite(id) {
     try {
       await axios.delete(
-        `${process.env.REACT_APP_BACKEND_URL}/locations/favorites/destroy`,
+        `${process.env.REACT_APP_BACKEND_URL}/locations/favourites/${id}`,
         {
-          ...config,
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
           data: { location_id: id },
         }
       );
 
       const response = await axios(
-        `${process.env.REACT_APP_BACKEND_URL}/locations/favorites/favourites`,
-        config
+        `${process.env.REACT_APP_BACKEND_URL}/locations/favourites`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
       );
 
       setFavourites(response.data);
@@ -52,14 +58,24 @@ function useFavourites() {
   async function addFavourite(id) {
     try {
       await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/locations/favorites/new`,
+        `${process.env.REACT_APP_BACKEND_URL}locations/favourites`,
         { location_id: id },
-        config
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
       );
 
       const response = await axios(
-        `${process.env.REACT_APP_BACKEND_URL}/locations/favorites/favourites`,
-        config
+        `${process.env.REACT_APP_BACKEND_URL}locations/favourites`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
       );
 
       setFavourites(response.data);

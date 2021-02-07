@@ -46,7 +46,7 @@ function NewReview() {
       <input
         type="number"
         min="1"
-        max="10"
+        max="5"
         name="rating"
         value={reviewInfo.rating}
         onChange={handleFormChange}

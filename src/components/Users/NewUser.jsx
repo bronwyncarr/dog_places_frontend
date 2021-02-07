@@ -11,10 +11,13 @@ function NewUser({ history }) {
   const { user, success, error, setUser, createUser } = useUser();
   const [passwordError, setPasswordError] = useState("");
 
+  //. Confirm password is kept seperate because it does not need to be sent to rails.
+  const [confirmPassword, setConfirmPassword] = useState("");
+
   // When the form is submitted, the createUser function in the hook runs.
   async function onFormSubmit(e) {
     e.preventDefault();
-    if (user.confirmPassword === user.password) {
+    if (confirmPassword === user.password) {
       setPasswordError(""); // Clean up if previously incorrect.
       await createUser();
     } else {
@@ -47,7 +50,7 @@ function NewUser({ history }) {
           value={user.email}
           onChange={handleChange}
         />
-        <label htmlFor="username">userName</label>
+        <label htmlFor="username">UserName</label>
         <input
           type="text"
           name="username"
@@ -63,13 +66,16 @@ function NewUser({ history }) {
           value={user.password}
           onChange={handleChange}
         />
+        {/* Confirm password is only front end logic check. It is not kept in the user variable as it sis not sent to rails. */}
         <label htmlFor="password">Confirm Password</label>
         <input
           type="password"
           name="confirmPassword"
           id="confirmPassword"
-          value={user.confirmPassword}
-          onChange={handleChange}
+          value={confirmPassword}
+          onChange={(e) => {
+            setConfirmPassword(e.target.value);
+          }}
         />
         <input id="submit" type="submit" value="Submit" />
       </form>

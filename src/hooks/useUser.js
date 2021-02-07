@@ -2,20 +2,18 @@ import { useState } from "react";
 import { useGlobalState } from "../utils/context";
 import axios from "axios";
 
-const config = {
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${localStorage.getItem("token")}`,
-  },
-};
-
 function useUser() {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  };
   // Sets the state of user object, error and success boolean.
   const [user, setUser] = useState({
     username: "",
     email: "",
     password: "",
-    confirmPassword: "",
   });
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
@@ -37,6 +35,7 @@ function useUser() {
     }
 
     return async function authFunction() {
+      console.log(user);
       try {
         const response = await axios.post(url, {
           config,
@@ -44,6 +43,7 @@ function useUser() {
         });
         const { is_admin, username, jwt } = response.data;
         localStorage.setItem("token", jwt);
+
         dispatch({ type: "setLoggedInUser", data: username });
         dispatch({ type: "setLoggedInAdmin", data: is_admin });
         setSuccess(true);

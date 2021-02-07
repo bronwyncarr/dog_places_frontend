@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import GeneratedForm from "../Form";
 import { useGlobalState } from "../../utils/context";
@@ -36,13 +35,6 @@ function EditLocation({ history }) {
     });
   };
 
-  const handleImageChange = (e) => {
-    setLocation({
-      ...location,
-      [e.target.name]: e.target.files[0],
-    });
-  };
-
   // Form change for checkboxes
   const handleCheckChange = (e) => {
     setLocation({
@@ -63,7 +55,6 @@ function EditLocation({ history }) {
         facilityTypes={facilityTypes}
         handleCheckChange={handleCheckChange}
         handleFormChange={handleFormChange}
-        handleImageChange={handleImageChange}
         handleSubmit={handleSubmit}
       />
     </>
