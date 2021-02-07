@@ -25,7 +25,12 @@ function Locations() {
     getLocations();
   }, [config]);
 
-  return (
+  return locations.length === 0 ? (
+    <h2>
+      Sorry, we can't find any locations at the moment. Please check your
+      internet connection and try again later.
+    </h2>
+  ) : (
     <>
       <h1>Locations</h1>
       {/* <NearMe setLocations={setLocations} /> */}
