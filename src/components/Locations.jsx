@@ -26,10 +26,7 @@ function Locations() {
   }, [config]);
 
   return locations.length === 0 ? (
-    <h2>
-      Sorry, we can't find any locations at the moment. Please check your
-      internet connection and try again later.
-    </h2>
+    <h2>Loading locations....</h2>
   ) : (
     <>
       <h1>Locations</h1>

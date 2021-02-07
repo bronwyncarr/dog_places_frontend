@@ -47,7 +47,16 @@ function useLocation(id) {
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}/locations`,
-        { location: location },
+        {
+          location: {
+            name: location.name,
+            location_type_name: location.location_type_name,
+            description: location.description,
+            address: location.address,
+            location_facilities_attributes:
+              location.location_facilities_attributes,
+          },
+        },
         config
       );
 

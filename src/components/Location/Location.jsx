@@ -30,7 +30,7 @@ function Location(props) {
     }
     history.push("/");
   }
-  console.log(location);
+
   return (
     location &&
     location.name && (
