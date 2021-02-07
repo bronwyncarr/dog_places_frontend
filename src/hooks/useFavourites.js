@@ -1,13 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const config = {
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${localStorage.getItem("token")}`,
-  },
-};
-
 function useFavourites() {
   const [favourites, setFavourites] = useState([]);
 
@@ -16,7 +9,12 @@ function useFavourites() {
       try {
         const response = await axios(
           `${process.env.REACT_APP_BACKEND_URL}/locations/favorites/favourites`,
-          config
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
         );
 
         setFavourites(response.data);
@@ -32,14 +30,22 @@ function useFavourites() {
       await axios.delete(
         `${process.env.REACT_APP_BACKEND_URL}/locations/favorites/destroy`,
         {
-          ...config,
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
           data: { location_id: id },
         }
       );
 
       const response = await axios(
         `${process.env.REACT_APP_BACKEND_URL}/locations/favorites/favourites`,
-        config
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
       );
 
       setFavourites(response.data);
@@ -54,12 +60,22 @@ function useFavourites() {
       await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}/locations/favorites/new`,
         { location_id: id },
-        config
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
       );
 
       const response = await axios(
         `${process.env.REACT_APP_BACKEND_URL}/locations/favorites/favourites`,
-        config
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
       );
 
       setFavourites(response.data);

@@ -37,6 +37,7 @@ function useUser() {
     }
 
     return async function authFunction() {
+      console.log(user);
       try {
         const response = await axios.post(url, {
           config,
@@ -44,6 +45,7 @@ function useUser() {
         });
         const { is_admin, username, jwt } = response.data;
         localStorage.setItem("token", jwt);
+
         dispatch({ type: "setLoggedInUser", data: username });
         dispatch({ type: "setLoggedInAdmin", data: is_admin });
         setSuccess(true);
