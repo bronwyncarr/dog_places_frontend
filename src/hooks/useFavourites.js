@@ -8,7 +8,7 @@ function useFavourites() {
     async function getFavourite() {
       try {
         const response = await axios(
-          `${process.env.REACT_APP_BACKEND_URL}/locations/favourites`,
+          `${process.env.REACT_APP_BACKEND_URL}/favourites`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -16,7 +16,6 @@ function useFavourites() {
             },
           }
         );
-
         setFavourites(response.data);
       } catch (error) {
         console.error("Get Error");
@@ -28,7 +27,7 @@ function useFavourites() {
   async function removeFavourite(id) {
     try {
       await axios.delete(
-        `${process.env.REACT_APP_BACKEND_URL}/locations/favourites/${id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/favourites/${id}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -39,7 +38,7 @@ function useFavourites() {
       );
 
       const response = await axios(
-        `${process.env.REACT_APP_BACKEND_URL}/locations/favourites`,
+        `${process.env.REACT_APP_BACKEND_URL}/favourites`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -58,7 +57,7 @@ function useFavourites() {
   async function addFavourite(id) {
     try {
       await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}locations/favourites`,
+        `${process.env.REACT_APP_BACKEND_URL}/favourites`,
         { location_id: id },
         {
           headers: {
@@ -69,7 +68,7 @@ function useFavourites() {
       );
 
       const response = await axios(
-        `${process.env.REACT_APP_BACKEND_URL}locations/favourites`,
+        `${process.env.REACT_APP_BACKEND_URL}/favourites`,
         {
           headers: {
             "Content-Type": "application/json",
