@@ -7,7 +7,7 @@ async function createReview(review) {
   }
   try {
     await axios.post(
-      `${process.env.REACT_APP_BACKEND_URL}/locations/review/new`,
+      `${process.env.REACT_APP_BACKEND_URL}/locations/reviews`,
       formData,
       {
         headers: {
