@@ -8,7 +8,6 @@ function GeneratedForm({
   facilityTypes,
   handleFormChange,
   handleCheckChange,
-  handleImageChange,
   handleSubmit,
 }) {
   const fields = ["name", "address", "description"];
@@ -71,9 +70,6 @@ function GeneratedForm({
             );
           })}
       </Checkboxes>
-
-      <label htmlFor="file">Share an image of this location:</label>
-      <input type="file" name="file" id="file" onChange={handleImageChange} />
 
       <button id="submit" type="submit" value="Submit">
         Submit!

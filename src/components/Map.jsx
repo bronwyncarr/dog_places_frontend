@@ -25,12 +25,11 @@ function Map({ locations }) {
 
   // Not sure if needs to be stored in state.
   const [currentPosition, setCurrentPosition] = useState({});
-  function success(position) {
-    const currentPosition = {
-      lat: position.coords.latitude,
-      lng: position.coords.longitude,
-    };
-    setCurrentPosition(currentPosition);
+  function success(pos) {
+    setCurrentPosition({
+      lat: pos.coords.latitude,
+      lng: pos.coords.longitude,
+    });
   }
 
   let mapCenter = { lat: 0, lng: 0 };
@@ -46,7 +45,7 @@ function Map({ locations }) {
   }
   calculateCenter();
 
-  // On Page load,gwt position
+  // On Page load,get position
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(success);
   });
@@ -65,7 +64,7 @@ function Map({ locations }) {
           {locations.map((item) => {
             return (
               <Marker
-                key={item.name}
+                key={item.id}
                 position={{ lat: item.latitude, lng: item.longitude }}
                 onClick={() => setSelectedLocation(item)}
               />
