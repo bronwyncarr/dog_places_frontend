@@ -1,13 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const config = {
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${localStorage.getItem("token")}`,
-  },
-};
-
 function useLocation(id) {
   const [location, setLocation] = useState({
     name: "",
@@ -22,7 +15,12 @@ function useLocation(id) {
       try {
         const response = await axios(
           `${process.env.REACT_APP_BACKEND_URL}/locations/${id}`,
-          config
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
         );
         setLocation(response.data);
       } catch (error) {
@@ -37,8 +35,11 @@ function useLocation(id) {
       await axios.delete(
         `${process.env.REACT_APP_BACKEND_URL}/locations/${id}`,
         {
-          ...config,
-          data: { description: reason, location_id: id },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          data: { description: reason, location_id: id, location: location },
         }
       );
       setLocation(null);
@@ -49,12 +50,16 @@ function useLocation(id) {
   }
 
   async function createLocation() {
-    console.log({ location: location });
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}/locations`,
         { location: location },
-        config
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
       );
 
       setLocation(response.data);
@@ -68,8 +73,22 @@ function useLocation(id) {
     try {
       await axios.put(
         `${process.env.REACT_APP_BACKEND_URL}/locations/${id}`,
-        location,
-        config
+        {
+          location: {
+            name: location.name,
+            location_type_name: location.location_type_name,
+            description: location.description,
+            address: location.address,
+            location_facilities_attributes:
+              location.location_facilities_attributes,
+          },
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
       );
     } catch (error) {
       console.error("Update Error");
