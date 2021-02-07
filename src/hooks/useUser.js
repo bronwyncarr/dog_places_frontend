@@ -15,7 +15,7 @@ function useUser() {
     username: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    password_confirmation: "",
   });
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
