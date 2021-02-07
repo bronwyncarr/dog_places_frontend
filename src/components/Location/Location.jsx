@@ -30,7 +30,7 @@ function Location(props) {
     }
     history.push("/");
   }
-
+  console.log(location);
   return (
     location &&
     location.name && (
@@ -51,7 +51,6 @@ function Location(props) {
         <Link to={`/locations/${location.id}/edit`}>Edit</Link>
         <button onClick={handleDelete}>Delete</button>
         <br />
-
         <Reviews reviews={location.reviews}>
           {location.reviews.map((review) => (
             <ReviewItem key={review.id} {...review} />
