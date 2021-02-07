@@ -4,6 +4,7 @@ describe("when clicking on sign in from the homepage user", () => {
       cy.visit("/sign_up");
       cy.findByLabelText(/username/i).type(user.username);
       cy.findByLabelText(/password/i).type(user.password);
+      cy.get('#confirmPassword').type(user.password);
       cy.findByLabelText(/email/i).type(user.email);
     })
     
