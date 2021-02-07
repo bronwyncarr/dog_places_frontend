@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import average from "../../utils/reviewsAverage";
 import LocationFavouriteButton from "./LocationFavouriteButton";
 import { useGlobalState } from "../../utils/context";
@@ -8,6 +7,7 @@ function LocationSummaryTile({
   favourite,
   addFavourite,
   removeFavourite,
+  children,
 }) {
   const { store } = useGlobalState();
   const { loggedInUser } = store;
@@ -28,6 +28,7 @@ function LocationSummaryTile({
           favourite={favourite}
         />
       )}
+      {children}
     </div>
   );
 }

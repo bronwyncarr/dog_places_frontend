@@ -48,7 +48,7 @@ function Map({ locations }) {
   // On Page load,get position
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(success);
-  });
+  }, []);
 
   return (
     locations?.length > 0 && (
