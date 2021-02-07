@@ -1,7 +1,8 @@
-// Form is used for new and edit location
-// Needs styling
+// This form is used to create a new and edit an existing location information.
+// A user must be signed in to create a new location, A user must be admin to edit a location
 
 import { Form, Checkboxes } from "../styles/NewLocation";
+// Props for the form are passed in from the NewLcoation or Edit Location
 function GeneratedForm({
   details,
   locationTypes,
@@ -12,12 +13,14 @@ function GeneratedForm({
 }) {
   const fields = ["name", "address", "description"];
 
+  // Captialise Name for consistency
   function capitaliseName(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
   return (
     <Form encType="multipart/form-data" onSubmit={handleSubmit}>
+      {/* Name, description and address fields */}
       {fields.map((item, index) => {
         return (
           <div key={index}>
@@ -33,6 +36,7 @@ function GeneratedForm({
         );
       })}
 
+      {/* Select option for category. Location types are retrived from static assets  */}
       <label htmlFor="category">Category:</label>
       <select
         name="location_type_name"
@@ -40,11 +44,9 @@ function GeneratedForm({
         value={details.location_type_name}
         onChange={handleFormChange}
       >
-        {/* Need to sort out default option */}
         <option value selected>
           -- Please select --
         </option>
-
         {locationTypes &&
           locationTypes.map((item, index) => (
             <option key={index} value={item}>
@@ -53,6 +55,7 @@ function GeneratedForm({
           ))}
       </select>
 
+      {/* Checkboxes for facilities. Facility types are retrived from static assets */}
       <Checkboxes>
         {facilityTypes &&
           facilityTypes.map((item, index) => {
