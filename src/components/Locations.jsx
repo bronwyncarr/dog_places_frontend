@@ -5,12 +5,54 @@ import Map from "./Map";
 import LocationsContainer from "./Location/LocationsContainer";
 import NearMe from "./Search/NearMeForm";
 import useAuthHeaders from "../hooks/useAuthHeaders";
+import styled from "styled-components/macro";
+import useResize from "../hooks/useResize";
+
+const LayoutContainer = styled.div`
+  height: 80%;
+  display: flex;
+  align-items: stretch;
+`;
+
+const LocationsLayoutContainer = styled.div`
+  width: 50%;
+  overflow-y: auto;
+`;
+
+const MapContainer = styled.div`
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const TitleLayoutContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10%;
+`;
+
+const SearchbarLayoutContainer = styled.div`
+  height: 10%;
+`;
+
+const Title = styled.h1`
+  text-align: center;
+  vertical-align: center;
+`;
 
 function Locations() {
   const [locations, setLocations] = useState([]);
   const config = useAuthHeaders();
   const [searchData, setSearchData] = useState("");
   const [searchErrorMsg, setSearchErrorMsg] = useState(null);
+  const { el, width, height } = useResize();
+
+  const mapSize = {
+    width: `${width * 0.9}px`,
+    height: `${height * 0.9}px`,
+  };
 
   // Use effect runs on to get all locations information to display
   useEffect(() => {
@@ -30,13 +72,11 @@ function Locations() {
 
   // If the form is submitted, a GET request with query params is sent to search by name
   async function searchLocations() {
-    console.log(searchData);
     try {
       const response = await axios(
         `${process.env.REACT_APP_BACKEND_URL}/locations?name=${searchData}`,
         config
       );
-      console.log(response.data);
       setLocations(response.data);
     } catch (error) {
       console.error("Get Error");
@@ -98,25 +138,32 @@ function Locations() {
     setSearchData("");
   }
 
-  return locations.length === 0 ? (
-    <h2>Loading locations....</h2>
-  ) : (
+  return (
     <>
-      <h1>Locations</h1>
-      <NearMe
-        handleNearMeSubmit={handleNearMeSubmit}
-        handleNearMeChange={handleNearMeChange}
-        distance={distance}
-      />
-      <SearchBar
-        handleSubmit={handleSearchSubmit}
-        handleSearchChange={handleSearchChange}
-        searchData={searchData}
-      />
-      {searchErrorMsg && <p>{searchErrorMsg}</p>}
-      <Map locations={locations} />
-      {/* Once locations available, list all locations with show, edit, delete links. */}
-      <LocationsContainer locations={locations} />
+      <TitleLayoutContainer>
+        <Title>Locations</Title>
+      </TitleLayoutContainer>
+      <SearchbarLayoutContainer>
+        <NearMe
+          handleNearMeSubmit={handleNearMeSubmit}
+          handleNearMeChange={handleNearMeChange}
+          distance={distance}
+        />
+        <SearchBar
+          handleSearchSubmit={handleSearchSubmit}
+          handleSearchChange={handleSearchChange}
+          searchData={searchData}
+        />
+        {searchErrorMsg && <p>{searchErrorMsg}</p>}
+      </SearchbarLayoutContainer>
+      <LayoutContainer>
+        <LocationsLayoutContainer>
+          <LocationsContainer locations={locations} />
+        </LocationsLayoutContainer>
+        <MapContainer ref={el}>
+          <Map size={mapSize} locations={locations} />
+        </MapContainer>
+      </LayoutContainer>
     </>
   );
 }
