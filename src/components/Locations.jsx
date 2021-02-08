@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
-import SearchBar from "./SearchBar";
+import SearchBar from "./Search/SearchBar";
 import Map from "./Map";
 import LocationsContainer from "./Location/LocationsContainer";
-import NearMe from "./NearMe";
+import NearMe from "./Search/NearMeForm";
 import useAuthHeaders from "../hooks/useAuthHeaders";
 
 function Locations() {
   const [locations, setLocations] = useState([]);
   const config = useAuthHeaders();
   const [searchData, setSearchData] = useState("");
+  const [searchErrorMsg, setSearchErrorMsg] = useState(null);
 
   // Use effect runs on to get all locations information to display
   useEffect(() => {
@@ -30,11 +30,13 @@ function Locations() {
 
   // If the form is submitted, a GET request with query params is sent to search by name
   async function searchLocations() {
+    console.log(searchData);
     try {
       const response = await axios(
         `${process.env.REACT_APP_BACKEND_URL}/locations?name=${searchData}`,
         config
       );
+      console.log(response.data);
       setLocations(response.data);
     } catch (error) {
       console.error("Get Error");
@@ -62,8 +64,14 @@ function Locations() {
         `${process.env.REACT_APP_BACKEND_URL}/locations/nearme?description=${dist}&lat=${lat}&lng=${lng}`,
         config
       );
-      console.log(response.data);
-      // setLocations(response.data);
+      if (response.data && response.data.length > 0) {
+        setLocations(response.data);
+        setSearchErrorMsg(null);
+      } else {
+        setSearchErrorMsg(
+          "Sorry, no locations within your requested search distance."
+        );
+      }
     } catch (error) {
       console.error("Get Error");
     }
@@ -105,8 +113,7 @@ function Locations() {
         handleSearchChange={handleSearchChange}
         searchData={searchData}
       />
-      {/* NOT SURE THIS WILL WORK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */}
-      <Link to={`/`}>Search All</Link>
+      {searchErrorMsg && <p>{searchErrorMsg}</p>}
       <Map locations={locations} />
       {/* Once locations available, list all locations with show, edit, delete links. */}
       <LocationsContainer locations={locations} />
