@@ -3,7 +3,7 @@ function ReviewItem({ body, rating, image_url }) {
     <div>
       <p>{body}</p>
       <p>{rating}</p>
-      <img src={image_url} alt="Review of location"></img>
+      {image_url && <img src={image_url} alt="Review of location"></img>}
     </div>
   );
 }
