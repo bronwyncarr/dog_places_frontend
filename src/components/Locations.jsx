@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import SearchBar from "./SearchBar";
 import Map from "./Map";
 import LocationsContainer from "./Location/LocationsContainer";
-// import NearMe from "./NearMe";
+import NearMe from "./NearMe";
 import useAuthHeaders from "../hooks/useAuthHeaders";
 
 function Locations() {
@@ -40,13 +41,50 @@ function Locations() {
     }
   }
 
+  const [distance, setDistance] = useState(5);
+  const [currentPosition, setCurrentPosition] = useState({});
+
+  // Callback function that takes the GeolocationPosition object as input.
+  function success(pos) {
+    setCurrentPosition({
+      lat: pos.coords.latitude,
+      lng: pos.coords.longitude,
+    });
+  }
+  // On Page load, get position if it is available
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(success);
+  });
+
+  async function locationsNearMe(dist, lat, lng) {
+    try {
+      const response = await axios(
+        `${process.env.REACT_APP_BACKEND_URL}/locations/nearme?description=${dist}&lat=${lat}&lng=${lng}`,
+        config
+      );
+      console.log(response.data);
+      // setLocations(response.data);
+    } catch (error) {
+      console.error("Get Error");
+    }
+  }
+
+  function handleNearMeChange(e) {
+    setDistance(e.target.value);
+  }
+
+  function handleNearMeSubmit(e) {
+    e.preventDefault();
+    locationsNearMe(distance, currentPosition.lat, currentPosition.lng);
+  }
+
   // Handle change on form
-  function handleChange(e) {
+  function handleSearchChange(e) {
     setSearchData(e.target.value);
   }
 
   // When form submitted,
-  function handleSubmit(e) {
+  function handleSearchSubmit(e) {
     e.preventDefault();
     searchLocations();
     setSearchData("");
@@ -57,12 +95,18 @@ function Locations() {
   ) : (
     <>
       <h1>Locations</h1>
-      {/* <NearMe setLocations={setLocations} /> */}
+      <NearMe
+        handleNearMeSubmit={handleNearMeSubmit}
+        handleNearMeChange={handleNearMeChange}
+        distance={distance}
+      />
       <SearchBar
-        handleSubmit={handleSubmit}
-        handleChange={handleChange}
+        handleSubmit={handleSearchSubmit}
+        handleSearchChange={handleSearchChange}
         searchData={searchData}
       />
+      {/* NOT SURE THIS WILL WORK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */}
+      <Link to={`/`}>Search All</Link>
       <Map locations={locations} />
       {/* Once locations available, list all locations with show, edit, delete links. */}
       <LocationsContainer locations={locations} />
