@@ -1,10 +1,17 @@
 import styled from "styled-components/macro";
 import { Link } from "react-router-dom";
+import dog from "./dog.svg";
 
 const SideBarWrapper = styled.div`
   height: 100%;
   background-color: whitesmoke;
   flex: 0 1 auto;
+`;
+
+const SideBarImage = styled.img`
+  margin: 0 auto;
+  padding: 2rem 2.5rem 1rem 2.5rem;
+  max-width: calc(100% - 5rem);
 `;
 
 const SideBarList = styled.ul`
@@ -41,9 +48,8 @@ const SideBarHeading = styled.h1`
 function SideBar({ children }) {
   return (
     <SideBarWrapper>
-      <SideBarHeading>
-        <i className="fas fa-paw"></i> OFF THE LEASH
-      </SideBarHeading>
+      <SideBarImage src={dog} alt="dog"></SideBarImage>
+      <SideBarHeading>OFF THE LEASH</SideBarHeading>
       <SideBarList>{children}</SideBarList>
     </SideBarWrapper>
   );
