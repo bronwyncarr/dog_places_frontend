@@ -1,5 +1,4 @@
 import { build, fake } from '@jackfranklin/test-data-bot'
-import { userBuilder } from "../support/generate";
 
 const userBuilder = build('User', {
   fields: {

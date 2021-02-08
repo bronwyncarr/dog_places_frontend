@@ -1,5 +1,8 @@
 
 {
   "baseUrl": "http://localhost:8080",
-  "integrationFolder": "cypress/integration/e2e"
+  "integrationFolder": "cypress/integration/e2e",
+  "requestTimeout":100000,
+  "responseTimeout":90000,
+  "taskTimeout": 100000
 }
