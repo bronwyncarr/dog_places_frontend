@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   width: 80%;
   margin: 1rem auto;
   padding: 0.5rem 2rem;
-  background-color: #f6f5f1;
+  background-color: whitesmoke;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -57,4 +57,4 @@ export const Heading = styled.h1`
 // #ffadad - coral
 //#f7c200 - gold
 // #009475 -tree green
-// #f6f5f1 - fence post/whitesmoke alt
+// whitesmoke - fence post/whitesmoke alt
