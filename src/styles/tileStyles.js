@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   width: 80%;
   margin: 1rem auto;
   padding: 0.5rem 2rem;
-  background-color: whitesmoke;
+  background-color: #f6f5f1;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -26,8 +26,24 @@ export const Input = styled.input`
   flex: 1 1 auto;
 `;
 
+export const Select = styled.select`
+  flex: 1 1 auto;
+`;
+
+export const Checkboxes = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const Label = styled.label`
   padding-right: 0.5rem;
+`;
+export const Submit = styled.button`
+  margin: 0 auto;
+  padding: 0.5rem 2rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  background-color: #daf5ea;
 `;
 
 export const Heading = styled.h1`
@@ -35,3 +51,10 @@ export const Heading = styled.h1`
   /* margin: 0.5rem 0; */
   padding: 0.5rem 0;
 `;
+
+// #daf5ea -light blue
+//#00717a - dark blue
+// #ffadad - coral
+//#f7c200 - gold
+// #009475 -tree green
+// #f6f5f1 - fence post/whitesmoke alt

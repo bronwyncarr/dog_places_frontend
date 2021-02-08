@@ -4,7 +4,7 @@ export const FormWrapper = styled.div`
   padding: 0.5rem 2rem;
   min-width: 30%;
   max-width: 50%;
-  background-color: whitesmoke;
+  background-color: #f6f5f1;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
