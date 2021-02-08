@@ -8,14 +8,13 @@ import useLocation from "../../hooks/useLocation";
 import useFavourites from "../../hooks/useFavourites";
 import LocationSummaryTile from "./LocationSummaryTile";
 
-function Location(props) {
+function Location() {
   const { id } = useParams();
   let history = useHistory();
   const { store } = useGlobalState();
   const { loggedInAdmin } = store;
 
   const { location, removeLocation } = useLocation(id);
-
   const { favourites, addFavourite, removeFavourite } = useFavourites();
   const favouriteIds = favourites.map((fave) => fave.id);
 
@@ -51,9 +50,8 @@ function Location(props) {
         <Link to={`/locations/${location.id}/edit`}>Edit</Link>
         <button onClick={handleDelete}>Delete</button>
         <br />
-
-        <Reviews reviews={location.reviews}>
-          {location.reviews.map((review) => (
+        <Reviews reviews={location.reviewsData}>
+          {location.reviewsData.map((review) => (
             <ReviewItem key={review.id} {...review} />
           ))}
         </Reviews>

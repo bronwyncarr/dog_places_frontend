@@ -1,6 +1,7 @@
 import average from "../../utils/reviewsAverage";
 import LocationFavouriteButton from "./LocationFavouriteButton";
 import { useGlobalState } from "../../utils/context";
+import FacilityList from "./FacilityList";
 
 function LocationSummaryTile({
   location,
@@ -24,7 +25,9 @@ function LocationSummaryTile({
       <h4>{location.location_type_name}</h4>
       <h4>{location.address}</h4>
       <h4>{location.rating}</h4>
+      <FacilityList facilities={location.location_facilities_attributes} />
       <p>{average(location.reviews)}</p>
+      {/* Heart button to like/unlike */}
       {loggedInUser && (
         <LocationFavouriteButton
           handleClick={handleClick}

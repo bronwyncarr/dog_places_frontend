@@ -19,19 +19,19 @@ function useLocation(id) {
           `${process.env.REACT_APP_BACKEND_URL}/locations/${id}`,
           config
         );
-        setLocation(response.data);
+        const reviewResponse = await axios(
+          `${process.env.REACT_APP_BACKEND_URL}/reviews?location_id=${id}`,
+          config
+        );
+
+        const location = { ...response.data };
+        location.reviewsData = reviewResponse.data;
+
+        setLocation(location);
+        console.log("location", location);
       } catch (error) {
         console.error("Get Error");
       }
-      //   try {
-      //     const reviewResponse = await axios(
-      //       `${process.env.REACT_APP_BACKEND_URL}/reviews/${id}`,
-      //       config
-      //     );
-      //     setLocation({ ...location, reviews: reviewResponse.data });
-      //   } catch (error) {
-      //     console.error("Get Error");
-      //   }
     }
     id && getLocation();
   }, [config, id]);
