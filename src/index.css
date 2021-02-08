@@ -2,3 +2,8 @@
   margin: 0;
   font-family: sans-serif;
 }
+
+body {
+  overflow: hidden;
+  height: 100vh;
+}
