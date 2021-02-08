@@ -10,18 +10,21 @@ describe("User sign up redirects to locations", () => {
       cy.findByLabelText(/password/i).type(password);
       cy.get('#confirmPassword').type(password);
       cy.findByLabelText(/email/i).type(email);
-    cy.get('form').submit()
-    cy.url().should('eql',"http://localhost:8080/")
-  });
-//  verifying the sign in button works
+      cy.get('#submit').click()
+      // cy.wait(800)
 
+    // cy.url().should('eql',"http://localhost:8080/")
+  });
+  //  verifying the sign in button works
+  
   
   // user submision
-
+  
   
   it('should allow the user to make a location',()=>{
+    cy.wait(800)
     cy.findByText('Add a location').click();
-    cy.url().should('eql','http://localhost:8080/locations/new')
+    cy.url().should('include','/locations/new')
     cy.findByLabelText(/name/i).type('test dog location')
     cy.findByLabelText(/address/i).type('12 boronia avenue')
     cy.findByLabelText(/description/i).type('test dog location description')
