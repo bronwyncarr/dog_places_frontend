@@ -7,21 +7,9 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 
-function Map({ locations }) {
+function Map({ locations, size }) {
   // Selected location is once a user clicks on a ion, a info box will appear.
   const [selectedLocation, setSelectedLocation] = useState({});
-
-  // To be refactored into styled components/css
-  const mapStyles = {
-    height: "500px",
-    width: "1000px",
-  };
-
-  // // If current position is not available, default is MEL CBD.
-  // const defaultCenter = {
-  //   lat: -37.8136,
-  //   lng: 144.9631,
-  // };
 
   // Not sure if needs to be stored in state.
   const [currentPosition, setCurrentPosition] = useState({});
@@ -55,7 +43,7 @@ function Map({ locations }) {
       // Stores google API key on server for security. Key is passed in with location/s.
       <LoadScript googleMapsApiKey={`${locations[0]["google"]}`}>
         <GoogleMap
-          mapContainerStyle={mapStyles}
+          mapContainerStyle={size}
           zoom={13}
           // If location lat (ie coordinates) are available, centers on location, otherwise centers on Melbourne city
           center={mapCenter}

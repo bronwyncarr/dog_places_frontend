@@ -11,7 +11,7 @@ import SignOut from "./Users/Signout";
 import { Layout, Content } from "../styles/Layout";
 import reducer from "../utils/reducer";
 import { StateContext } from "../utils/context";
-import SideBar from "./SideBar";
+import SideBar, { SideBarLink } from "./Sidebar/SideBar";
 import { ProtectedRoute } from "./ProtectedRoute";
 import NotFound from "./NotFound";
 import jwt_decode from "jwt-decode";
@@ -38,7 +38,31 @@ function App() {
     <Layout>
       {/* Entire app uses context for logged in user/admin */}
       <StateContext.Provider value={{ store, dispatch }}>
-        <SideBar />
+        <SideBar>
+          <SideBarLink to="/">
+            <i className="fas fa-search"></i> Search
+          </SideBarLink>
+          <SideBarLink to="/favourites">
+            <i className="fas fa-star"></i> My Favourites
+          </SideBarLink>
+          <SideBarLink to="/locations/new">
+            <i className="fas fa-plus"></i> Add a location
+          </SideBarLink>
+          {initialState.loggedInUser ? (
+            <SideBarLink to="/sign_out">
+              <i className="fas fa-sign-out-alt"></i> Sign Out
+            </SideBarLink>
+          ) : (
+            <>
+              <SideBarLink to="/sign_up">
+                <i className="fas fa-user-plus"></i> Sign Up
+              </SideBarLink>
+              <SideBarLink to="/sign_in">
+                <i className="fas fa-sign-in-alt"></i> Sign In
+              </SideBarLink>
+            </>
+          )}
+        </SideBar>
         <Content>
           <Switch>
             <Route exact path={["/", "/locations"]} component={Locations} />

@@ -1,6 +1,15 @@
 import { Link } from "react-router-dom";
 import useUser from "../../hooks/useUser";
 import { useEffect, useState } from "react";
+import {
+  FormWrapper,
+  StyledForm,
+  Field,
+  Input,
+  Label,
+  Heading,
+} from "../../styles/formStyles";
+import { UserWrapper } from "./UserWrapper";
 
 function NewUser({ history }) {
   // From useUser Hook, we get:
@@ -36,53 +45,66 @@ function NewUser({ history }) {
   }
 
   return (
-    <>
-      <h1>Sign Up!</h1>
-      {/* If an error is recieved it will be displayed to the user */}
-      {passwordError && <span>{passwordError}</span>}
-      {error && <span>{error}</span>}
-      <form onSubmit={onFormSubmit}>
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          value={user.email}
-          onChange={handleChange}
-        />
-        <label htmlFor="username">UserName</label>
-        <input
-          type="text"
-          name="username"
-          id="username"
-          value={user.username}
-          onChange={handleChange}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          value={user.password}
-          onChange={handleChange}
-        />
-        {/* Confirm password is only front end logic check. It is not kept in the user variable as it sis not sent to rails. */}
-        <label htmlFor="password">Confirm Password</label>
-        <input
-          type="password"
-          name="confirmPassword"
-          id="confirmPassword"
-          value={confirmPassword}
-          onChange={(e) => {
-            setConfirmPassword(e.target.value);
-          }}
-        />
-        <input id="submit" type="submit" value="Submit" />
-      </form>
-      <p>
-        Already a member?<Link to={`/sign_in`}>Sign in here</Link>
-      </p>
-    </>
+    <UserWrapper>
+      <FormWrapper>
+        <Heading>Sign Up!</Heading>
+        {/* If an error is recieved it will be displayed to the user */}
+        {passwordError && <span>{passwordError}</span>}
+        {error && <span>{error}</span>}
+        <StyledForm onSubmit={onFormSubmit}>
+          <Field>
+            <Label htmlFor="email">Email:</Label>
+            <Input
+              type="email"
+              name="email"
+              id="email"
+              value={user.email}
+              onChange={handleChange}
+              placeholder="rex@woof.com"
+            />
+          </Field>
+          <Field>
+            <Label htmlFor="username">UserName:</Label>
+            <Input
+              placeholder="RexTheDog!"
+              type="text"
+              name="username"
+              id="username"
+              value={user.username}
+              onChange={handleChange}
+            />
+          </Field>
+          <Field>
+            <Label htmlFor="password">Password:</Label>
+            <Input
+              type="password"
+              name="password"
+              id="password"
+              value={user.password}
+              onChange={handleChange}
+            />
+          </Field>
+          <Field>
+            {/* Confirm password is only front end logic check. It is not kept in the user variable as it sis not sent to rails. */}
+            <Label htmlFor="password">Confirm Password:</Label>
+            <Input
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+              value={confirmPassword}
+              onChange={(e) => {
+                setConfirmPassword(e.target.value);
+              }}
+            />
+          </Field>
+          <Field>
+            <Input id="submit" type="submit" value="Submit" />
+          </Field>
+        </StyledForm>
+
+        <Link to={`/sign_in`}>Already a member?</Link>
+      </FormWrapper>
+    </UserWrapper>
   );
 }
 export default NewUser;

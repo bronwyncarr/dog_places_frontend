@@ -2,6 +2,7 @@ import average from "../../utils/reviewsAverage";
 import LocationFavouriteButton from "./LocationFavouriteButton";
 import { useGlobalState } from "../../utils/context";
 import FacilityList from "./FacilityList";
+import { Wrapper } from "../../styles/tileStyles";
 
 function LocationSummaryTile({
   location,
@@ -18,7 +19,7 @@ function LocationSummaryTile({
   }
 
   return (
-    <div>
+    <Wrapper>
       <h1>
         <i className="fas fa-map-marker-alt"></i> {location.name}
       </h1>
@@ -27,7 +28,6 @@ function LocationSummaryTile({
       <h4>{location.rating}</h4>
       <FacilityList facilities={location.location_facilities_attributes} />
       <p>{average(location.reviews)}</p>
-      {/* Heart button to like/unlike */}
       {loggedInUser && (
         <LocationFavouriteButton
           handleClick={handleClick}
@@ -35,7 +35,7 @@ function LocationSummaryTile({
         />
       )}
       {children}
-    </div>
+    </Wrapper>
   );
 }
 
