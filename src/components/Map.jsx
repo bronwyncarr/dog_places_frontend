@@ -63,11 +63,13 @@ function Map({ locations }) {
           {/* Markers on the map for each location */}
           {locations.map((item) => {
             return (
-              <Marker
-                key={item.id}
-                position={{ lat: item.latitude, lng: item.longitude }}
-                onClick={() => setSelectedLocation(item)}
-              />
+              item.latitude && (
+                <Marker
+                  key={item.id}
+                  position={{ lat: item.latitude, lng: item.longitude }}
+                  onClick={() => setSelectedLocation(item)}
+                />
+              )
             );
           })}
 
