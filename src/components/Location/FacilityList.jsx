@@ -12,7 +12,7 @@ function FaciltiyList({ facilities }) {
                   title="Parking"
                   aria-hidden="true"
                 ></i>
-                <span class="sr-only">Parking</span>
+                <span className="sr-only">Parking</span>
               </span>
             );
           case "Water":
@@ -23,7 +23,7 @@ function FaciltiyList({ facilities }) {
                   title="Water"
                   aria-hidden="true"
                 ></i>
-                <span class="sr-only">Water</span>
+                <span className="sr-only">Water</span>
               </span>
             );
           case "Food":
@@ -34,7 +34,7 @@ function FaciltiyList({ facilities }) {
                   title="Food"
                   aria-hidden="true"
                 ></i>
-                <span class="sr-only">Food</span>
+                <span className="sr-only">Food</span>
               </span>
             );
           case "Toilets":
@@ -46,7 +46,7 @@ function FaciltiyList({ facilities }) {
                     title="Toilets"
                     aria-hidden="true"
                   ></i>
-                  <span class="sr-only">Toilets</span>
+                  <span className="sr-only">Toilets</span>
                 </span>
               </span>
             );
@@ -58,7 +58,7 @@ function FaciltiyList({ facilities }) {
                   title="Off-lead"
                   aria-hidden="true"
                 ></i>
-                <span class="sr-only">Off-lead</span>
+                <span className="sr-only">Off-lead</span>
               </span>
             );
           default:

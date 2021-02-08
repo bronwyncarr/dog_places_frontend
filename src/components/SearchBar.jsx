@@ -1,12 +1,12 @@
-function SearchBar({ handleSubmit, handleChange, searchData }) {
+function SearchBar({ handleSearchSubmit, handleSearchChange, searchData }) {
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSearchSubmit}>
       <input
         type="text"
         id="searchBar"
         name="searchBar"
         value={searchData}
-        onChange={handleChange}
+        onChange={handleSearchChange}
         placeholder="Search by name..."
       ></input>
       <button id="submit" type="submit" value="Submit">

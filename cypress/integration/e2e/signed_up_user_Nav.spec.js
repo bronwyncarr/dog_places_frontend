@@ -17,6 +17,7 @@ describe('signed up user can make a location and reviews then sign_out',()=>{
   })
   it('should be able to make review',()=>{
     cy.wait(800)
+    
     cy.get(':nth-child(5) > :nth-child(1) > a').click()
     cy.get('[type="text"]').type('testing this review out')
     cy.get('[type="number"]').type(2)
@@ -39,10 +40,9 @@ describe('signed up user can make a location and reviews then sign_out',()=>{
     cy.url().should('eql','http://localhost:8080/')
   }
   )
-  it('should show favourites for the current user',()=>{
+  it('should show favourites page',()=>{
     cy.wait(800)
     cy.get('h2').should('include',/favourites/i)
-    // cy.url().should('eql','http://localhost:8080/favourites')
 
     // cy.get('.sc-pFZIQ > :nth-child(1) > div > h1').should('include', 'test')
 
