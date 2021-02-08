@@ -14,6 +14,5 @@ export const Layout = styled.div`
 export const Content = styled.div`
   background-color: #82d190;
   flex: 1 1 auto;
-  overflow-y: scroll;
   height: 100%;
 `;

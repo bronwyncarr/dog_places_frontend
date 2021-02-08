@@ -2,6 +2,8 @@ import styled from "styled-components/macro";
 
 const Icon = styled.div`
   font-size: 2rem;
+  color: #ff8b8b;
+  cursor: pointer;
 `;
 
 function LocationFavouriteButton({ favourite, handleClick }) {
@@ -15,7 +17,7 @@ function LocationFavouriteButton({ favourite, handleClick }) {
             className="fas fa-heart"
             onClick={handleClick}
             aria-hidden="true"
-            title="Unlick"
+            title="Unlike"
           ></Icon>
           <button className="sr-only" onClick={handleClick}>
             Like
