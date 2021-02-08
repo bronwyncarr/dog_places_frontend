@@ -156,13 +156,13 @@ function Locations() {
         />
         {searchErrorMsg && <p>{searchErrorMsg}</p>}
       </SearchbarLayoutContainer>
+      <MapContainer ref={el}>
+        <Map size={mapSize} locations={locations} />
+      </MapContainer>
       <LayoutContainer>
         <LocationsLayoutContainer>
           <LocationsContainer locations={locations} />
         </LocationsLayoutContainer>
-        <MapContainer ref={el}>
-          <Map size={mapSize} locations={locations} />
-        </MapContainer>
       </LayoutContainer>
     </>
   );
