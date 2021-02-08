@@ -1,3 +1,9 @@
+import styled from "styled-components/macro";
+
+const Icon = styled.div`
+  font-size: 2rem;
+`;
+
 function LocationFavouriteButton({ favourite, handleClick }) {
   return (
     // If location is a favourite, a coloured in heart is displayed, if not an outline heart is displayed.
@@ -5,24 +11,24 @@ function LocationFavouriteButton({ favourite, handleClick }) {
     <>
       {favourite ? (
         <>
-          <i
+          <Icon
             className="fas fa-heart"
             onClick={handleClick}
             aria-hidden="true"
             title="Unlick"
-          ></i>
+          ></Icon>
           <button className="sr-only" onClick={handleClick}>
             Like
           </button>
         </>
       ) : (
         <>
-          <i
+          <Icon
             className="far fa-heart"
             onClick={handleClick}
             aria-hidden="true"
             title="Like"
-          ></i>
+          ></Icon>
           <button className="sr-only" onClick={handleClick}>
             Unlick
           </button>
