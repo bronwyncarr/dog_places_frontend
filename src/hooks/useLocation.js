@@ -23,15 +23,18 @@ function useLocation(id) {
       } catch (error) {
         console.error("Get Error");
       }
-      //   try {
-      //     const reviewResponse = await axios(
-      //       `${process.env.REACT_APP_BACKEND_URL}/reviews/${id}`,
-      //       config
-      //     );
-      //     setLocation({ ...location, reviews: reviewResponse.data });
-      //   } catch (error) {
-      //     console.error("Get Error");
-      //   }
+      try {
+        console.log("go");
+        const reviewResponse = await axios(
+          `${process.env.REACT_APP_BACKEND_URL}/reviews?location_id=${id}`,
+          config
+        );
+        console.log("rev", reviewResponse.data);
+        // setLocation({ ...location, reviewDate: reviewResponse.data });
+        // console.log(location);
+      } catch (error) {
+        console.error("Get Error");
+      }
     }
     id && getLocation();
   }, [config, id]);
