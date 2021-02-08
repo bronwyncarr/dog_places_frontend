@@ -30,7 +30,7 @@ function GeneratedForm({
   return (
     <Wrapper>
       <Heading>New Location</Heading>
-      <StyledForm encType="multipart/form-data" onSubmit={handleSubmit}>
+      <StyledForm onSubmit={handleSubmit}>
         {/* Name, description and address fields */}
         {fields.map((item, index) => {
           return (
