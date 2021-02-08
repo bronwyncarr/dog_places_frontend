@@ -7,9 +7,10 @@ import {
   Input,
   Label,
   Heading,
+  Select,
+  Checkboxes,
+  Submit,
 } from "../styles/tileStyles";
-
-import { Checkboxes } from "../styles/NewLocation";
 // Props for the form are passed in from the NewLcoation or Edit Location
 function GeneratedForm({
   details,
@@ -45,11 +46,10 @@ function GeneratedForm({
             </Field>
           );
         })}
-
         {/* Select option for category. Location types are retrived from static assets  */}
         <Field>
           <Label htmlFor="category">Category:</Label>
-          <select
+          <Select
             name="location_type_name"
             id="location_type_name"
             value={details.location_type_name}
@@ -64,11 +64,11 @@ function GeneratedForm({
                   {item}
                 </option>
               ))}
-          </select>
+          </Select>
         </Field>
         {/* Checkboxes for facilities. Facility types are retrived from static assets */}
+        <Label>Facilities:</Label>
         <Checkboxes>
-          <p>Facilities</p>
           {facilityTypes &&
             facilityTypes.map((item, index) => {
               return (
@@ -85,10 +85,9 @@ function GeneratedForm({
               );
             })}
         </Checkboxes>
-
-        <button id="submit" type="submit" value="Submit">
+        <Submit id="submit" type="submit" value="Submit">
           Submit!
-        </button>
+        </Submit>
       </StyledForm>
     </Wrapper>
   );

@@ -41,7 +41,6 @@ function NewLocation({ history }) {
 
   return (
     <>
-      <h1>New Location</h1>
       <GeneratedForm
         details={location}
         locationTypes={locationTypes}
