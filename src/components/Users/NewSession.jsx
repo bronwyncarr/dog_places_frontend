@@ -1,6 +1,15 @@
 import useUser from "../../hooks/useUser";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import {
+  FormWrapper,
+  StyledForm,
+  Field,
+  Input,
+  Label,
+  Heading,
+} from "../../styles/formStyles";
+import { UserWrapper } from "./UserWrapper";
 
 function NewSession({ history }) {
   // From useUser Hook, we get:
@@ -27,38 +36,40 @@ function NewSession({ history }) {
   }
 
   return (
-    <>
-      <h1>Sign In!</h1>
-      {/* If an error is recieved it will be displayed to the user */}
-      {error && <span>{error}</span>}
-      <form onSubmit={onFormSubmit}>
-        <div className="form-group">
-          <label htmlFor="username">Username</label>
-          <input
-            type="test"
-            name="username"
-            id="username"
-            value={user.username}
-            onChange={handleChange}
-          />
-        </div>
+    <UserWrapper>
+      <FormWrapper>
+        <Heading>Sign In!</Heading>
+        {/* If an error is recieved it will be displayed to the user */}
+        {error && <span>{error}</span>}
+        <StyledForm onSubmit={onFormSubmit}>
+          <Field className="form-group">
+            <Label htmlFor="username">Username:</Label>
+            <Input
+              type="test"
+              name="username"
+              id="username"
+              value={user.username}
+              onChange={handleChange}
+            />
+          </Field>
 
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            value={user.password}
-            onChange={handleChange}
-          />
-        </div>
-        <input id="submit" type="submit" value="Submit" />
-      </form>
-      <p>
-        Not yet a member?<Link to={`/sign_up`}>Join today!</Link>
-      </p>
-    </>
+          <Field className="form-group">
+            <Label htmlFor="password">Password:</Label>
+            <Input
+              type="password"
+              name="password"
+              id="password"
+              value={user.password}
+              onChange={handleChange}
+            />
+          </Field>
+          <Field>
+            <Input id="submit" type="submit" value="Submit" />
+          </Field>
+        </StyledForm>
+        <Link to={`/sign_up`}>Not yet a member?</Link>
+      </FormWrapper>
+    </UserWrapper>
   );
 }
 export default NewSession;
