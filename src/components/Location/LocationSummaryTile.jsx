@@ -10,6 +10,8 @@ const HeadingContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-top: 0.5rem;
+  font-size: 1.2rem;
 `;
 
 function LocationSummaryTile({
@@ -41,6 +43,7 @@ function LocationSummaryTile({
       <h4>{capitaliseName(location.address)}</h4>
       <h4>{location.rating}</h4>
       <FacilityList facilities={location.location_facilities_attributes} />
+
       <p>{average(location.reviews)}</p>
       {children}
     </Wrapper>

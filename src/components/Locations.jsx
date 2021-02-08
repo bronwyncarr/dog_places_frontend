@@ -8,9 +8,17 @@ import useAuthHeaders from "../hooks/useAuthHeaders";
 import styled from "styled-components/macro";
 import useResize from "../hooks/useResize";
 
-const LayoutContainer = styled.div`
-  height: 80%;
+const LocationsWrapper = styled.div`
+  height: 100%;
   display: flex;
+  flex-direction: column;
+`;
+
+const LayoutContainer = styled.div`
+  display: flex;
+  flex: 1 1 0;
+  // This stops stops the content from making this flexbox outgrow the parent
+  min-height: 0;
   align-items: stretch;
 `;
 
@@ -19,9 +27,10 @@ const LocationsLayoutContainer = styled.div`
   overflow-y: auto;
 `;
 
-const MapContainer = styled.div`
+const MapLayoutContainer = styled.div`
   width: 50%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 `;
@@ -30,12 +39,9 @@ const TitleLayoutContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 10%;
 `;
 
-const SearchbarLayoutContainer = styled.div`
-  height: 10%;
-`;
+const SearchbarLayoutContainer = styled.div``;
 
 const Title = styled.h1`
   text-align: center;
@@ -101,7 +107,7 @@ function Locations() {
   async function locationsNearMe(dist, lat, lng) {
     try {
       const response = await axios(
-        `${process.env.REACT_APP_BACKEND_URL}/locations/nearme?description=${dist}&lat=${lat}&lng=${lng}`,
+        `${process.env.REACT_APP_BACKEND_URL}/locations/nearme?distance=${dist}&lat=${lat}&lng=${lng}`,
         config
       );
       if (response.data && response.data.length > 0) {
@@ -139,32 +145,32 @@ function Locations() {
   }
 
   return (
-    <>
+    <LocationsWrapper>
       <TitleLayoutContainer>
         <Title>Locations</Title>
       </TitleLayoutContainer>
-      <SearchbarLayoutContainer>
-        <NearMe
-          handleNearMeSubmit={handleNearMeSubmit}
-          handleNearMeChange={handleNearMeChange}
-          distance={distance}
-        />
-        <SearchBar
-          handleSearchSubmit={handleSearchSubmit}
-          handleSearchChange={handleSearchChange}
-          searchData={searchData}
-        />
-        {searchErrorMsg && <p>{searchErrorMsg}</p>}
-      </SearchbarLayoutContainer>
       <LayoutContainer>
-        <MapContainer ref={el}>
+        <MapLayoutContainer ref={el}>
+          <SearchbarLayoutContainer>
+            <NearMe
+              handleNearMeSubmit={handleNearMeSubmit}
+              handleNearMeChange={handleNearMeChange}
+              distance={distance}
+            />
+            <SearchBar
+              handleSearchSubmit={handleSearchSubmit}
+              handleSearchChange={handleSearchChange}
+              searchData={searchData}
+            />
+            {searchErrorMsg && <p>{searchErrorMsg}</p>}
+          </SearchbarLayoutContainer>
           <Map size={mapSize} locations={locations} />
-        </MapContainer>
+        </MapLayoutContainer>
         <LocationsLayoutContainer>
           <LocationsContainer locations={locations} />
         </LocationsLayoutContainer>
       </LayoutContainer>
-    </>
+    </LocationsWrapper>
   );
 }
 
