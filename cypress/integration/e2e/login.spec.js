@@ -11,6 +11,7 @@ describe("User sign up redirects to locations", () => {
       cy.get('#confirmPassword').type(password);
       cy.findByLabelText(/email/i).type(email);
       cy.get('#submit').click()
+      
       // cy.wait(800)
 
     // cy.url().should('eql',"http://localhost:8080/")
@@ -34,10 +35,10 @@ describe("User sign up redirects to locations", () => {
 
 
   })
-  after(() => {
-    window.localStorage.removeItem("token")
-    window.sessionStorage.removeItem("auth")
-  })
+  // after(() => {
+  //   window.localStorage.removeItem("token")
+  //   window.sessionStorage.removeItem("auth")
+  // })
   
 });
 // cy.findByLabelText(/username/i).type(user.username);

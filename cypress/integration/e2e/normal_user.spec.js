@@ -1,3 +1,4 @@
+
 describe('signed up user can make a location and reviews then sign_out',()=>{
   beforeEach(()=>{
    cy.visit('/')
@@ -16,9 +17,9 @@ describe('signed up user can make a location and reviews then sign_out',()=>{
     cy.url().should('eql', 'http://localhost:8080/')
   })
   it('should be able to make review',()=>{
-    cy.wait(800)
-    
-    cy.get(':nth-child(5) > :nth-child(1) > a').click()
+    // cy.visit('localhost:8080/locations/1')
+    cy.get('[data-testid=location_2]').click()
+    cy.url().should('include', '/2')
     cy.get('[type="text"]').type('testing this review out')
     cy.get('[type="number"]').type(2)
     cy.get('#submit').click()
@@ -37,15 +38,22 @@ describe('signed up user can make a location and reviews then sign_out',()=>{
     cy.get('[type="checkbox"]').check()  
     cy.get('#location_type_name').select('Dog park')
     cy.get('form').submit()
-    cy.url().should('eql','http://localhost:8080/')
+    //cy.url().should('eql','http://localhost:8080/')
   }
   )
   it('should show favourites page',()=>{
     cy.wait(800)
     cy.get('h2').should('include',/favourites/i)
 
-    // cy.get('.sc-pFZIQ > :nth-child(1) > div > h1').should('include', 'test')
 
+  })
+  it('should render an alert on location change for regular users',()=>{
+    cy.get('[data-testid=location_2]').click()
+    cy.get('[href="/locations/2/edit"]').click()
+    cy.get('#address').type('cypress test address')
+    cy.on('window:alert', (str) => {
+      expect(str).to.equal(`Your request has been sent to our admin team for edit approval`)
+    })
   })
   
   after(() => {
