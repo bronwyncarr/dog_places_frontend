@@ -12,6 +12,9 @@ const SideBarImage = styled.img`
   margin: 0 auto;
   padding: 2rem 2.5rem 1rem 2.5rem;
   max-width: calc(100% - 5rem);
+  @media (max-width: 1400px) {
+    display: none;
+  }
 `;
 
 const SideBarList = styled.ul`
@@ -20,6 +23,9 @@ const SideBarList = styled.ul`
   display: flex;
   flex-direction: column;
   list-style-type: none;
+  @media (max-width: 1400px) {
+    flex-direction: row;
+  }
 `;
 
 const SideBarLink = styled(Link)`
@@ -43,6 +49,9 @@ const SideBarHeading = styled.h1`
   padding: 2rem;
   text-align: center;
   font-size: 2rem;
+  @media (max-width: 1400px) {
+    display: none;
+  }
 `;
 
 function SideBar({ children }) {

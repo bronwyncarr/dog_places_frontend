@@ -8,3 +8,9 @@ body {
   overflow: hidden;
   height: 100vh;
 }
+
+@media only screen and (max-width: 1400px) {
+  body {
+    overflow: scroll;
+  }
+}
