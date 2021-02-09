@@ -9,6 +9,7 @@ function NewLocation({ history }) {
     location_facilities: facilityTypes,
   } = staticAssets;
 
+  // Props passed in to form for new form.
   return (
     <>
       <GeneratedForm

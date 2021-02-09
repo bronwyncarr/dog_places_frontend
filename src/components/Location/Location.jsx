@@ -61,6 +61,7 @@ function Location() {
     history.push("/");
   }
 
+  // In addition to the reused location tile. children are passed in to also render on the tile. This includes a description of the location and review.
   return (
     location &&
     location.name && (
@@ -70,7 +71,7 @@ function Location() {
           removeFavourite={removeFavourite}
           key={location.id}
           location={location}
-          // includes returns a boolean if the value is in the array
+          // Includes will return a boolean if the value is in the array
           favourite={favouriteIds.includes(location.id)}
         >
           {/* Location is put in an array for consistency so they map can be reused for one (here) or many locations (index pg)*/}

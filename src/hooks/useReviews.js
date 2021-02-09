@@ -13,7 +13,6 @@ async function createReview(review) {
       },
     });
   } catch (error) {
-    // Work out what we need to do later...
     console.error("Create Error");
   }
 }

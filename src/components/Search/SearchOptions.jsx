@@ -3,9 +3,7 @@ import axios from "axios";
 import SearchBar from "./SearchBar";
 import NearMe from "./NearMeForm";
 import useAuthHeaders from "../../hooks/useAuthHeaders";
-import styled from "styled-components/macro";
-
-const SearchbarLayoutContainer = styled.div``;
+import { Wrapper } from "../../styles/tileStyles";
 
 function SearchOptions({ setLocations, setRadius, radius }) {
   const config = useAuthHeaders();
@@ -80,7 +78,7 @@ function SearchOptions({ setLocations, setRadius, radius }) {
   }
 
   return (
-    <SearchbarLayoutContainer>
+    <Wrapper>
       <NearMe
         handleNearMeSubmit={handleNearMeSubmit}
         handleNearMeChange={handleNearMeChange}
@@ -92,7 +90,7 @@ function SearchOptions({ setLocations, setRadius, radius }) {
         searchData={searchData}
       />
       {searchErrorMsg && <p>{searchErrorMsg}</p>}
-    </SearchbarLayoutContainer>
+    </Wrapper>
   );
 }
 

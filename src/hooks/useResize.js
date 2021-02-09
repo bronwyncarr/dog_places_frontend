@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 
+// This function is used to resize the map responsively to the screen size.
 function useResize() {
   const el = useRef(null);
   const [width, setWidth] = useState(0);

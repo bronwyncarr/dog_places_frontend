@@ -3,6 +3,7 @@ import LocationsContainer from "../Location/LocationsContainer";
 import { Link } from "react-router-dom";
 import { Notification } from "../../styles/Layout";
 
+// Depending on if the user has any favourites, it will either render a list in the tile format or a notification with a link to do so.
 function Favourites() {
   const { favourites } = useFavourites();
 

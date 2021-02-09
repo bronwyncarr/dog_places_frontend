@@ -64,6 +64,7 @@ function App() {
           )}
         </SideBar>
         <Content>
+          {/* Switch for routes and protected routes */}
           <Switch>
             <Route exact path={["/", "/locations"]} component={Locations} />
             <ProtectedRoute exact path="/favourites" component={Favourites} />
