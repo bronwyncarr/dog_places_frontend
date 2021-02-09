@@ -26,20 +26,24 @@ export const Title = styled.h1`
 `;
 
 export const Button = styled.button`
-  margin: 0 auto;
-  padding: 0.2rem 2rem;
-  font-size: 1rem;
-  border: 1px solid #00717a;
-  border-radius: 10px;
-  background-color: #daf5ea;
-`;
-
-export const ButtonLink = styled(Link)`
-  margin: 0 auto;
+  margin: 0 1rem 1rem;
   padding: 0.2rem 2rem;
   font-size: 1rem;
   border: 1px solid #00717a;
   border-radius: 10px;
   background-color: #daf5ea;
   text-decoration: none;
+  font-size: 1.2rem;
+`;
+
+export const ButtonLink = styled(Link)`
+  margin: 0 1rem 1rem;
+  padding: 0.2rem 2rem;
+  font-size: 1rem;
+  border: 1px solid #00717a;
+  border-radius: 10px;
+  background-color: #daf5ea;
+  text-decoration: none;
+  color: black;
+  font-size: 1.2rem;
 `;
