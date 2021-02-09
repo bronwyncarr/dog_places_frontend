@@ -6,6 +6,8 @@ import {
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
+import { SubTitle } from "../styles/Layout";
+import capitaliseName from "../utils/capitaliseName";
 
 function Map({ locations, size, radius }) {
   // Selected location is once a user clicks on a ion, a info box will appear.
@@ -85,10 +87,8 @@ function Map({ locations, size, radius }) {
               onCloseClick={() => setSelectedLocation({})}
             >
               <>
-                <p>{selectedLocation.name}</p>
-                <Link to={`/locations/${selectedLocation.id}`}>
-                  Show details
-                </Link>
+                <SubTitle>{capitaliseName(selectedLocation.name)}</SubTitle>
+                <Link to={`/locations/${selectedLocation.id}`}>Details...</Link>
               </>
             </InfoWindow>
           )}

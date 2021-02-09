@@ -1,0 +1,516 @@
+openapi: 3.0.0
+info:
+  version: 0.1.1
+  title: Off The Leash
+servers:
+  - url: "http://localhost:3000/api"
+
+paths:
+  /auth/sign_up:
+    post:
+      summary: Sign up for the service
+      tags:
+        - auth
+      description: Sign up to the service
+      requestBody:
+        $ref: "#/components/requestBodies/SignUp"
+      responses:
+        "201":
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthenticationPayload"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          $ref: "#/components/responses/UsernameOrPasswordNotFound"
+        "422":
+          $ref: "#/components/responses/UsernameAlreadyExists"
+
+  /auth/sign_in:
+    post:
+      summary: Sign in to the service
+      requestBody:
+        $ref: "#/components/requestBodies/Authentication"
+      tags:
+        - auth
+      description: Sign in
+      responses:
+        "200":
+          description: Sign in successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthenticationPayload"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          $ref: "#/components/responses/UsernameOrPasswordNotFound"
+
+  /favourites:
+    get:
+      summary: Get an array of the users favourite locations
+      security:
+        - userToken: []
+      tags:
+        - favourites
+      description: Get all the favourite location for the user
+      responses:
+        "200":
+          $ref: "#/components/responses/Locations"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    post:
+      summary: Add afavourite for the user
+      tags:
+        - "favourites"
+      security:
+        - userToken: []
+      description: Add a favourite location for the user
+      requestBody:
+        $ref: "#/components/requestBodies/LocationId"
+      responses:
+        "201":
+          description: Favourite successfully added
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    delete:
+      summary: Delete a favourite for the user
+      tags:
+        - "favourites"
+      security:
+        - userToken: []
+      requestBody:
+        $ref: "#/components/requestBodies/LocationId"
+      description: Delete a favourite location for the user
+      responses:
+        "204":
+          description: Favourite successfully deleted
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+  /locations:
+    get:
+      summary: "Get locations from the database"
+      operationId: listLocation
+      tags:
+        - location
+      responses:
+        "200":
+          $ref: "#/components/responses/Locations"
+      parameters:
+        - $ref: "#/components/parameters/locationName"
+    post:
+      security:
+        - userToken: []
+      requestBody:
+        $ref: "#/components/requestBodies/CreateLocation"
+      description: Create a location
+      summary: Add a location to the database
+      tags:
+        - location
+      responses:
+        "200":
+          description: OK
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /locations/{locationId}:
+    get:
+      security:
+        - userToken: []
+      description: Get a location
+      summary: Get a single location from the database
+      tags:
+        - location
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Location"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    put:
+      security:
+        - userToken: []
+      description: Update a location
+      summary: Update a location in the database
+      tags:
+        - location
+      responses:
+        "201":
+          description: The location has been updated
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    delete:
+      security:
+        - userToken: []
+      description: Delete a location
+      summary: Delete a location in the database
+      tags:
+        - location
+      responses:
+        "201":
+          description: The location has been deleted
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+    parameters:
+      - $ref: "#/components/parameters/locationId"
+
+  /locations/nearme:
+    get:
+      parameters:
+        - $ref: "#/components/parameters/locationsNearMeArguments"
+      security:
+        - userToken: []
+      description: Get a location
+      summary: Get locations near me
+      tags:
+        - location
+      responses:
+        "200":
+          $ref: "#/components/responses/Locations"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /reviews:
+    post:
+      tags:
+        - reviews
+      security:
+        - userToken: []
+      requestBody:
+        $ref: "#/components/requestBodies/CreateReview"
+      responses:
+        "201":
+          description: Review Created Successfully
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+components:
+  schemas:
+    AuthenticationPayload:
+      type: object
+      properties:
+        jwt:
+          description: A JSON web token
+          type: string
+          example: somecomplexheader.somecomplexbody.somecomlexfooter
+        username:
+          description: The system username for the user
+          type: string
+          example: steve
+        is_admin:
+          description: Is the user an admin?
+          type: boolean
+          example: false
+    Google:
+      type: object
+      properties:
+        google:
+          type: string
+          description: The maps API key
+          example: somecomplexcharacters
+    Location:
+      allOf:
+        - $ref: "#/components/schemas/Google"
+        - $ref: "#/components/schemas/Point"
+        - $ref: "#/components/schemas/Meta"
+        - $ref: "#/components/schemas/NewLocation"
+      type: object
+      properties:
+        id:
+          type: string
+          example: 1
+        reviews:
+          type: array
+          items:
+            $ref: "#/components/schemas/Review"
+    LocationsNearMeArguments:
+      description: The arguments required to determine nearby locations
+      allOf:
+        - $ref: "#/components/schemas/Point"
+      type: object
+      properties:
+        description:
+          description: The distance in km
+          type: number
+          example: 5
+    Point:
+      description: A point on earth defined by a latitude and longitude
+      type: object
+      properties:
+        latitude:
+          description: The lattitude of the user
+          type: number
+          format: float32
+          minimum: -90
+          maximum: 90
+          example: -37.673333
+        longitude:
+          description: The longitude of the user
+          type: number
+          format: float32
+          minimum: -180
+          maximum: 180
+          example: 144.843333
+    Meta:
+      type: object
+      description: ISO 8601 date-time data
+      properties:
+        posted:
+          description: When the entry was created
+          type: string
+          format: date-time
+          example: 2021-02-08T10:52:02.198Z
+        edited:
+          description: When the entry wsa last edited
+          type: string
+          format: date-time
+          example: 2021-02-08T10:52:02.198Z
+    NewLocation:
+      type: object
+      properties:
+        location_type_name:
+          description: The type of location
+          type: string
+          example: "Dog Park"
+        address:
+          description: The address of the location
+          type: string
+          example: 655 Westernport Hwy
+        description:
+          type: string
+          description: A description of the location
+          example: A fun dogpark for all to come and play!
+        location_facilities_attributes:
+          type: array
+          description: The facilities at the location
+          items:
+            type: string
+            example: water
+    Rating:
+      type: object
+      description: A rating between one and five
+      properties:
+        rating:
+          description: The rating
+          type: number
+          format: int32
+          minimum: 1
+          maximum: 5
+          example: 5
+    Review:
+      type: object
+      allOf:
+        - $ref: "#/components/schemas/Rating"
+      properties:
+        user:
+          description: The name of the user that made the review
+          type: string
+          example: steve
+        body:
+          description: The review
+          type: string
+          example: A fine cafe to take the hound
+    Error:
+      type: object
+      required:
+        - message
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+
+  requestBodies:
+    Authentication:
+      description: An email and password to authenticate with
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              user:
+                type: object
+                properties:
+                  username:
+                    type: string
+                    example: steve
+                  password:
+                    type: string
+                    format: password
+                    example: 123456
+    SignUp:
+      description: The information required to create a new user
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              user:
+                type: object
+                properties:
+                  username:
+                    type: string
+                    example: steve
+                  password:
+                    type: string
+                    format: password
+                    example: 123456
+                  email:
+                    type: string
+                    format: email
+                    example: meow@meow.com.au
+    CreateReview:
+      description: The information required to create a review
+      content:
+        multipart/form-data:
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/Rating"
+            type: object
+            properties:
+              file:
+                type: string
+                format: binary
+                description: A picture of the location
+              loaction_id:
+                type: number
+                description: The id of the locataion
+                format: int64
+                example: 1
+              body:
+                type: string
+                description: The details of the review
+                example: A fine cafe to take the hound
+    CreateLocation:
+      description: The information required to create a review
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/NewLocation"
+    LocationId:
+      description: The id of the locattion
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              location_id:
+                type: number
+                format: int64
+                example: 1
+
+  parameters:
+    locationId:
+      name: locationId
+      in: path
+      required: true
+      description: The location id
+      schema:
+        type: number
+        example: 1
+    locationName:
+      name: name
+      in: query
+      required: false
+      description: The name of the location (optional)
+      schema:
+        type: string
+        example: test
+    locationsNearMeArguments:
+      name: locationsNearMeArguments
+      in: query
+      required: true
+      description: Arguments to find loactions near me
+      schema:
+        $ref: "#/components/schemas/LocationsNearMeArguments"
+    bearerToken:
+      name: Authorization
+      in: header
+      required: true
+      description: The jwt to authenticate with
+      schema:
+        type: string
+        example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MTI5MjczNjcsInN1YiI6MX0.bfTW3BHslqV3jATDqRVsgQdZxLJxKEyvbUo-8cKxqCg
+
+  responses:
+    BadRequest:
+      description: The request has been received but cannot be processed
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+    Unauthorized:
+      description: The request has not been applied because it lacks valid authentication credentials for the target resource
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+    UsernameOrPasswordNotFound:
+      description: Username or password incorrect
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+    UsernameAlreadyExists:
+      description: Username already exists
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+    Locations:
+      description: An array of locations
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/Location"
+
+  securitySchemes:
+    userToken:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
