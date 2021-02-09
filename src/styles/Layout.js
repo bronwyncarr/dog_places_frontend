@@ -25,6 +25,13 @@ export const Title = styled.h1`
   padding-bottom: 1rem;
 `;
 
+export const SubTitle = styled.h2`
+  text-align: center;
+  vertical-align: center;
+  font-size: 2rem;
+  padding-bottom: 1rem;
+`;
+
 export const Button = styled.button`
   margin: 0 1rem 1rem;
   padding: 0.2rem 2rem;
@@ -46,4 +53,12 @@ export const ButtonLink = styled(Link)`
   text-decoration: none;
   color: black;
   font-size: 1.2rem;
+`;
+
+export const Notification = styled.div`
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;

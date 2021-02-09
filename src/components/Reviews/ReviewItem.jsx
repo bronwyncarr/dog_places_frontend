@@ -7,15 +7,16 @@ const ReviewContainer = styled.div`
   display: flex;
   margin: 1rem 0;
 `;
+
 const ReviewImage = styled.div`
-  width: 30%;
+  width: 20%;
 `;
 
 const ReviewText = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 70%;
+  width: 80%;
   font-size: 1.2rem;
   padding: 0.7rem;
 `;

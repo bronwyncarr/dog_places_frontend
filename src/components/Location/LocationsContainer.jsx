@@ -26,7 +26,12 @@ function LocationsContainer({ locations }) {
               // includes returns a boolean if the value is in the array
               favourite={favouriteIds.includes(location.id)}
             >
-              <Link to={`/locations/${location.id}`} data-testid={`location_${location.id}`} >Show details</Link>
+              <Link
+                to={`/locations/${location.id}`}
+                data-testid={`location_${location.id}`}
+              >
+                Details...
+              </Link>
             </LocationSummaryTile>
           );
         })}
