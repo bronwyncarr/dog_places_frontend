@@ -26,7 +26,7 @@
     "eject": "react-scripts eject",
     "deploy": "yarn build && netlify deploy --prod --dir=build",
     "cypress": "cypress open",
-    "e2e": "start-server-and-test 'BROWSER=none yarn start' http://localhost:8080 'yarn cypress'"
+    "e2e": "start-server-and-test 'BROWSER=none yarn start' http://localhost:8080/ 'yarn cypress'"
   },
   "eslintConfig": {
     "extends": [

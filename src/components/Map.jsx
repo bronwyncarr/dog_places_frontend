@@ -7,7 +7,7 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 
-function Map({ locations, size }) {
+function Map({ locations, size, radius }) {
   // Selected location is once a user clicks on a ion, a info box will appear.
   const [selectedLocation, setSelectedLocation] = useState({});
 
@@ -20,18 +20,31 @@ function Map({ locations, size }) {
     });
   }
 
-  let mapCenter = { lat: 0, lng: 0 };
-
+  // If there is only one location, the map centers on it (ie in the show page)
+  // Otherwise the map centers on the current location if it is available
+  // Otherwise thte map centers on MEL CBD
   function calculateCenter() {
     if (locations.length === 1) {
-      mapCenter = { lat: locations[0].latitude, lng: locations[0].longitude };
+      return { lat: locations[0].latitude, lng: locations[0].longitude };
     } else if (currentPosition.lat) {
-      mapCenter = currentPosition;
+      return currentPosition;
     } else {
-      mapCenter = { lat: -37.8136, lng: 144.9631 };
+      return { lat: -37.8136, lng: 144.9631 };
     }
   }
   calculateCenter();
+
+  // Default radius is set in state in Locations to 5.
+  // If the user sets a radius in the search box, the map size will zoom in or out to approx match the radius.
+  function calculateZoom() {
+    if (radius === 5) {
+      return 13;
+    } else if (radius === 10 || radius === 20) {
+      return 12;
+    } else {
+      return 11;
+    }
+  }
 
   // On Page load,get position
   useEffect(() => {
@@ -44,9 +57,9 @@ function Map({ locations, size }) {
       <LoadScript googleMapsApiKey={`${locations[0]["google"]}`}>
         <GoogleMap
           mapContainerStyle={size}
-          zoom={13}
+          zoom={calculateZoom()}
           // If location lat (ie coordinates) are available, centers on location, otherwise centers on Melbourne city
-          center={mapCenter}
+          center={calculateCenter()}
         >
           {/* Markers on the map for each location */}
           {locations.map((item) => {

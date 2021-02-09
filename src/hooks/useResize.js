@@ -17,9 +17,10 @@ function useResize() {
     }
 
     setDimensions();
-
     window.addEventListener("resize", setDimensions);
-  }, [el]);
+
+    return () => window.removeEventListener("resize", setDimensions);
+  });
 
   return { el, width, height };
 }

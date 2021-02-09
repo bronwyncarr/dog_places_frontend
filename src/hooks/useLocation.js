@@ -28,7 +28,6 @@ function useLocation(id) {
         location.reviewsData = reviewResponse.data;
 
         setLocation(location);
-        console.log("location", location);
       } catch (error) {
         console.error("Get Error");
       }
