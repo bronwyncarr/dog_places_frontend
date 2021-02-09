@@ -1,4 +1,9 @@
 * {
   margin: 0;
-  font-family: sans-serif;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  overflow: hidden;
+  height: 100vh;
 }
