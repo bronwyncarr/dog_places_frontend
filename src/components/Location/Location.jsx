@@ -23,6 +23,9 @@ const MapLayoutContainer = styled.div`
 export const TextLayoutContainer = styled.div`
   width: 50%;
   overflow-y: auto;
+  @media (max-width: 1400px) {
+    overflow: visible;
+  }
 `;
 
 const ContentContainer = styled.div`

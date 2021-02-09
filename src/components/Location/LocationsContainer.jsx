@@ -6,6 +6,9 @@ import styled from "styled-components/macro";
 const Container = styled.div`
   width: 100%;
   overflow-y: auto;
+  @media (max-width: 1400px) {
+    overflow: visible;
+  }
 `;
 
 function LocationsContainer({ locations }) {
