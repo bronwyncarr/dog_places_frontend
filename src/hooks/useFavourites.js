@@ -3,6 +3,7 @@ import axios from "axios";
 import useAuthHeaders from "./useAuthHeaders";
 import { useGlobalState } from "../utils/context";
 
+// This function gets the users favourites and returns a method to add and delete favourites.
 function useFavourites() {
   const [favourites, setFavourites] = useState([]);
   const config = useAuthHeaders();
@@ -41,7 +42,6 @@ function useFavourites() {
 
       setFavourites(response.data);
     } catch (error) {
-      // Work out what we need to do later...
       console.error("Remove Error");
     }
   }
@@ -60,10 +60,7 @@ function useFavourites() {
       );
 
       setFavourites(response.data);
-
-      // setLocation(response.data);
     } catch (error) {
-      // Work out what we need to do later...
       console.error("Create Error");
     }
   }

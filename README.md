@@ -139,7 +139,7 @@ Trello Board at the end
 
 #### A copy of a daily check for User stories can be found in the user stories log tab of the excel spread sheet
 
-[Spreadsheet](docs/OffTheLeashDevLog.xlsx)
+[Spreadsheet](docs/dev-log.xlsx)
 
 #### Stretch Goals
 
@@ -213,7 +213,7 @@ We conducted manual testing daily to keep track of the status of our application
 
 ![Daily testing](./docs/testing/test-summary.png)
 
-We tracked the errors recognised through manual and automatic testing and got an external third party to test the site for us and provide feedback. Details can be found [online here](https://docs.google.com/spreadsheets/d/1nBkMOCYczEhUjS3Quj4VdaXcq7aJxRsKv7s7-TjV1_o/edit#gid=0)
+We tracked the errors recognized through manual and automatic testing and got an external third party to test the site for us and provide feedback. Details can be found [online here](https://docs.google.com/spreadsheets/d/1nBkMOCYczEhUjS3Quj4VdaXcq7aJxRsKv7s7-TjV1_o/edit#gid=0)
 
 ![Daily testing](./docs/testing/test-manual.png)
 ![Daily testing](./docs/testing/test-auto.png)

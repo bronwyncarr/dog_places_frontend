@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import useAuthHeaders from "./useAuthHeaders";
 
+// This function handles the state for a single location and is used throughtout the app.
+// It returns the data on a single location as well as a way to createImageBitmap, edit and update it.
 function useLocation(id) {
   const config = useAuthHeaders();
   const [location, setLocation] = useState({
@@ -46,7 +48,6 @@ function useLocation(id) {
       );
       setLocation(null);
     } catch (error) {
-      // Work out what we need to do later...
       console.error("Remove Error");
     }
   }
@@ -70,7 +71,6 @@ function useLocation(id) {
 
       setLocation(response.data);
     } catch (error) {
-      // Work out what we need to do later...
       console.error("Create Error");
     }
   }

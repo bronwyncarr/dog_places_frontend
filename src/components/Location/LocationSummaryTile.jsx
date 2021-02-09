@@ -24,6 +24,7 @@ function LocationSummaryTile({
   const { store } = useGlobalState();
   const { loggedInUser } = store;
 
+  // Flip flops between coloured and uncolored heart.
   function handleClick() {
     favourite ? removeFavourite(location.id) : addFavourite(location.id);
   }
@@ -43,7 +44,6 @@ function LocationSummaryTile({
       <h4>{capitaliseName(location.address)}</h4>
       <h4>{location.rating}</h4>
       <FacilityList facilities={location.location_facilities_attributes} />
-
       <p>{average(location.reviews)}</p>
       {children}
     </Wrapper>

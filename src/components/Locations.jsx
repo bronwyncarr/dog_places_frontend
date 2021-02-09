@@ -37,9 +37,6 @@ const MapLayoutContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  @media (max-width: 1400px) {
-    width: 100;
-  }
 `;
 
 const TitleLayoutContainer = styled.div`

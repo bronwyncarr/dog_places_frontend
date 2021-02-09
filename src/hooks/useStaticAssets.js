@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import useAuthHeaders from "./useAuthHeaders";
 
+// This function gets the static assets to be dynamically rendered on the form
 function useStaticAssets() {
   const [staticAssets, setStaticAssets] = useState({});
   const config = useAuthHeaders();

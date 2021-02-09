@@ -26,6 +26,7 @@ const ReviewRating = styled.div`
   justify-content: space-between;
 `;
 
+// If no image was uploaded in the review, the default image will render.
 function ReviewItem({ body, rating, image_url, user }) {
   return (
     <ReviewContainer>

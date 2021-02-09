@@ -12,8 +12,6 @@ import capitaliseName from "../utils/capitaliseName";
 function Map({ locations, size, radius }) {
   // Selected location is once a user clicks on a ion, a info box will appear.
   const [selectedLocation, setSelectedLocation] = useState({});
-
-  // Not sure if needs to be stored in state.
   const [currentPosition, setCurrentPosition] = useState({});
   function success(pos) {
     setCurrentPosition({
