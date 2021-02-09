@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import SearchBar from "./Search/SearchBar";
 import Map from "./Map";
 import LocationsContainer from "./Location/LocationsContainer";
-import NearMe from "./Search/NearMeForm";
 import useAuthHeaders from "../hooks/useAuthHeaders";
 import styled from "styled-components/macro";
 import useResize from "../hooks/useResize";
