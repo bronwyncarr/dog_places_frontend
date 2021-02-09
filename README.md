@@ -4,9 +4,9 @@
 At the beginning of this project we discussed as a team what we felt were our strengths and weaknesses and planned our days accordingly. Rodney took the Backend development and testing to improve his knowledge of database structures and testing practices. Bronwyn took the frontend development because she felt more confident with the React frame work and Javascript overall as well as CSS. Throughout the project we had to juggle personal commitments as well as the project itself which lead to us having standup's each morning after class finished over the phone to discuss the days work and a plan of attack to accomplish the days work. While we did not have everything done each day that we intended we discussed it the next day and addressed any blockers that we were facing. For example when we couldn't figure out how to wire up the near me function from react to rails we both set about researching query strings and how they worked which led to the search by name function being implemented.
 
 ## Links to repos and deployed site
-[Front end](https://github.com/bronwyncarr/dog_places_frontend)
-[Back end](https://github.com/bronwyncarr/dog_places_backend)
-[Off the leash site](https://off-the-leash.netlify.app/)
+- [Front end](https://github.com/bronwyncarr/dog_places_frontend)
+- [Back end](https://github.com/bronwyncarr/dog_places_backend)
+- [Off the leash site](https://off-the-leash.netlify.app/)
 ## Daily logs 
  note a pseudo daily log can be found in the testing spread sheet in the docs file under the user testing logs tab
 - ### Jan 21, 2021
