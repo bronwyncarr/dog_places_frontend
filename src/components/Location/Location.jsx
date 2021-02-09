@@ -76,12 +76,16 @@ function Location() {
               <Map size={mapSize} locations={[location]} />
             </MapLayoutContainer>
             <TextLayoutContainer>
-              <p>{location.description}</p>
               <ButtonLink to="/">Back</ButtonLink>
-              <ButtonLink to={`/locations/${location.id}/edit`}>
+              <ButtonLink
+                to={`/locations/${location.id}/edit`}
+                data-testid="editLocation"
+              >
                 Edit
               </ButtonLink>
+
               <Button onClick={handleDelete}>Delete</Button>
+              <p>{location.description}</p>
               <Reviews reviews={location.reviewsData}>
                 {location.reviewsData.map((review) => (
                   <ReviewItem key={review.id} {...review} />
