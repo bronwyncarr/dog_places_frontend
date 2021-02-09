@@ -43,7 +43,7 @@ describe("signed up user can make a location and reviews then sign_out", () => {
     cy.wait(800);
     cy.get("h2").should("include", /favourites/i);
   });
-  it("should render an alert on location change for regular users", () => {
+  it("should not render an alert on location change for admin users", () => {
     cy.get("[data-testid=location_2]").click();
 
     cy.get('[href="/locations/2/edit"]').click();
