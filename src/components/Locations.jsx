@@ -6,6 +6,7 @@ import useAuthHeaders from "../hooks/useAuthHeaders";
 import styled from "styled-components/macro";
 import useResize from "../hooks/useResize";
 import SearchOptions from "./Search/SearchOptions";
+import { Title } from "../styles/Layout";
 
 const LocationsWrapper = styled.div`
   height: 100%;
@@ -36,13 +37,26 @@ const MapLayoutContainer = styled.div`
 
 const TitleLayoutContainer = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 3rem 0 1.5rem 0;
 `;
 
-const Title = styled.h1`
-  text-align: center;
-  vertical-align: center;
+const Quote = styled.blockquote`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-style: italic;
+`;
+
+const Cite = styled.cite`
+  font-weight: bolder;
+  color: slategrey;
+  font-style: none;
+  font-size: 1.5rem;
 `;
 
 function Locations() {
@@ -76,6 +90,10 @@ function Locations() {
     <LocationsWrapper>
       <TitleLayoutContainer>
         <Title>Locations</Title>
+        <Quote>
+          “Everyone thinks they have the best dog. And none of them are wrong.”
+        </Quote>
+        <Cite>– W.R. Purche</Cite>
       </TitleLayoutContainer>
       <LayoutContainer>
         <MapLayoutContainer ref={el}>

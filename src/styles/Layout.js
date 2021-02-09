@@ -16,3 +16,10 @@ export const Content = styled.div`
   flex: 1 1 auto;
   height: 100%;
 `;
+
+export const Title = styled.h1`
+  text-align: center;
+  vertical-align: center;
+  font-size: 3.5rem;
+  padding-bottom: 1rem;
+`;

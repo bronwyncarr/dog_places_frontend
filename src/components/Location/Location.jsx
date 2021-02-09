@@ -2,7 +2,6 @@ import { Link, useParams, useHistory } from "react-router-dom";
 import { useGlobalState } from "../../utils/context";
 import Reviews from "../Reviews/Reviews";
 import ReviewItem from "../Reviews/ReviewItem";
-import average from "../../utils/reviewsAverage";
 import Map from "../Map";
 import useLocation from "../../hooks/useLocation";
 import useFavourites from "../../hooks/useFavourites";
@@ -60,23 +59,23 @@ function Location() {
           location={location}
           // includes returns a boolean if the value is in the array
           favourite={favouriteIds.includes(location.id)}
-        />
-        <p>Average review: {average(location.reviews)}</p>
-        {/* Location is put in an array for consistency so they map can be reused for one (here) or many locations (index pg)*/}
-        <MapLayoutContainer ref={el}>
-          <Map size={mapSize} locations={[location]} />
-        </MapLayoutContainer>
-        <br />
-        <p>{location.description}</p>
-        <Link to={`/locations/${location.id}/edit`}>Edit</Link>
-        <button onClick={handleDelete}>Delete</button>
-        <br />
-        <Reviews reviews={location.reviewsData}>
-          {location.reviewsData.map((review) => (
-            <ReviewItem key={review.id} {...review} />
-          ))}
-        </Reviews>
-        <Link to="/">Back</Link>
+        >
+          {/* Location is put in an array for consistency so they map can be reused for one (here) or many locations (index pg)*/}
+          <MapLayoutContainer ref={el}>
+            <Map size={mapSize} locations={[location]} />
+          </MapLayoutContainer>
+          <br />
+          <p>{location.description}</p>
+          <Link to={`/locations/${location.id}/edit`}>Edit</Link>
+          <button onClick={handleDelete}>Delete</button>
+          <br />
+          <Reviews reviews={location.reviewsData}>
+            {location.reviewsData.map((review) => (
+              <ReviewItem key={review.id} {...review} />
+            ))}
+          </Reviews>
+          <Link to="/">Back</Link>
+        </LocationSummaryTile>
       </>
     )
   );

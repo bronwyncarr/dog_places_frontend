@@ -11,7 +11,6 @@ const Icon = styled.span`
 `;
 
 function FaciltiyList({ facilities }) {
-  console.log(facilities);
   return (
     // Maps over facility list and displays icon with title and alt text for each facility
     <IconContainer>
