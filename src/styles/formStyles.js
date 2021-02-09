@@ -9,6 +9,9 @@ export const FormWrapper = styled.div`
   flex-direction: column;
   border-radius: 10px;
   box-shadow: 2px 2px 5px 2px rgba(100 100 100);
+  @media (max-width: 1400px) {
+    width: 80%;
+  }
 `;
 
 export const StyledForm = styled.form`

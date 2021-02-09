@@ -23,6 +23,9 @@ export const Content = styled.div`
   background-color: #82d190;
   flex: 1 1 auto;
   height: 100%;
+  @media (max-width: 1400px) {
+    min-height: 100vh;
+  }
 `;
 
 export const Title = styled.h1`
