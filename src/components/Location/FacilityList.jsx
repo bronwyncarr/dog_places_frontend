@@ -66,20 +66,20 @@ function FaciltiyList({ facilities }) {
                 </span>
               </>
             );
-          case "Off-Lead":
+          case "Off Lead":
             return (
               <>
                 <Icon
                   key={element}
                   className="fas fa-dog"
-                  title="Off-lead"
+                  title="Off Lead"
                   aria-hidden="true"
                 ></Icon>
                 <span className="sr-only">Off-lead</span>
               </>
             );
           default:
-            return <span key={element}>No faciilites are listed</span>;
+            return null;
         }
       })}
     </IconContainer>
