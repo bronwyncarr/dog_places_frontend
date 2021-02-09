@@ -25,6 +25,10 @@ const LayoutContainer = styled.div`
 const LocationsLayoutContainer = styled.div`
   width: 50%;
   overflow-y: auto;
+  @media (max-width: 1400px) {
+    overflow: visible;
+    width: 100%;
+  }
 `;
 
 const MapLayoutContainer = styled.div`
@@ -33,6 +37,9 @@ const MapLayoutContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  @media (max-width: 1400px) {
+    width: 100;
+  }
 `;
 
 const TitleLayoutContainer = styled.div`

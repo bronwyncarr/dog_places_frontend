@@ -2,20 +2,30 @@ import styled from "styled-components/macro";
 import { Link } from "react-router-dom";
 
 export const AppContainer = styled.div`
-  height: 100%;
+  /* height: 100%;
   overflow: hidden;
+  @media (max-width: 1400px) {
+    overflow: visible;
+  } */
 `;
 
 export const Layout = styled.div`
   display: flex;
   width: 100%;
   height: 100vh;
+  @media (max-width: 1400px) {
+    flex-direction: column;
+    height: auto;
+  }
 `;
 
 export const Content = styled.div`
   background-color: #82d190;
   flex: 1 1 auto;
   height: 100%;
+  @media (max-width: 1400px) {
+    min-height: 100vh;
+  }
 `;
 
 export const Title = styled.h1`
