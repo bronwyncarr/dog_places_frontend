@@ -1,4 +1,4 @@
-import { Link, useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useGlobalState } from "../../utils/context";
 import Reviews from "../Reviews/Reviews";
 import ReviewItem from "../Reviews/ReviewItem";
