@@ -1,53 +1,22 @@
 import GeneratedForm from "../Form";
-import useLocation from "../../hooks/useLocation";
 import useStaticAssets from "../../hooks/useStaticAssets";
 
 function NewLocation({ history }) {
   // Inbound info from static assets
-
-  // Initiates state as empty object (with keys so inputs are always controlled)
-  const { location, setLocation, createLocation } = useLocation();
   const staticAssets = useStaticAssets();
   const {
     location_types: locationTypes,
     location_facilities: facilityTypes,
   } = staticAssets;
 
-  // On submit create body, and send post request. Then redirect to locations.
-  async function handleSubmit(e) {
-    e.preventDefault();
-    await createLocation();
-    history.goBack();
-  }
-
-  // Form change of details
-  const handleFormChange = (e) => {
-    setLocation({
-      ...location,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  // Form change for checkboxes
-  const handleCheckChange = (e) => {
-    setLocation({
-      ...location,
-      location_facilities_attributes: [
-        ...location.location_facilities_attributes,
-        e.target.value,
-      ],
-    });
-  };
-
   return (
     <>
       <GeneratedForm
-        details={location}
+        heading="New Location"
+        formType="create"
         locationTypes={locationTypes}
         facilityTypes={facilityTypes}
-        handleCheckChange={handleCheckChange}
-        handleFormChange={handleFormChange}
-        handleSubmit={handleSubmit}
+        history={history}
       />
     </>
   );

@@ -9,7 +9,6 @@ export const Wrapper = styled.div`
   flex-direction: column;
   border-radius: 10px;
   box-shadow: 2px 2px 5px 2px rgba(100 100 100);
-  line-height: 1.4rem;
 `;
 
 export const StyledForm = styled.form`

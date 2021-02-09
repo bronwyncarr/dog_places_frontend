@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import useAuthHeaders from "./useAuthHeaders";
+import { useGlobalState } from "../utils/context";
 
 function useFavourites() {
   const [favourites, setFavourites] = useState([]);
   const config = useAuthHeaders();
+  const { store } = useGlobalState();
+
   useEffect(() => {
+    const { loggedInUser } = store;
     async function getFavourite() {
       try {
         const response = await axios(
@@ -17,8 +21,8 @@ function useFavourites() {
         console.error("Get Error");
       }
     }
-    getFavourite();
-  }, [config]);
+    loggedInUser && getFavourite();
+  }, [config, store]);
 
   async function removeFavourite(id) {
     try {

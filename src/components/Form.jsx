@@ -11,23 +11,75 @@ import {
   Checkboxes,
   Submit,
 } from "../styles/tileStyles";
-
+import useLocation from "../hooks/useLocation";
+import { useParams } from "react-router-dom";
 import capitaliseName from "../utils/capitaliseName";
+import PropTypes from "prop-types";
+import { useGlobalState } from "../utils/context";
 
 // Props for the form are passed in from the NewLcoation or Edit Location
 function GeneratedForm({
-  details,
+  formType,
   locationTypes,
   facilityTypes,
-  handleFormChange,
-  handleCheckChange,
-  handleSubmit,
+  history,
+  heading,
 }) {
   const fields = ["name", "address", "description"];
+  const { id } = useParams();
+  const { location, setLocation, updateLocation, createLocation } = useLocation(
+    id
+  );
+  const { store } = useGlobalState();
+  const { loggedInAdmin } = store;
+
+  const handleFormChange = (e) => {
+    setLocation({
+      ...location,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  // Form change for checkboxes
+  const handleCheckChange = (e) => {
+    const checkboxes = [...location.location_facilities_attributes];
+    const checkedItem = e.target.value;
+
+    const s = new Set(checkboxes);
+
+    s.has(checkedItem) ? s.delete(checkedItem) : s.add(checkedItem);
+
+    setLocation({
+      ...location,
+      location_facilities_attributes: [...s],
+    });
+  };
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    switch (formType) {
+      case "update":
+        await updateLocation();
+        if (!loggedInAdmin) {
+          alert(
+            "Your request has been sent to our admin team for edit approval"
+          );
+        }
+        break;
+
+      case "create":
+        await createLocation();
+        break;
+
+      default:
+        throw Error("Incorrect formType provided");
+    }
+    history.push("/");
+  }
 
   return (
     <Wrapper>
-      <Heading>New Location</Heading>
+      <Heading>{heading}</Heading>
       <StyledForm onSubmit={handleSubmit}>
         {/* Name, description and address fields */}
         {fields.map((item, index) => {
@@ -38,7 +90,7 @@ function GeneratedForm({
                 type="text"
                 name={item}
                 id={item}
-                value={details[item]}
+                value={location[item]}
                 onChange={handleFormChange}
               />
             </Field>
@@ -50,7 +102,7 @@ function GeneratedForm({
           <Select
             name="location_type_name"
             id="location_type_name"
-            value={details.location_type_name}
+            value={location.location_type_name}
             onChange={handleFormChange}
           >
             <option value selected>
@@ -73,6 +125,9 @@ function GeneratedForm({
                 <div key={index}>
                   <input
                     type="checkbox"
+                    checked={location.location_facilities_attributes.includes(
+                      item
+                    )}
                     id={item}
                     name={item}
                     value={item}
@@ -90,5 +145,9 @@ function GeneratedForm({
     </Wrapper>
   );
 }
+
+GeneratedForm.propTypes = {
+  formType: PropTypes.oneOf(["update", "create"]),
+};
 
 export default GeneratedForm;
