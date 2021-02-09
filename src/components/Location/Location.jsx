@@ -58,6 +58,7 @@ function Location() {
           removeFavourite={removeFavourite}
           key={location.id}
           location={location}
+          
           // includes returns a boolean if the value is in the array
           favourite={favouriteIds.includes(location.id)}
         />
@@ -68,8 +69,8 @@ function Location() {
         </MapLayoutContainer>
         <br />
         <p>{location.description}</p>
-        <Link to={`/locations/${location.id}/edit`}>Edit</Link>
-        <button onClick={handleDelete}>Delete</button>
+        <Link to={`/locations/${location.id}/edit`} data-testid='editLocation'>Edit</Link>
+        <button data-testid="delete" onClick={handleDelete}>Delete</button>
         <br />
         <Reviews reviews={location.reviewsData}>
           {location.reviewsData.map((review) => (

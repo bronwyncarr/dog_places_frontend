@@ -55,6 +55,7 @@ function NewUser({ history }) {
           <Field>
             <Label htmlFor="email">Email:</Label>
             <Input
+            data-testid="email"
               type="email"
               name="email"
               id="email"
@@ -66,6 +67,7 @@ function NewUser({ history }) {
           <Field>
             <Label htmlFor="username">UserName:</Label>
             <Input
+            data-testid="username"
               placeholder="RexTheDog!"
               type="text"
               name="username"
@@ -77,6 +79,7 @@ function NewUser({ history }) {
           <Field>
             <Label htmlFor="password">Password:</Label>
             <Input
+            data-testid="password"
               type="password"
               name="password"
               id="password"
@@ -88,6 +91,7 @@ function NewUser({ history }) {
             {/* Confirm password is only front end logic check. It is not kept in the user variable as it sis not sent to rails. */}
             <Label htmlFor="password">Confirm Password:</Label>
             <Input
+            data-testid="confirm_password"
               type="password"
               name="confirmPassword"
               id="confirmPassword"
