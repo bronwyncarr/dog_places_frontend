@@ -1,5 +1,14 @@
 # T3A2 Off The Leash
 
+## Links (R10)
+
+- [Off the leash site](https://off-the-leash.netlify.app/)
+- [Front end](https://github.com/bronwyncarr/dog_places_frontend)
+- [Back end](https://github.com/bronwyncarr/dog_places_backend)
+
+- [Trello Board](https://trello.com/b/113nxQTJ/off-the-leash)
+- [API Documentation](https://documenter.getpostman.com/view/14438308/TW76D4aa#aab65073-7c5a-4cc7-8404-ab6b4eea852a)
+
 ## Installing the App
 
 ### Dependencies
@@ -16,20 +25,11 @@
   which will give you a new master key and make knock work.
   this app also uses a google maps api key a sendgrid api key which you will need in the rails credentials for the appto function correctly locally
 
-## How to test
+### How to test
 
 Since the React side of this app takes information from the rails app you will need to run this command to seed the test database `RAILS_ENV=test rake db:test:prepare db:seed` which will seed the test data base and allow you to test both the backend with the pre configured RSpec tests which can be run with `bin/rspec -fd` the -fd here is optional and just gives you more information while the tests run
 and the front end can be tested with Cypress by running `yarn run e2e` whilst the rails app is running with this command `rails s -e test`
 then just select which test you want to check and see that they all pass and the app is ready to go.
-
-## Links (R10)
-
-- [Off the leash site](https://off-the-leash.netlify.app/)
-- [Front end](https://github.com/bronwyncarr/dog_places_frontend)
-- [Back end](https://github.com/bronwyncarr/dog_places_backend)
-
-- [Link to Trello Board](https://trello.com/b/113nxQTJ/off-the-leash)
-- [Api Documentation](https://documenter.getpostman.com/view/14438308/TW76D4aa#aab65073-7c5a-4cc7-8404-ab6b4eea852a)
 
 ## PART A
 
