@@ -7,10 +7,19 @@ import NearMe from "./Search/NearMeForm";
 import useAuthHeaders from "../hooks/useAuthHeaders";
 import styled from "styled-components/macro";
 import useResize from "../hooks/useResize";
+import SearchOptions from "./Search/SearchOptions";
+
+const LocationsWrapper = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`;
 
 const LayoutContainer = styled.div`
-  height: 80%;
   display: flex;
+  flex: 1 1 0;
+  // This stops stops the content from making this flexbox outgrow the parent
+  min-height: 0;
   align-items: stretch;
 `;
 
@@ -19,9 +28,10 @@ const LocationsLayoutContainer = styled.div`
   overflow-y: auto;
 `;
 
-const MapContainer = styled.div`
+const MapLayoutContainer = styled.div`
   width: 50%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 `;
@@ -30,11 +40,6 @@ const TitleLayoutContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 10%;
-`;
-
-const SearchbarLayoutContainer = styled.div`
-  height: 10%;
 `;
 
 const Title = styled.h1`
@@ -45,9 +50,8 @@ const Title = styled.h1`
 function Locations() {
   const [locations, setLocations] = useState([]);
   const config = useAuthHeaders();
-  const [searchData, setSearchData] = useState("");
-  const [searchErrorMsg, setSearchErrorMsg] = useState(null);
   const { el, width, height } = useResize();
+  const [radius, setRadius] = useState(5);
 
   const mapSize = {
     width: `${width * 0.9}px`,
@@ -70,101 +74,25 @@ function Locations() {
     getLocations();
   }, [config]);
 
-  // If the form is submitted, a GET request with query params is sent to search by name
-  async function searchLocations() {
-    try {
-      const response = await axios(
-        `${process.env.REACT_APP_BACKEND_URL}/locations?name=${searchData}`,
-        config
-      );
-      setLocations(response.data);
-    } catch (error) {
-      console.error("Get Error");
-    }
-  }
-
-  const [distance, setDistance] = useState(5);
-  const [currentPosition, setCurrentPosition] = useState({});
-
-  // Callback function that takes the GeolocationPosition object as input.
-  function success(pos) {
-    setCurrentPosition({
-      lat: pos.coords.latitude,
-      lng: pos.coords.longitude,
-    });
-  }
-  // On Page load, get position if it is available
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(success);
-  });
-
-  async function locationsNearMe(dist, lat, lng) {
-    try {
-      const response = await axios(
-        `${process.env.REACT_APP_BACKEND_URL}/locations/nearme?description=${dist}&lat=${lat}&lng=${lng}`,
-        config
-      );
-      if (response.data && response.data.length > 0) {
-        setLocations(response.data);
-        setSearchErrorMsg(null);
-      } else {
-        setSearchErrorMsg(
-          "Sorry, no locations within your requested search distance."
-        );
-      }
-    } catch (error) {
-      console.error("Get Error");
-    }
-  }
-
-  function handleNearMeChange(e) {
-    setDistance(e.target.value);
-  }
-
-  function handleNearMeSubmit(e) {
-    e.preventDefault();
-    locationsNearMe(distance, currentPosition.lat, currentPosition.lng);
-  }
-
-  // Handle change on form
-  function handleSearchChange(e) {
-    setSearchData(e.target.value);
-  }
-
-  // When form submitted,
-  function handleSearchSubmit(e) {
-    e.preventDefault();
-    searchLocations();
-    setSearchData("");
-  }
-
   return (
-    <>
+    <LocationsWrapper>
       <TitleLayoutContainer>
         <Title>Locations</Title>
       </TitleLayoutContainer>
-      <SearchbarLayoutContainer>
-        <NearMe
-          handleNearMeSubmit={handleNearMeSubmit}
-          handleNearMeChange={handleNearMeChange}
-          distance={distance}
-        />
-        <SearchBar
-          handleSearchSubmit={handleSearchSubmit}
-          handleSearchChange={handleSearchChange}
-          searchData={searchData}
-        />
-        {searchErrorMsg && <p>{searchErrorMsg}</p>}
-      </SearchbarLayoutContainer>
       <LayoutContainer>
-        <MapContainer ref={el}>
-          <Map size={mapSize} locations={locations} />
-        </MapContainer>
+        <MapLayoutContainer ref={el}>
+          <SearchOptions
+            setLocations={setLocations}
+            setRadius={setRadius}
+            radius={radius}
+          ></SearchOptions>
+          <Map size={mapSize} locations={locations} radius={radius} />
+        </MapLayoutContainer>
         <LocationsLayoutContainer>
           <LocationsContainer locations={locations} />
         </LocationsLayoutContainer>
       </LayoutContainer>
-    </>
+    </LocationsWrapper>
   );
 }
 

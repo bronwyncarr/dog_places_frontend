@@ -11,6 +11,9 @@ import {
   Checkboxes,
   Submit,
 } from "../styles/tileStyles";
+
+import capitaliseName from "../utils/capitaliseName";
+
 // Props for the form are passed in from the NewLcoation or Edit Location
 function GeneratedForm({
   details,
@@ -21,11 +24,6 @@ function GeneratedForm({
   handleSubmit,
 }) {
   const fields = ["name", "address", "description"];
-
-  // Captialise Name for consistency
-  function capitaliseName(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
 
   return (
     <Wrapper>

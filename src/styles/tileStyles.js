@@ -4,11 +4,12 @@ export const Wrapper = styled.div`
   width: 80%;
   margin: 1rem auto;
   padding: 0.5rem 2rem;
-  background-color: #f6f5f1;
+  background-color: whitesmoke;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
   box-shadow: 2px 2px 5px 2px rgba(100 100 100);
+  line-height: 1.4rem;
 `;
 
 export const StyledForm = styled.form`
@@ -57,4 +58,4 @@ export const Heading = styled.h1`
 // #ffadad - coral
 //#f7c200 - gold
 // #009475 -tree green
-// #f6f5f1 - fence post/whitesmoke alt
+// whitesmoke - fence post/whitesmoke alt

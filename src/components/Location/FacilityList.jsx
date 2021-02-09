@@ -1,71 +1,88 @@
+import styled from "styled-components/macro";
+
+const IconContainer = styled.span`
+  font-size: 1.5rem;
+`;
+
+const Icon = styled.span`
+  color: #00717a;
+  display: inline;
+  padding-right: 0.5rem;
+`;
+
 function FaciltiyList({ facilities }) {
   return (
     // Maps over facility list and displays icon with title and alt text for each facility
-    <>
-      {facilities.map((element, i) => {
+    <IconContainer>
+      {facilities.map((element) => {
         switch (element) {
           case "Parking":
             return (
-              <span key={element}>
-                <i
+              <>
+                <Icon
+                  key={element}
                   className="fas fa-car"
                   title="Parking"
                   aria-hidden="true"
-                ></i>
+                ></Icon>
                 <span className="sr-only">Parking</span>
-              </span>
+              </>
             );
           case "Water":
             return (
-              <span key={element}>
-                <i
+              <>
+                <Icon
+                  key={element}
                   className="fas fa-faucet"
                   title="Water"
                   aria-hidden="true"
-                ></i>
+                ></Icon>
                 <span className="sr-only">Water</span>
-              </span>
+              </>
             );
           case "Food":
             return (
-              <span key={element}>
-                <i
+              <>
+                <Icon
+                  key={element}
                   className="fas fa-utensils"
                   title="Food"
                   aria-hidden="true"
-                ></i>
+                ></Icon>
                 <span className="sr-only">Food</span>
-              </span>
+              </>
             );
           case "Toilets":
             return (
-              <span key={element}>
+              <>
                 <span>
-                  <i
+                  <Icon
+                    key={element}
                     className="fas fa-restroom"
                     title="Toilets"
                     aria-hidden="true"
-                  ></i>
+                  ></Icon>
                   <span className="sr-only">Toilets</span>
                 </span>
-              </span>
+              </>
             );
           case "Off-Lead":
             return (
-              <span key={element}>
-                <i
+              <>
+                <Icon
+                  key={element}
                   className="fas fa-dog"
                   title="Off-lead"
                   aria-hidden="true"
-                ></i>
+                ></Icon>
                 <span className="sr-only">Off-lead</span>
-              </span>
+              </>
             );
           default:
             return <span key={element}>No faciilites are listed</span>;
         }
       })}
-    </>
+    </IconContainer>
   );
 }
 export default FaciltiyList;

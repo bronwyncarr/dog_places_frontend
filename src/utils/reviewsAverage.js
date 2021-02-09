@@ -1,3 +1,5 @@
+import makeStars from "./makeStars";
+
 function average(reviews) {
   const ratings = reviews.map((location) => location.rating);
   const filteredRatings = ratings.filter(
@@ -5,20 +7,16 @@ function average(reviews) {
   );
 
   let roundedRating = "No reviews to display";
+  let stars = "-";
+
   if (filteredRatings.length >= 1) {
     const rating =
       filteredRatings.reduce((a, b) => a + b) / filteredRatings.length;
     roundedRating = Math.round(rating * 10) / 10;
+    stars = makeStars(roundedRating);
   }
 
-  return roundedRating;
+  return `${stars} ${roundedRating}`;
 }
 
 export default average;
-
-// let stars = [];
-
-// while (roundedRating > 0) {
-//   stars.push(`<i class="fas fa-star-half-alt"></i>`);
-//   roundedRating--;
-// }

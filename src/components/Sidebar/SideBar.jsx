@@ -4,7 +4,7 @@ import dog from "./dog.svg";
 
 const SideBarWrapper = styled.div`
   height: 100%;
-  background-color: #f6f5f1;
+  background-color: whitesmoke;
   flex: 0 1 auto;
 `;
 
@@ -34,7 +34,7 @@ const SideBarLink = styled(Link)`
 
   &:hover {
     background-color: slategray;
-    color: #f6f5f1;
+    color: whitesmoke;
   }
 `;
 
