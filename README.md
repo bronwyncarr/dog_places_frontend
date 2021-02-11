@@ -1,6 +1,6 @@
 # 🐶 Off The Leash
 
-## Links (R10)
+##  Links (R10)
 
 - [Off the leash site](https://off-the-leash.netlify.app/)
 - [Front end](https://github.com/bronwyncarr/dog_places_frontend)
