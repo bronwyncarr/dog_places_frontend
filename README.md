@@ -1,6 +1,6 @@
 # 🐶 Off The Leash
 
-##  Links (R10)
+## 🔗 Links (R10)
 
 - [Off the leash site](https://off-the-leash.netlify.app/)
 - [Front end](https://github.com/bronwyncarr/dog_places_frontend)
@@ -9,7 +9,7 @@
 - [Trello Board](https://trello.com/b/113nxQTJ/off-the-leash)
 - [API Documentation](https://documenter.getpostman.com/view/14438308/TW76D4aa#aab65073-7c5a-4cc7-8404-ab6b4eea852a)
 
-## Installing the App
+## ⬇️ Installing the App
 
 ### Dependencies
 
@@ -17,7 +17,7 @@
 - yarn 1.22.10
 - node v14.15.1
 
-### Actual install
+### Install
 
 - Clone both repositories [Front end](https://github.com/bronwyncarr/dog_places_frontend) and [Back end](https://github.com/bronwyncarr/dog_places_backend)
 - Run `yarn install` for the front end and `bundle install` for rails then on rails run a `rails db:create` and `rails db:seed`
@@ -207,7 +207,7 @@ We met in person to discuss our initial concept, planning and develop our wirefr
 
 ### Testing (R8, R9)
 
-#### Daily logs
+#### 📅 Daily logs
 
 We conducted manual testing daily to keep track of the status of our application and can be found [online here](https://docs.google.com/spreadsheets/d/1nBkMOCYczEhUjS3Quj4VdaXcq7aJxRsKv7s7-TjV1_o/edit#gid=0)
 
