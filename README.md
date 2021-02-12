@@ -404,7 +404,7 @@ We used a combination of [Postman](https://www.postman.com/) and the vscode exte
 
 We created a **client.http file** which can be found in the rails backend and a JSON copy of our postman logs [here](./docs/Off-the-leash-postman-logs.json).
 
-### Libraries and Tools used in the Project
+### 🛠 Libraries and Tools used in the Project
 
 - #### React Testing
 
